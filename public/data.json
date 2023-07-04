@@ -1,0 +1,202 @@
+{
+    "categories": [
+        {"name":"Software Developer"},
+        {"name":"Nurse"},
+        {"name":"Teacher"},
+        {"name":"Mechanic"},
+        {"name":"Doctor"},
+        {"name":"Construction"},
+        {"name":"Aviation"},
+        {"name":"Drivers"},
+        {"name":"Waiters"},
+        {"name":"Content Creator"},
+        {"name":"Graphic Design"},
+        {"name":"Accountants"},
+        {"name":"Procurements"},
+        {"name":"Human Resourse"},
+        {"name":"IT"},
+        {"name":"Help Desk"},
+        {"name":"Pharmacist"}
+    ],
+    "universities":[
+      {
+        "id":0,
+        "name":"UoK",
+        "logo":"https://scontent.fnbo1-1.fna.fbcdn.net/v/t1.6435-9/170546004_133829638749432_2134426949662765958_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=6SJCFIx4Jm0AX-JSmY_&_nc_ht=scontent.fnbo1-1.fna&oh=00_AfBa2sjr2dplPN5D2vt6ZxuPRF4ZHWqwJg2NEMGGokCIqQ&oe=64BF90FF",
+        "phone":"0789999699",
+        "address":"Kigali, Kicukiro, Gatenga",
+        "url":"www.uok.ac.rw",
+        "image":"/assets/images/bacground.png"
+      },
+      {
+        "id":0,
+        "name":"UTB",
+        "logo":"https://mis.utb.ac.rw/img/placeholders/headers/utb_log.png",
+        "phone":"0789999699",
+        "address":"Kigali, Kicukiro, Gatenga",
+        "url":"www.utb.ac.rw",
+        "image":"/assets/images/bacground.png"
+      },
+      {
+        "id":0,
+        "name":"UNILAK",
+        "logo":"https://site.unilak.ac.rw/wp-content/uploads/2021/10/logo_unilak1.jpg",
+        "phone":"0789999699",
+        "address":"Kigali, Kicukiro, Gatenga",
+        "url":"www.unilak.ac.rw",
+        "image":"/assets/images/bacground.png"
+        },
+      {
+        "id":0,
+        "name":"UR",
+        "logo":"https://ur.ac.rw/IMG/jpg/logo_for_ur.jpg",
+        "phone":"0789999699",
+        "address":"Kigali, Kicukiro, Gatenga",
+        "url":"www.ur.ac.rw",
+        "image":"/assets/images/bacground.png"
+
+      },
+      {
+        "id":0,
+        "name":"Mount Kenya",
+        "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdEnf2szHvsie2n5wKQUDQLs6OtlCF_Pkrtb1tOThj6Q&s",
+        "phone":"0789999699",
+        "address":"Kigali, Kicukiro, Gatenga",
+        "url":"www.mk.ac.rw",
+        "image":"/assets/images/bacground.png"
+
+      },
+      {
+        "id":0,
+        "name":"East Africa University",
+        "logo":"https://eaur.ac.rw/wp-content/uploads/2019/07/edited-logo.png",
+        "phone":"0789999699",
+        "address":"Kigali, Kicukiro, Gatenga",
+        "url":"www.eau.ac.rw",
+        "image":"/assets/images/bacground.png"
+
+      }
+    ],
+    "jobs":[
+      {
+          "id":0,
+          "logo":"https://cyemezocode.com/assets/images/logo.png",
+          "name":"CyemezoCode",
+          "title":"Software developer",
+          "location":"Kicukiro/Nyanza",
+          "type":"Full-Time",
+          "salary":"200000",
+          "date":"2023-02-23",
+          "posted":"1",
+          "desc":"A developer is a professional who specializes in designing, building, and maintaining software applications, websites, and other digital solutions. Developers are skilled in programming languages, frameworks, and tools that enable them to create functional and efficient software systems.",
+          "status":"Application Received",
+          "category":"Part-time"
+
+      },
+      {
+        "id":1,
+        "logo":"https://mis.utb.ac.rw/img/placeholders/headers/utb_log.png",
+          "name":"University of Tourism (UTB)",
+          "title":"Financial Management Lecturer",
+          "location":"Kicukiro/Sonatube",
+          "type":"Full-Time",
+          "salary":"600000",
+          "date":"2023-02-23",
+          "posted":"3",
+          "desc":"A lecturer is an academic professional who is responsible for teaching and delivering lectures in universities, colleges, or other educational institutions. They play a vital role in higher education by imparting knowledge and expertise to students in their respective fields of specialization.",
+          "status":"Shortlisted",
+          "category":"Full-time"
+
+      },
+      {
+        "id":2,
+          "logo":"https://image-tc.galaxy.tf/wisvg-7qyqfvqx9y172ix7kh4r6s0yl/serenakigali.svg?width=128&height=80",
+          "name":"Kigali Serena Hotel",   
+          "title":"VIP Rooms Waiter",
+          "location":"Nyarugenge/Kiyovu",
+          "type":"Part-time",
+          "salary":"100000",
+          "date":"2023-02-23",
+          "posted":"10",
+          "desc":"A cook is an individual who prepares food for consumption. They work in various settings, such as restaurants, hotels, catering companies, or private households. The role of a cook involves the following responsibilities and tasks:",
+          "status":"Not Shortlisted",
+          "category":"Training"
+
+      }
+  ],
+  "profile":{
+    "id":0,
+    "image":"https://cyemezocode.com/assets/images/logo.png",
+    "fname":"Cyemezo",
+    "lname":"Aimable",
+    "phone":"0789999699",
+    "email":"cyemezoaimable@gmail.com",
+    "nid":"199580029100128",
+    "address":"Kigali, Kicukiro, Gatenga",
+    "dateOfBirth":"1995-01-05",
+    "biography":"I'm software developer with 7+ years of expirience. I have worked on different projects and made me a full-stack developer with back-end and front-end skills in both web and mobile applications.",
+    "education":[
+      {
+        "id":0,
+        "school":"University of Kigali",
+        "specialization":"Information Technology",
+        "degree":"Bachelor",
+        "graduated":"2022",
+        "isCurrent":true
+      },
+      {
+        "id":1,
+        "school":"IPRC Tumba",
+        "specialization":"Information Technology",
+        "degree":"Advanced Diploma",
+        "graduated":"2020",
+        "isCurrent":false
+      },
+      {
+        "id":2,
+        "school":"Group Scolaire St Thereza",
+        "specialization":"Computer Science",
+        "degree":"Diploma",
+        "graduated":"2015",
+        "isCurrent":false
+      }
+    ],
+    "expirience":[
+      {
+        "id":0,
+        "institution":"ULK",
+        "position":"Software Developer",
+        "from":"2020",
+        "to":"2021",
+        "isCurrent":false
+      },
+      {
+        "id":1,
+        "institution":"Rwanco Consruction Engeneering",
+        "position":"Software Developer",
+        "from":"2021",
+        "to":"2022",
+        "isCurrent":false
+      },
+      {
+        "id":2,
+        "institution":"Univerisity of Tourism, Technology & Business Studies (UTB)",
+        "position":"Software Developer",
+        "from":"2022",
+        "to":"2023",
+        "isCurrent":true
+      }      
+    ],
+    "refrence":[
+      {
+        "id":0,
+        "name":"MUHIRE John",
+        "position":"ICT Director",
+        "institution":"Univerisity of Tourism, Technology & Business Studies (UTB)",
+        "phone":"0789999699",
+        "email":"cyemezoaimable@gmail.com"
+      }
+    ]
+  }
+  }
+  
