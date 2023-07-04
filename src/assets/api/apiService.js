@@ -1,5 +1,5 @@
 import axios  from "./axios.js";
-const url = 'http://localhost:8080/';
+const url = 'https://64a3cbf71a33a62f73b2759b--endearing-narwhal-e9681a.netlify.app/';
 const url2 = 'https://localhost/';
 
 class apiService{
