@@ -1,5 +1,5 @@
 import axios  from "./axios.js";
-const url = 'innodip.netlify.app/';
+const url = 'https://innodip.netlify.app/';
 const url2 = 'https://localhost/';
 
 class apiService{
