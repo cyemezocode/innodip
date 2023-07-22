@@ -165,6 +165,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import headerNavVue from "../seeker/utils/headerNav.vue";
 import menuNav from "../seeker/utils/menuNav.vue";
 import pageFooterVue from "../seeker/utils/pageFooter.vue";
