@@ -11,11 +11,11 @@
                 <h1 class="text-3xl text-center border-b border-gray-300 w-full py-3">Sign Up</h1>
                 <form class="w-full px-4 py-4">
                     <FormInput placeholder="Username" label="Username" inputType="email" value="" required=true small=false></FormInput>
-                    <FormInput placeholder="National ID" label="National ID" inputType="text" value="" required=true small=false></FormInput>
+                    <FormInput placeholder="National ID/Phone Number" label="National ID/Phone Number" inputType="text" value="" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormInput>
                     <FormInput placeholder="Password" label="Password" inputType="password" value="" required=true small=false></FormInput>
                     <FormInput placeholder="Confirm Password" label="Confirm Password" inputType="password" required=true small=false value=""></FormInput>
                     <div class="flex items-center justify-between">
-                        <router-link to="/" class="text-xl link">Login Here</router-link>
+                        <router-link to="/login/" class="text-xl link">Login Here</router-link>
                         <FormButton type="submit" label="Register" bstyle="primary"></FormButton>
                     </div>
                 </form>

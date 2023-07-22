@@ -1,9 +1,12 @@
 import { createRouter,createWebHistory } from "vue-router";
 import homePage from '../pages/homePage';
+// import comingSoon from '../pages/comingSoon';
 import loginPage from '../pages/loginPage';
 import signupPage from '../pages/signupPage';
 import jobsPage from '../pages/jobsPage';
 import universitiesPage from '../pages/universitiesPage';
+import researchPage from '../pages/researchPage';
+import curriculumPage from '../pages/curriculumPage';
 import jobPage from '../pages/jobPage';
 import signupSeeker from '../pages/seeker/signupSeeker';
 import signupIndustry from '../pages/industry/signupIndustry';
@@ -39,6 +42,16 @@ const routes = [
         name: 'UniversitiesPage',
         path:'/universities',
         component: universitiesPage
+    },
+    {
+        name: 'ResearchPage',
+        path:'/research',
+        component: researchPage
+    },
+    {
+        name: 'CurriculumPage',
+        path:'/curriculum',
+        component: curriculumPage
     },
     {
         name: 'JobPage',

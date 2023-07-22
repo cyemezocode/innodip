@@ -20,7 +20,7 @@
         </div>
         </div>
         <div class="grid max-w-screen-lg mx-auto px-3 md:px-0 py-4">
-            <div v-if="isLoaded" class="grid  grid-cols-3 gap-3">
+            <div v-if="isLoaded" class="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <UniversityCardVue v-for="job in datas.universities" :key="job" :datas="JSON.stringify(job)" router="/opportunity" :hasDesc=true></UniversityCardVue>
             </div>
             <div v-if="!isLoaded">

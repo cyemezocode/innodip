@@ -2,7 +2,7 @@
     <div class="bg-gray-500 text-white">
         <div class="block md:grid max-w-screen-lg mx-auto grid-cols-4 gap-4 px-3 md:px-0 py-8">
         <div class="flex flex-col items-center md:block">
-            <img src="../../assets/logo.png" class="h-16 mb-6" alt="">
+            <img src="../../assets/logo_inverse.png" class="h-16 mb-6" alt="">
             <p>"Find your dream job online. Explore, apply, and connect with potential employers. Boost your job search and land the perfect opportunity."</p>
         </div>
         <div class="mt-4 md:mt-0">
@@ -14,21 +14,16 @@
             </ul>
         </div>
         <div class="mt-4 md:mt-0">
-            <h2 class="text-2xl border-b border-gray-400 pb-3 mb-3">Quick Links</h2>
+            <h2 class="text-2xl border-b border-gray-400 pb-3 mb-3">Membership</h2>
             <ul>
-                <li><a href="">RISA</a></li>
-                <li><a href="">MyICT</a></li>
-                <li><a href="">UTB</a></li>
+                <li><a href="">Why Joining</a></li>
+                <li><a href="">Universities</a></li>
+                <li><a href="">Industries</a></li>
+                <li><a href="">Councils</a></li>
             </ul>
         </div>
-        <div class="mt-4 md:mt-0">
-            <h2 class="text-2xl border-b border-gray-400 pb-3 mb-3">Partners</h2>
-            <ul>
-                <li><a href="">RISA</a></li>
-                <li><a href="">MTN</a></li>
-                <li><a href="">MIFOTRA</a></li>
-                <li><a href="">MyICT</a></li>
-            </ul>
+        <div class="mt-4 md:mt-0 flex items-center justify-center">
+            <router-link to="#" class="rounded-lg mt-12 bg-white p-4 text-black hover:bg-green-400">Apply Now</router-link>
         </div>
         </div>
         <div class="bg-gray-400 h5 border-t border-slate-300">

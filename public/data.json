@@ -1,4 +1,272 @@
 {
+  "mainCategories": [
+    {
+      "name": "Research",
+      "id":1,
+      "cats":[
+        {"name":"Destination Research"},
+        {"name":"Tourist Behavior and Preferences"},
+        {"name":"Hospitality Research"},
+        {"name":"Economic Impact Studies"},
+        {"name":"Sustainable Tourism"},
+        {"name":"Tourist Satisfaction and Experience"},
+        {"name":"Tourism Marketing and Promotion"},
+        {"name":"Event and Festival Tourism"}
+      ]
+    },
+    
+    {
+      "name": "Publication",
+      "id":1,
+      "cats":[
+        {
+          "name": "Academic Publishing"
+        },
+        {
+          "name": "Journal Publication"
+        },
+        {
+          "name": "Open Access Publishing"
+        },
+        {
+          "name": "Peer Review Process"
+        },
+        {
+          "name": "Scholarly Communication"
+        },
+        {
+          "name": "Citation Analysis"
+        },
+        {
+          "name": "Bibliometrics"
+        },
+        {
+          "name": "Publication Ethics"
+        },
+        {
+          "name": "Digital Publishing"
+        },
+        {
+          "name": "Self-Publishing"
+        },
+        {
+          "name": "Research Impact and Visibility"
+        },
+        {
+          "name": "Publishing Trends and Innovations"
+        }
+      ]
+    },
+    {
+      "name": "Industry",
+      "id":1,
+      "cats":[
+        {
+          "name": "Automotive Industry"
+        },
+        {
+          "name": "Information Technology (IT) Industry"
+        },
+        {
+          "name": "Healthcare Industry"
+        },
+        {
+          "name": "Financial Services Industry"
+        },
+        {
+          "name": "Aerospace and Defense Industry"
+        },
+        {
+          "name": "Hospitality and Tourism Industry"
+        },
+        {
+          "name": "Energy Industry"
+        },
+        {
+          "name": "Retail Industry"
+        },
+        {
+          "name": "Manufacturing Industry"
+        },
+        {
+          "name": "Telecommunications Industry"
+        },
+        {
+          "name": "Media and Entertainment Industry"
+        },
+        {
+          "name": "Pharmaceutical Industry"
+        }
+      ]
+    },
+    {
+      "name": "Opportunity",
+      "id":1,
+      "cats":[
+        {
+          "name": "Training Opportunities"
+        },
+        {
+          "name": "Job Opportunities"
+        },
+        {
+          "name": "Consultancy Opportunities"
+        },
+        {
+          "name": "Internship Opportunities"
+        },
+        {
+          "name": "Research Opportunities"
+        },
+        {
+          "name": "Scholarship Opportunities"
+        },
+        {
+          "name": "Volunteer Opportunities"
+        },
+        {
+          "name": "Entrepreneurial Opportunities"
+        },
+        {
+          "name": "Networking Opportunities"
+        },
+        {
+          "name": "Fellowship Opportunities"
+        },
+        {
+          "name": "Freelancing Opportunities"
+        },
+        {
+          "name": "Grants and Funding Opportunities"
+        }
+      ]
+    },
+    {
+      "name": "Curriculum",
+      "id":1,
+      "cats":[
+        {
+          "name": "School Curriculum"
+        },
+        {
+          "name": "University Curriculum"
+        },
+        {
+          "name": "College Curriculum"
+        },
+        {
+          "name": "Online Course Curriculum"
+        },
+        {
+          "name": "STEM Curriculum (Science, Technology, Engineering, and Mathematics)"
+        },
+        {
+          "name": "Language Curriculum"
+        },
+        {
+          "name": "Professional Development Curriculum"
+        },
+        {
+          "name": "Vocational and Technical Curriculum"
+        },
+        {
+          "name": "Special Education Curriculum"
+        },
+        {
+          "name": "Early Childhood Education Curriculum"
+        },
+        {
+          "name": "Project-Based Learning Curriculum"
+        },
+        {
+          "name": "Cultural and Arts Curriculum"
+        }
+      ]
+    }
+  ],
+  "researches":[    {
+    "title": "The Impact of Climate Change on Coral Reefs",
+    "abstract": "This research study investigates the effects of climate change on coral reefs around the world. It examines rising sea temperatures, ocean acidification, and other environmental factors contributing to coral bleaching and decline. The research also explores potential conservation strategies to protect these valuable ecosystems.",
+    "date": "2023-04-15",
+    "category": "Environmental Science",
+    "researcher": "Dr. Sarah Johnson"
+  },
+  {
+    "title": "Machine Learning Algorithms for Stock Market Prediction",
+    "abstract": "This research focuses on developing and comparing different machine learning algorithms to predict stock market trends and prices. It evaluates the accuracy and performance of various models based on historical financial data and proposes a novel ensemble approach to improve prediction results.",
+    "date": "2023-07-02",
+    "category": "Finance and Economics",
+    "researcher": "Dr. Michael Lee"
+  },
+  {
+    "title": "Understanding User Behavior in Social Media Networks",
+    "abstract": "This research investigates user behavior patterns on popular social media platforms. By analyzing large-scale user data, the study aims to identify common interactions, content preferences, and engagement metrics. The findings offer insights to social media companies for enhancing user experiences and content recommendations.",
+    "date": "2023-09-20",
+    "category": "Computer Science",
+    "researcher": "Dr. Emily Roberts"
+  },
+  {
+    "title": "The Role of Parental Involvement in Children's Educational Outcomes",
+    "abstract": "This research explores the impact of parental involvement on children's academic performance and overall educational outcomes. It analyzes the different forms of parental engagement, including home-based and school-based activities, and their influence on students' achievements and socio-emotional development.",
+    "date": "2023-06-10",
+    "category": "Education and Psychology",
+    "researcher": "Prof. John Anderson"
+  },
+  {
+    "title": "Advancements in 3D Printing Technologies for Biomedical Applications",
+    "abstract": "This research reviews the recent developments in 3D printing techniques for biomedical applications, including tissue engineering, drug delivery systems, and prosthetics. The study examines the advantages and challenges of each technology and discusses potential future directions in the field.",
+    "date": "2023-03-05",
+    "category": "Biomedical Engineering",
+    "researcher": "Dr. Jennifer Martinez"
+  }
+  ],
+    "curriculums": [
+      {
+        "cover_image_url": "https://source.unsplash.com/random/800x600/?math",
+        "title": "Mathematics for Elementary School",
+        "writer": "Dr. Alice Johnson",
+        "copyright_date": "2022",
+        "published_by": "ABC Publishers",
+        "number_of_pages": 200,
+        "book_url": "https://example.com/curriculum1.pdf"
+      },
+      {
+        "cover_image_url": "https://source.unsplash.com/random/800x600/?science",
+        "title": "Science Explorations: Grades 6-8",
+        "writer": "Prof. David Smith",
+        "copyright_date": "2023",
+        "published_by": "XYZ Education",
+        "number_of_pages": 150,
+        "book_url": "https://example.com/curriculum2.pdf"
+      },
+      {
+        "cover_image_url": "https://source.unsplash.com/random/800x600/?language",
+        "title": "Language Arts and Literature",
+        "writer": "Dr. Emily Roberts",
+        "copyright_date": "2021",
+        "published_by": "Learning Books Inc.",
+        "number_of_pages": 180,
+        "book_url": "https://example.com/curriculum3.pdf"
+      },
+      {
+        "cover_image_url": "https://source.unsplash.com/random/800x600/?history",
+        "title": "History Through the Ages",
+        "writer": "Prof. Michael Johnson",
+        "copyright_date": "2020",
+        "published_by": "History Press",
+        "number_of_pages": 220,
+        "book_url": "https://example.com/curriculum4.pdf"
+      },
+      {
+        "cover_image_url": "https://source.unsplash.com/random/800x600/?art",
+        "title": "Art and Creativity: K-12",
+        "writer": "Artistic Minds Studio",
+        "copyright_date": "2019",
+        "published_by": "Creative Publishers",
+        "number_of_pages": 120,
+        "book_url": "https://example.com/curriculum5.pdf"
+      }
+    ],
     "categories": [
         {"name":"Software Developer"},
         {"name":"Nurse"},

@@ -8,7 +8,7 @@
                     <div class="flex justify-center items-center w-full h-full px-8">
                     <img src="../assets/illustrations/seeker.svg" class="w-30">
                     </div>
-                    <h1 class="text-4xl py-4">Job Seeker</h1>
+                    <h1 class="text-4xl py-4">Applicant</h1>
                 </router-link>
                 <router-link to="/signup/industry/" class="flex flex-col items-center justify-between hover:bg-gray-200 transition duration-500 ease-in-out  border">
                     <div class="flex justify-center items-center w-full h-full px-8">

@@ -20,7 +20,7 @@
         </div>
         
         <div v-if="isLoaded" class="sliderPane flex gap-2 overflow-x-scroll px-4 pb-2">
-                <button v-for="job in datas.categories" :key="job" :datas="JSON.stringify(job)" class="mb-2 rounded-3xl py-2 px-4 text-white hover:bg-green-700" :class="job.name==activeCat?'bg-green-500':'bg-stone-700'" @click="activeCat=job.name">
+                <button v-for="job in datas.categories" :key="job" :datas="JSON.stringify(job)" class="mb-2 rounded-3xl py-2 px-4 text-white hover:bg-green-700 whitespace-nowrap" :class="job.name==activeCat?'bg-green-500':'bg-stone-700'" @click="activeCat=job.name">
                 {{ job.name }}
                     </button>
         </div>

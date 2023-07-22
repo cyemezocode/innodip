@@ -14,7 +14,7 @@ class apiService{
         return resp;
     }
     static async getJob(id) {
-        let res = await axios.get(url+'data.json/'+id)
+        let res = await axios.get(url+'data.json/',id)
         let resp = res.data;
         return resp;
     }
