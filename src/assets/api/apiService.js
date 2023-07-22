@@ -1,6 +1,6 @@
 import axios  from "./axios.js";
 // const url = 'https://innodip.netlify.app/';
-const url = 'http://inodip.rw/';
+const url = '/';
 
 class apiService{
     static async getJobs() {
