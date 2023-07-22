@@ -25,7 +25,7 @@
                             <input type="file" name="photo" id="photo" class="hidden">
                             <div class="w-full image border border-gray-400 rounded-lg overflow-hidden flex object-fit relative">
                                 <img src="@/assets/images/photo.jpg" alt="" class="object-cover w-full h-full">
-                                <label for="photo" type="button" class="absolute bottom-5 left-1/2 translate-x-[-50%] bg-secondary hover:bg-primary text-white rounded-3xl py-2 px-4">Change Photo</label>
+                                <label for="photo" type="button" class="absolute bottom-5 left-1/2 translate-x-[-50%] bg-secondary hover:bg-primary text-white rounded-3xl py-1 px-3 whitespace-nowrap">Change Photo</label>
                             </div>
                         </div>
                         <div class="col-span-8 md:col-span-4 w-full">

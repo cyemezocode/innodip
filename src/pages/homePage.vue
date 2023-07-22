@@ -1,16 +1,35 @@
 <template>
     <div>
         <headerNavVue></headerNavVue>
-        <div class="max-w-screen-lg mx-auto px-3 md:px-0 py-4 justify-center">
+        <div class="h-[90vh] w-full overflow-hidden landing  z-[-1] justify-between relative">
+            <div class="max-w-screen-lg mx-auto px-3 md:px-0 py-4 justify-start h-full flex relative">
+                <div class="text-white w-[100%] md:w-[60%] z-3">
+                    <h3 class="text-5xl">Welcome to</h3>
+                    <h1 class="text-7xl md:text-9xl">INODIP</h1>
+                    <div class="list-wrapper">
+                        <div class="word-list text-5xl md:text-8xl h-[100px] leading-[100px]">
+                            <span>Innovative</span>
+                            <span>Digital</span>
+                            <span>Platform</span>
+                        </div>
+                    </div>
+                    <p>We strive to provide a comprehensive platform that empowers users to explore research, access enriching curricula, undergo skill-enhancing training, and discover exciting job prospects. Join us on this journey to unlock your full potential and shape a successful future.</p>
+                </div>
+                <div class="absolute right-0 bottom-0 flex justify-end items-end z-0">
+                    <img src="@/assets/illustrations/landing_svg.svg" alt="" class="w-[90%]">
+                </div>
+            </div>
+        </div>
+        <div class="max-w-screen-lg mx-auto px-3 md:px-0 py-4 justify-center mt-[-100px]">
             
-            <div class="flex w-full items-center gap-4 mb-3">
+            <!-- <div class="flex w-full items-center gap-4 mb-3">
                 <svg class="w-12 h-12 text-secondary" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
                  <h1 class="text-3xl text-gray-500">Explore Opportunities</h1>
-            </div>
-            <div class="front">
-                <div class="grid grid-cols-2 md:grid-cols-6 rounded-xl border border-gray-900 overflow-hidden mb-4">
+            </div> -->
+            <div class="front"  ref="myElement">
+                <div class="grid grid-cols-2 md:grid-cols-6 rounded-xl  overflow-hidden mb-4 opacity-[.9]">
                 <router-link to="" class="card-hover dark h-44 flex flex-col justify-between items-center">
                     <svg class="w-16 h-16 text-secondary" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <path id="search-a" d="M11.7099609,0.572509766 C9.46940104,1.29012044 7.99951172,3.05419922 7.30029297,5.86474609 C6.25146484,10.0805664 4.95166016,10.6181641 0.719970703,9.11865234 C2.23974609,11.9257813 5.32006836,13.0512695 7.30029297,13.0512695 C9.28051758,13.0512695 14.4091797,10.2941895 13.8215332,5.0534668 C13.3114421,3.52709961 12.6075846,2.03344727 11.7099609,0.572509766 Z"></path> <path id="search-c" d="M14.1791377,12.7701494 L19.7100661,18.3101411 C20.0966446,18.6967197 20.0966446,19.3234875 19.7100661,19.7100661 C19.3234875,20.0966446 18.6967197,20.0966446 18.3101411,19.7100661 L12.7803471,14.1712106 C11.4385246,15.2160226 9.75152329,15.8383427 7.91917136,15.8383427 C3.54553379,15.8383427 0,12.2928089 0,7.91917136 C0,3.54553379 3.54553379,0 7.91917136,0 C12.2928089,0 15.8383427,3.54553379 15.8383427,7.91917136 C15.8383427,9.74688445 15.2191696,11.4299819 14.1791377,12.7701494 Z M7.91917136,13.8585499 C11.1993995,13.8585499 13.8585499,11.1993995 13.8585499,7.91917136 C13.8585499,4.63894318 11.1993995,1.97979284 7.91917136,1.97979284 C4.63894318,1.97979284 1.97979284,4.63894318 1.97979284,7.91917136 C1.97979284,11.1993995 4.63894318,13.8585499 7.91917136,13.8585499 Z"></path> </defs> <g fill="none" fill-rule="evenodd" transform="translate(2 2)"> <g transform="translate(1 2)"> <mask id="search-b" fill="#ffffff"> <use xlink:href="#search-a"></use> </mask> <use fill="#D8D8D8" xlink:href="#search-a"></use> <g fill="#FFA0A0" mask="url(#search-b)"> <rect width="24" height="24" transform="translate(-3 -4)"></rect> </g> </g> <mask id="search-d" fill="#ffffff"> <use xlink:href="#search-c"></use> </mask> <use fill="#000000" fill-rule="nonzero" xlink:href="#search-c"></use> <g fill="#7600FF" mask="url(#search-d)"> <rect width="24" height="24" transform="translate(-2 -2)"></rect> </g> </g> </g></svg>
                     <h1 class="text-xl text-gray-500">Researches</h1>
@@ -33,7 +52,7 @@
                 </router-link>
                 <router-link to="#" class="card-hover dark h-44 flex flex-col justify-between items-center">
                     <svg class="w-16 h-16 text-secondary" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M344.1664 235.1872c31.744 0 61.3888 12.16 83.712 33.9968l4.608 4.736 0.256-0.256a119.168 119.168 0 0 1 75.4944-37.8368l6.2208-0.4864 6.3232-0.1536h154.624c28.5952 0 52.1216 22.4256 54.0928 50.688l0.1536 3.8912 2.9696 199.424-50.9952-14.8992-2.816-177.0752a11.4688 11.4688 0 0 0-9.1392-11.0592l-1.9456-0.1792h-141.952c-32.9728 0-65.1776 26.0352-67.6864 56.8832l-0.1536 3.8656v386.6112l3.4048-1.5616 2.4064-1.3312 2.3296-1.408 4.5568-3.1744a5.4272 5.4272 0 0 1 7.936 1.28 6.912 6.912 0 0 1 1.1264 3.7376c0.1024 1.5104-0.0512 3.5584-0.4096 6.1696l-1.024 6.3232c-0.6144 3.4816-1.4336 7.424-2.3808 11.52l-2.1504 9.0368c-3.4304 13.696-6.272 20.7104-10.368 21.76a123.648 123.648 0 0 1-112.9984-26.3936l-3.2-2.9184H188.9024a54.4512 54.4512 0 0 1-53.6832-46.7456l-0.4352-3.9936-0.128-3.8912v-411.904c0-28.8256 22.272-52.5056 50.3808-54.528l3.8656-0.128h155.264z m-5.632 50.4576H196.5568a11.392 11.392 0 0 0-10.9056 9.2672l-0.1792 1.9968v395.4176c0 5.376 4.0704 10.0864 9.1392 11.0592l1.9456 0.2048h160.3584c8.5504 0 16.8704 3.4304 22.8864 9.3184l2.432 2.6624c5.9392 6.9632 13.0816 12.5696 20.992 16.5632l3.1232 1.408V346.4192c0-31.232-30.848-58.496-63.6928-60.6464l-4.1216-0.128z" fill="#ED892D"></path><path d="M331.3408 502.4256h-80.64a20.1728 20.1728 0 0 1 0-40.32h80.64a20.1472 20.1472 0 1 1 0 40.32z m0-100.8128h-80.64a20.1728 20.1728 0 0 1 0-40.32h80.64a20.1472 20.1472 0 1 1 0 40.32z m-80.64 161.3056h80.64a20.1472 20.1472 0 1 1 0 40.3456h-80.64a20.1472 20.1472 0 1 1 0-40.3456zM613.632 401.6128H512.768a20.1728 20.1728 0 0 1 0-40.32h100.8384a20.1472 20.1472 0 1 1 0 40.32z" fill="#F5C280"></path><path d="M645.4784 482.9696a112.256 112.256 0 0 1 74.0864 196.5824l1.024-0.9984 3.072 1.792a164.5824 164.5824 0 0 1 48.6912 44.1088l4.7616 6.8096 1.8688 2.9696 54.016-77.312a25.1904 25.1904 0 0 1 29.5424-9.1392l2.8928 1.28 2.6368 1.5872c11.264 7.8848 14.1312 23.3472 6.4 34.8416l-73.3184 104.9856 0.3328 1.6896c0.8704 4.7872 1.536 9.6256 1.9456 14.5152l0.512 7.424 0.1536 7.2448a25.1904 25.1904 0 0 1-50.3808 0.384l-0.1024-5.4272a113.4336 113.4336 0 0 0-226.7648 3.072v1.9712a25.1904 25.1904 0 0 1-50.3808 0 163.84 163.84 0 0 1 89.6256-146.0736l0.4864-0.2304-3.3536-3.4304a112 112 0 0 1-29.3376-64.2816l-0.512-6.0672-0.1536-6.0416a112.256 112.256 0 0 1 112.256-112.256z m0 39.04a73.216 73.216 0 1 0 0 146.432 73.216 73.216 0 0 0 0-146.432z m211.84 36.2496a20.0704 20.0704 0 0 1 0.2304 40.1408h-52.224a20.0704 20.0704 0 0 1-0.2304-40.1152z" fill="#BE4BDB"></path><path d="M857.3184 497.2032h-88.6016a20.096 20.096 0 0 0 0.2304 40.1152h88.576a20.096 20.096 0 0 0-0.2048-40.1152z" fill="#B152D4"></path></g></svg>
-                    <h1 class="text-xl text-gray-500">Tranings</h1>
+                    <h1 class="text-xl text-gray-500">Trainings</h1>
                 </router-link>
             </div>
             <div class="flex w-full items-center gap-4 mb-3">
@@ -74,29 +93,48 @@
         <h1 class="text-4xl text-gray-500">Popular Industries</h1>
         </div>
         </div>
-        <div class="sliderPane flex gap-2 overflow-x-scroll px-3 md:px-4 lg:px-32 pb-2">
+        <!-- <div class="sliderPane flex gap-2 overflow-x-scroll px-3 md:px-4 lg:px-32 pb-2">
             <div v-for="img in images" :key="img"  class="mb-2 flex justify-center items-end flex-grow flex-shrink-0 rounded-3xl bg-gray-200 py-2 px-4 text-white h-52 hover:bg-green-700 relative  overflow-hidden cursor-pointer orgItem">
                 <img :src="img.download_url" :alt="img.author" class="absolute top-0 left-0 w-full h-full object-cover z-0">
                 <div class="absolute z-10 bg-gray-50 text-gray-600 top-auto w-[90%] left-auto rounded-3xl px-4 py-2">
                     {{ img.author }}
                 </div>
             </div>
-        </div>
+        </div> -->
+  <swiper
+    :slides-per-view="8"
+    :space-between="10"
+    
+    @swiper="onSwiper"
+    @slideChange="onSlideChange"
+  >
+    <swiper-slide  v-for="(img, index) in images" :key="index" :style="getFirstItemStyle(index)"  class="mb-2 flex justify-center items-end flex-grow flex-shrink-0 rounded-3xl bg-gray-200 py-2 px-4 text-white h-52 hover:bg-green-700 relative  overflow-hidden cursor-pointer orgItem">
+        <img :src="img.download_url" :alt="img.author" class="absolute top-0 left-0 w-full h-full object-cover z-0">
+                <div class="absolute z-10 bg-gray-50 text-gray-600 top-auto w-[90%] left-[5%] rounded-3xl px-4 py-2">
+                    {{ img.author }}
+                </div>
+    </swiper-slide>
+  </swiper>
         
         <div class="grid max-w-screen-lg mx-auto py-4 justify-center grid-cols-1 md:grid-cols-2">
         <div class="flex w-full items-center gap-4">
         <svg class="w-12 h-12 text-secondary" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
+        <path d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
         <h1 class="text-4xl text-gray-500">Recent Jobs</h1>
         </div>
         </div>
-        
-        <div v-if="isLoaded" class="sliderPane flex gap-2 overflow-x-scroll px-2 md:px-4 lg:px-32 pb-2">
-            <button v-for="job in datas.categories" :key="job" :datas="JSON.stringify(job)" class="mb-2 rounded-3xl py-2 px-4 text-white hover:bg-green-700 whitespace-nowrap" :class="job.name==activeCat?'bg-green-500':'bg-stone-700'" @click="activeCat=job.name">
+         
+  <swiper
+    :slides-per-view="10"
+    :space-between="10"
+    @swiper="onSwiper"
+    @slideChange="onSlideChange"
+     v-if="isLoaded" class="sliderPane flex gap-2 overflow-x-scroll px-2 md:px-4 lg:px-32 pb-2">
+            <swiper-slide v-for="(job, index) in datas.categories" :key="index" :datas="JSON.stringify(job)" :style="getFirstItemStyle(index)" class="mb-2 rounded-3xl py-2 px-4 text-white hover:bg-green-700 whitespace-nowrap" :class="job.name==activeCat?'bg-green-500':'bg-stone-700'" @click="activeCat=job.name">
             {{ job.name }}
-            </button>
-        </div>
+            </swiper-slide>
+        </swiper>
         <div v-if="!isLoaded"  class="sliderPane flex gap-2 overflow-x-scroll px-2 md:px-4 lg:px-32 pb-2">
                 <div v-for="job in 10" :key="job" class="mb-2 rounded-3xl text-gray-300 h-10 py-2 px-4 hover:bg-gray-300 bg-gray-300">
                     sampletext</div>
@@ -117,6 +155,7 @@
 </template>
 
 <script>
+
 import headerNavVue from './utils/headerNav.vue'
 import pageFooterVue from './utils/pageFooter.vue'
 // import FormButton from './utils/FormButton.vue';
@@ -125,6 +164,8 @@ import pageFooterVue from './utils/pageFooter.vue'
 import jobCardVue from './utils/jobCard.vue';
 import jobCardVueSkeleton from './utils/skeletons/jobCard.vue';
 import apiService from '../assets/api/apiService.js'
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
     export default {
         data(){
             return{
@@ -132,7 +173,8 @@ import apiService from '../assets/api/apiService.js'
                 datas:[],
                 images: [],
                 activeCat:'',
-                isLoaded:false
+                isLoaded:false,
+      distanceToLeft: 0,
             }
         },
         components:{
@@ -144,14 +186,21 @@ import apiService from '../assets/api/apiService.js'
             // Pagination,
             // Navigation,
             jobCardVue,
-            jobCardVueSkeleton
+            jobCardVueSkeleton,
+      Swiper,
+      SwiperSlide,
         },
-        methods:{
-            sendData(){
-                const form = document.getElementById('formData');
-                const serializedData = apiService.serializeFormData(form);
-                console.log(serializedData);
-            }
+        setup() {
+        const onSwiper = (swiper) => {
+            console.log(swiper);
+        };
+        const onSlideChange = () => {
+            console.log('slide change');
+        };
+        return {
+            onSwiper,
+            onSlideChange,
+        };
         },
         mounted(){
             apiService.getJobs().then(jobsList => {
@@ -162,6 +211,31 @@ import apiService from '../assets/api/apiService.js'
             apiService.getImages().then(imageList => {
                 this.images = imageList;
             });
+            this.getDistanceToLeft();
+            document.title="Innovative Digital Platform - HOME"
+        },
+        methods:{
+            sendData(){
+                const form = document.getElementById('formData');
+                const serializedData = apiService.serializeFormData(form);
+                console.log(serializedData);
+            },
+            getDistanceToLeft() {
+            const element = this.$refs.myElement;
+            if (element) {
+                const rect = element.getBoundingClientRect();
+                this.distanceToLeft = rect.left;
+            }
+            },
+            getFirstItemStyle(index) {
+            if (index === 0) {
+                return {
+                /* Apply your CSS styles for the first item here */
+                marginLeft: this.distanceToLeft+'px',
+                };
+            }
+            return {}; // Empty object for other items (no additional styles)
+            },
 
         },
         breakpoints: {
@@ -180,6 +254,45 @@ import apiService from '../assets/api/apiService.js'
 </script>
 
 <style scoped>
+.landing{
+    background-image: url('@/assets/images/bg_innodip2.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.list-wrapper{
+    display: inline-block;
+    gap: 5px;
+  text-align: left;
+  overflow: hidden;
+}
+div.word-list span {
+  display: block;
+}
+div.word-list {
+  position: relative;
+  animation: cycle ease 5s infinite;
+}
+
+@keyframes cycle {
+  0% {top: 0;}
+  20% {top: 0;}
+  30% {top: -100px;}
+  50% {top: -100px;}
+  60% {top: -200px;}
+  80% {top: -200px;}
+  100% {top: 0px;}
+}
+
+/* colors */
+span:nth-child(1) {
+  color:#B58C1A;
+}
+span:nth-child(2) {
+  color:#108A37;
+}
+span:nth-child(3) {
+  color:#f7f76f;
+}
 .orgItem{
     aspect-ratio: 1/1;
 }

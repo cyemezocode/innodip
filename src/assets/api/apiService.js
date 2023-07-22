@@ -1,6 +1,6 @@
 import axios  from "./axios.js";
-const url = 'https://innodip.netlify.app/';
-const url2 = 'https://localhost/';
+// const url = 'https://innodip.netlify.app/';
+const url = '/';
 
 class apiService{
     static async getJobs() {
@@ -14,12 +14,12 @@ class apiService{
         return resp;
     }
     static async getJob(id) {
-        let res = await axios.get(url+'data.json/',id)
+        let res = await axios.get(url+'data.json/'+id)
         let resp = res.data;
         return resp;
     }
     static async  updateProfile(data) {
-        let res = await axios.post(url2+'pro/',data)
+        let res = await axios.post(url+'pro/',data)
         let resp = res.data;
         return resp;
     }
