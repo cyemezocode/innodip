@@ -25,7 +25,7 @@ class apiService{
     }
     static async getImages() {
         // let res = await axios.get('')
-        let res = await axios.get('https://picsum.photos/v2/list?limit=20')
+        let res = await axios.get(url+'data.json')
         let resp = res.data;
         return resp;
     }

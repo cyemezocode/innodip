@@ -220,6 +220,73 @@
     "researcher": "Dr. Jennifer Martinez"
   }
   ],
+  "companies":[
+    {
+      "id":1,
+      "name":"MTN Rwanda",
+      "logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/New-mtn-logo.jpg/330px-New-mtn-logo.jpg",
+      "phone":"0789999699",
+      "address":"Kigali, Kicukiro, Gatenga",
+      "url":"www.mtn.ac.rw"
+    },
+    {
+      "id":2,
+      "name":"Simba Supermarket",
+      "logo":"data:image/jpeg;base64,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NFtU6rjRFQQ22RgJtJ+t1/f762WQ568T4iKaUPjisiVwa2g1waboAc/0Vxg/EOHmcGsebNhpLXNDiOIaSACeywGbZPJhsO0yfXK/1AG6DQXBpPMk7n+kLQtyOZ7MJomjMUZa5uxa6jpcdxYcaB6cSpKVWt9JGl+dzYa7DqoMRh8NZ4dYyAdpa25iN3bWtdayHDRg6mgC97HAqUF8wyLAvxOJxHkyGFvr3YOTnekCqrhy6KTO3F4fEw4YYt51hvq4ganuHB18AOZXbMTDc2SxMWjjCifgO+WdoJAmCDpEnjotdifD8Mk3nO1F+35qG3srQMbvsN+Pf3Xz/CmcY2TC/iZtDiQXF1uoND/ST9J4iwu/h187n4zDCV1hrgxz3E6XNeWXfK75IyuwOgM1JG2o+apUwlQtl1SQGtI1+k29OC2zcTE0hgcwHk2wD9lX47xPhoZPLe4h3P0uodyapYDNIQMOwNY0uieWyTsrSXOshuri8it3f8q08Zs8yDC4kcXNDXHuWhw/XV91w7FuyuIFwAfA6+IUtP8AT6ZewOcSHFw4XAkHoeBgrw8SYt2KjOIETojC4Ns3Za+yDwFEOA23+tTf9Zw80+HkmNUzU+ySwSmmgEHZtU43XMWtbIGYnCm/pkj+1tv7g/2WJyDw7JLE9ksGkG3Ryu9LmuquH1FpobFc1Kb2v7t8wG1pF9tJXdKtRfRIqDLkMAA3AcIMTcwbxzTxPEYMV+Iovgmou0uIDqABaXN9gRyP3V9lOLZi7jZEW4URlrmlrQHPcW0G1/KA7h/MFPyDIfwzNJlfID+V30Dn6W7191dMYBsBSsUqLgS42m5GvrwVPEYlrmhguWiA64sNDl4xaZVRk3hyHCuc6PUXO2txsgXdDh/gV2iKwxjWDK0QFUfUfUdmeZPFERF0uERERERERERERERERERERERERF4YjDteC17Q5p4ggEH4KYeBrGhreAFAWTt8r3REUHMMvjnYY5WhzTy79QRwKrsP4cjiafJJD6IY55c8Mv8AlaSAPiu9q/RcljSZIuuxUeG5QTHDbyWY8KeH34QyBzmPa+vUAQ4Ft7VuK3PNQc9yzEyY2PERxWyPR+dgLtLi41v3rdbSkpRHDsyBg0HsZ+6nGMqiqapgkgg24iD6LFNyfEDHnFCNui/pLxqrRovax3pc5NkeJjxM0r2sayYPBp9lut2oVtvXwtpSUvBhmAzfUnxKHGVC3Lb6Q3wGm6xGD8EERvjkncWE21rNhqGwc4G722pXGH8MwiFsLy+RrTq9TiLNaeA5AcBwWgResw9Jmg5JUxteoZc7eeF9JsomCwMcTdMbGsbxpordSgFyinAjRVZlERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERf//Z",
+      "phone":"0789999699",
+      "address":"Kigali, Kicukiro, Gatenga",
+      "url":"www.mtn.ac.rw"
+    },
+    {
+      "id":3,
+      "name":"Lemigo Hotel",
+      "logo":"https://www.wildwhispersafrica.com/wp-content/uploads/2013/05/Iemigo.jpg",
+      "phone":"0789999699",
+      "address":"Kigali, Kicukiro, Gatenga",
+      "url":"www.mtn.ac.rw"
+    },
+    {
+      "id":4,
+      "name":"Onomo Hotel",
+      "logo":"https://upload.wikimedia.org/wikipedia/commons/f/f7/LOGO_corporate_white.jpg",
+      "phone":"0789999699",
+      "address":"Kigali, Kicukiro, Gatenga",
+      "url":"www.mtn.ac.rw"
+    },
+    {
+
+      "id":5,
+      "name":"Mango 4G",
+      "logo":"data:image/png;base64,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",
+      "phone":"0789999699",
+      "address":"Kigali, Kicukiro, Gatenga",
+      "url":"www.mtn.ac.rw"
+    },
+    {
+      "id":6,
+      "name":"Akagera",
+      "logo":"https://www.jobinrwanda.com/sites/default/files/styles/medium/public/employer_logos/logo_908506461.png?itok=aEzkLO2t",
+      "phone":"0789999699",
+      "address":"Kigali, Kicukiro, Gatenga",
+      "url":"www.mtn.ac.rw"
+    },
+    {
+      "id":7,
+      "name":"Igihe",
+      "logo":"https://play-lh.googleusercontent.com/pouXQf_XTqp9IYrdBF3JUNKyOMm_isjKiCTJ_-VtShRtTCnNog7mjXiYM-zS756rTA",
+      "phone":"0789999699",
+      "address":"Kigali, Kicukiro, Gatenga",
+      "url":"www.mtn.ac.rw"
+    },
+    {
+      "id":8,
+      "name":"CyemezoCode",
+      "logo":"https://media.licdn.com/dms/image/C4D03AQHX72jMvSVEXw/profile-displayphoto-shrink_400_400/0/1626854119056?e=1694649600&v=beta&t=wVFhh0lFFVGfjY9FI6UeJbw9UtkEF_WQ1yHuprvRXSw",
+      "phone":"0789999699",
+      "address":"Kigali, Kicukiro, Gatenga",
+      "url":"www.mtn.ac.rw"
+    }
+  ],
     "curriculums": [
       {
         "cover_image_url": "https://source.unsplash.com/random/800x600/?math",
@@ -265,6 +332,108 @@
         "published_by": "Creative Publishers",
         "number_of_pages": 120,
         "book_url": "https://example.com/curriculum5.pdf"
+      }
+    ],
+    "questionaire":[
+      {
+        "questionnaire_title": "Curriculum Questionnaire",
+        "description": "We value your input in shaping the curriculum to meet your needs. Please take a few minutes to answer the following questions.",
+        "questions": [
+          {
+            "question": "1. What is your name?",
+            "type": "text",
+            "required": true
+          },
+          {
+            "question": "2. What is your age?",
+            "type": "number",
+            "required": true
+          },
+          {
+            "question": "3. What is your educational background?",
+            "type": "text",
+            "required": true
+          },
+          {
+            "question": "4. Which subject or area would you like to see more emphasis on in the curriculum?",
+            "type": "text",
+            "required": false
+          },
+          {
+            "question": "5. Are there any specific topics or skills you would like to learn in this curriculum?",
+            "type": "text",
+            "required": false
+          },
+          {
+            "question": "6. How do you prefer to learn? (e.g., lectures, hands-on activities, group discussions)",
+            "type": "text",
+            "required": false
+          },
+          {
+            "question": "7. Do you have any specific learning goals or objectives for this curriculum?",
+            "type": "text",
+            "required": false
+          },
+          {
+            "question": "8. Are there any challenges or obstacles you anticipate in following this curriculum?",
+            "type": "text",
+            "required": false
+          },
+          {
+            "question": "9. What are your preferred timings for the classes?",
+            "type": "text",
+            "required": false
+          },
+          {
+            "question": "10. Would you be interested in participating in extracurricular activities related to the curriculum?",
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "question": "11. How did you hear about this curriculum?",
+            "type": "text",
+            "required": false
+          }
+        ]
+      }
+      
+    ],
+    "publications":[
+      {
+        "cover_image_url": "https://source.unsplash.com/random/800x600/?math",
+        "title": "Mathematics for Elementary School",
+        "writer": "Dr. Alice Johnson",
+        "copyright_date": "2022",
+        "published_by": "ABC Publishers",
+        "number_of_pages": 200,
+        "book_url": "https://example.com/curriculum1.pdf"
+      },
+      {
+        "cover_image_url": "https://source.unsplash.com/random/800x600/?science",
+        "title": "Discovering the Wonders of Science",
+        "writer": "Professor Robert Davis",
+        "copyright_date": "2023",
+        "published_by": "XYZ Books",
+        "number_of_pages": 300,
+        "book_url": "https://example.com/science_book.pdf"
+      },
+      {
+        "cover_image_url": "https://source.unsplash.com/random/800x600/?history",
+        "title": "A Journey Through History: Unraveling the Past",
+        "writer": "Dr. Emily Adams",
+        "copyright_date": "2021",
+        "published_by": "History Press",
+        "number_of_pages": 250,
+        "book_url": "https://example.com/history_journey.pdf"
+      },
+      {
+        "cover_image_url": "https://source.unsplash.com/random/800x600/?literature",
+        "title": "Ink and Imagination: Exploring Literature's Treasures",
+        "writer": "Sarah Mitchell",
+        "copyright_date": "2020",
+        "published_by": "Books & Beyond",
+        "number_of_pages": 350,
+        "book_url": "https://example.com/ink_imagination.pdf"
       }
     ],
     "categories": [

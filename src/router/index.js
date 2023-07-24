@@ -5,8 +5,14 @@ import loginPage from '../pages/loginPage';
 import signupPage from '../pages/signupPage';
 import jobsPage from '../pages/jobsPage';
 import universitiesPage from '../pages/universitiesPage';
+import industriesPage from '../pages/industriesPage';
 import researchPage from '../pages/researchPage';
 import curriculumPage from '../pages/curriculumPage';
+import publicationPage from '../pages/publicationPage';
+import curriculumQuestionaire from '../pages/curriculumQuestionaire';
+import consultancyPage from '../pages/consultancyPage';
+import jobFiltered from '../pages/JobFiltered';
+import trainingPage from '../pages/trainingPage';
 import jobPage from '../pages/jobPage';
 import signupSeeker from '../pages/seeker/signupSeeker';
 import signupIndustry from '../pages/industry/signupIndustry';
@@ -52,6 +58,36 @@ const routes = [
         name: 'CurriculumPage',
         path:'/curriculum',
         component: curriculumPage
+    },
+    {
+        name: 'PublicationPage',
+        path:'/publication',
+        component: publicationPage
+    },
+    {
+        name: 'IndustriesPage',
+        path:'/industries',
+        component: industriesPage
+    },
+    {
+        name: 'CurriculumQuestionaire',
+        path:'/curriculumQuestionaire',
+        component: curriculumQuestionaire
+    },
+    {
+        name: 'ConsultancyPage',
+        path:'/consultancy',
+        component: consultancyPage
+    },
+    {
+        name: 'jobFilterd',
+        path:'/jobs',
+        component: jobFiltered
+    },
+    {
+        name: 'TrainingPage',
+        path:'/training',
+        component: trainingPage
     },
     {
         name: 'JobPage',

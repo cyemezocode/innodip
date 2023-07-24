@@ -2,7 +2,7 @@
     <div>
         <headerNavVue></headerNavVue>
         <div class="max-w-screen-lg mx-auto px-3 md:px-0 py-4 justify-center">
-            <div class="banner mb-5 rounded-lg overflow-hidden w-full h-64 flex items-center justify-center relative">
+            <div class="banner mb-5 rounded-lg overflow-hidden w-full h-64 flex items-center justify-center border relative">
                 <h1 class="text-gray-800 bg-blue-50 text-5xl p-4 rounded-lg absolute opacity-[.7]">
                     <span>Curriculum</span>
                 </h1>
@@ -17,9 +17,9 @@
                 <div class="col-span-4 md:col-span-3">
                     <div class="flex w-full items-center gap-4 mb-6">
                     <svg class="w-12 h-12 text-secondary" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                    <h1 class="text-3xl md:text-5xl text-gray-500">Recent Currilum</h1>
+                    <path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                    <h1 class="text-3xl md:text-5xl text-gray-500">Recent Curriculum</h1>
                     </div>
 
                     <div v-for="res in curriculums" :key="res" class="mb-8 border-b pb-4 last:mb-0 last:pb-0  last:border-none border-dashed border-gray-600 grid grid-cols-4 gap-2">
@@ -30,12 +30,12 @@
                             <div class="flex flex-col">
                                 <h2 class="text-lg md:text-2xl">{{res.title}}</h2>
                                 <span class="text-gray-600"><router-link to="#" class="link">{{res.writer}}</router-link></span>
-                                <span class="text-gray-600">Copyright Date: {{res.copyright_date}}</span>
-                                <span class="text-gray-600">Published by: <router-link to="#" class="link">{{res.writer}}</router-link></span>
-                                <span class="text-gray-600">Pages: {{res.number_of_pages}}</span>
+                                <span class="text-gray-600">Deadline: {{res.copyright_date}}</span>
+                                <span class="text-gray-600">Published by: <router-link to="#" class="link">{{res.published_by}}</router-link></span>
+                                <!-- <span class="text-gray-600">Pages: {{res.number_of_pages}}</span> -->
                             </div>
                             <div class="flex justify-end">
-                                <router-link to="#" class="btn-primary-sm">Book Details</router-link>
+                                <router-link to="/curriculumQuestionaire/" class="btn-primary-sm">Questionaire</router-link>
                             </div>
                         </div>
                     </div>
@@ -82,14 +82,14 @@ export default {
       this.curriculums = jobsList.curriculums;
       this.isLoaded = true;
     });
-    document.title = "Research - INODIP";
+    document.title = "Curriculum - INODIP";
   },
 };
 </script>
 
 <style scoped>
 .banner {
-  background-image: url("@/assets/images/bg_innodip2.jpg");
+  background-image: url("@/assets/images/curriculum.jpg");
   background-size: cover;
   background-position: center;
 }
