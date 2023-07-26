@@ -14,8 +14,8 @@
                         <FormInput placeholder="Password" label="Password" inputType="password" required=true small=false sub="Forgot Password?" toSub="forgot" name="password"></FormInput>
                         <div class="flex items-center justify-between">
                             <router-link to="/signup/" class="text-xl link">Register Here</router-link>
-                            <!-- <FormButton type="submit" label="Sign In" bstyle="primary"></FormButton> -->
-                            <router-link to="/seeker/dashboard/" class="btn-primary">Sign In</router-link>
+                            <FormButton type="submit" label="Sign In" bstyle="primary"></FormButton>
+                            <!-- <router-link to="/seeker/dashboard/" class="btn-primary">Sign In</router-link> -->
                         </div>
                     </form>
                 </div>
@@ -30,7 +30,7 @@
 import headerNavVue from './utils/headerNav.vue'
 import pageFooterVue from './utils/pageFooter.vue'
 import FormInput from './utils/FormInput.vue';
-// import FormButton from './utils/FormButton.vue';
+import FormButton from './utils/FormButton.vue';
 // import 'vue3-carousel/dist/carousel.css'
 // import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'\
 import apiService from '../assets/api/apiService.js'
@@ -48,12 +48,14 @@ import apiService from '../assets/api/apiService.js'
             headerNavVue,
             pageFooterVue,
             FormInput,
+            FormButton
         },
         methods:{
             sendData(){
-                const form = document.getElementById('formData');
-                const serializedData = apiService.serializeFormData(form);
-                console.log(serializedData);
+            const form = document.getElementById("formData");
+            const serializedData = apiService.serializeFormData(form);
+            console.log(serializedData);
+            apiService.updateProfile(serializedData).then(console.log("sent"));
             }
         },
         mounted(){

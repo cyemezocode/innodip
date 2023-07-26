@@ -9,11 +9,16 @@
             </div>
             <div class="flex flex-col items-center  bg-gray-200">
                 <h1 class="text-3xl text-center border-b border-gray-300 w-full py-3">Sign Up</h1>
-                <form class="w-full px-4 py-4">
-                    <FormInput placeholder="Username" label="Username" inputType="email" value="" required=true small=false></FormInput>
-                    <FormInput placeholder="National ID/Phone Number" label="National ID/Phone Number" inputType="text" value="" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormInput>
-                    <FormInput placeholder="Password" label="Password" inputType="password" value="" required=true small=false></FormInput>
-                    <FormInput placeholder="Confirm Password" label="Confirm Password" inputType="password" required=true small=false value=""></FormInput>
+                <form class="w-full px-4 py-4" @submit.prevent="sendData(this)">
+                    <div class="grid grid-cols-2 gap-2">
+                        <FormInput placeholder="Firstname" label="Firstname" inputType="text" value="" name="fname" required=true small=false></FormInput>
+                        <FormInput placeholder="Lastname" label="Lastname" inputType="text" value="" name="lname" required=true small=false></FormInput>
+
+                    </div>
+                    <FormInput placeholder="Email Address" label="Email Address" inputType="email" value="" name="email" required=true small=false></FormInput>
+                    <FormInput placeholder="National ID/Phone Number" label="National ID/Phone Number" inputType="text" value="" name="nidphone" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormInput>
+                    <FormInput placeholder="Password" label="Password" inputType="password" value="" name="password" required=true small=false></FormInput>
+                    <FormInput placeholder="Confirm Password" label="Confirm Password" inputType="password" name="passwordconf" required=true small=false value=""></FormInput>
                     <div class="flex items-center justify-between">
                         <router-link to="/login/" class="text-xl link">Login Here</router-link>
                         <FormButton type="submit" label="Register" bstyle="primary"></FormButton>
@@ -52,6 +57,14 @@ import apiService from '../../assets/api/apiService.js'
                 this.activeCat = jobsList.categories[0].name
             });
 
+        },
+        methods: {
+            sendData() {
+            const form = document.getElementById("formData");
+            const serializedData = apiService.serializeFormData(form);
+            console.log(serializedData);
+            apiService.updateProfile(serializedData).then(console.log("sent"));
+            },
         },
     }
 </script>
