@@ -62,8 +62,8 @@ import apiService from '../../assets/api/apiService.js'
             sendData() {
             const form = document.getElementById("formData");
             const serializedData = apiService.serializeFormData(form);
-            console.log(serializedData);
-            apiService.updateProfile(serializedData).then(console.log("sent"));
+            // console.log(serializedData);
+            apiService.loginUser(serializedData).then(console.log("sent"));
             },
         },
     }

@@ -23,6 +23,11 @@ class apiService{
         let resp = res.data;
         return resp;
     }
+    static async  loginUser(data) {
+        let res = await axios.post(url,data)
+        let resp = res.data;
+        return resp;
+    }
     static async getImages() {
         // let res = await axios.get('')
         let res = await axios.get(url+'data.json')
