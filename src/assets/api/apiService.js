@@ -23,8 +23,8 @@ class apiService{
         let resp = res.data;
         return resp;
     }
-    static async  loginUser(data) {
-        let res = await axios.post(url,data)
+    static async  handleForm(data) {
+        let res = await axios.post(url+'handleform',data)
         let resp = res.data;
         return resp;
     }

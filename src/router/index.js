@@ -1,5 +1,6 @@
 import { createRouter,createWebHistory } from "vue-router";
 import homePage from '../pages/homePage';
+import handleForm from '../pages/handleForm';
 // import comingSoon from '../pages/comingSoon';
 import loginPage from '../pages/loginPage';
 import signupPage from '../pages/signupPage';
@@ -68,6 +69,11 @@ const routes = [
         name: 'IndustriesPage',
         path:'/industries',
         component: industriesPage
+    },
+    {
+        name: 'HandleForm',
+        path:'/handelform',
+        component: handleForm
     },
     {
         name: 'CurriculumQuestionaire',
