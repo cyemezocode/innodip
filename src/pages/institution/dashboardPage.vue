@@ -1,9 +1,9 @@
 <template>
     <div class="grid grid-cols-10">
-        <div class="col-span-2 h-full">
+        <div class="col-span-12 md:col-span-2 h-full sticky z-50 top-0">
             <menuNav></menuNav>
         </div>
-        <div class="col-span-8">
+        <div class="col-span-12 md:col-span-8">
         <headerNavVue></headerNavVue>
         <div class="p-4 justify-center">
         <div class="flex flex-col md:flex-row flex-wrap items-center justify-between gap-4">
@@ -30,7 +30,7 @@
                     </button>
         </div>
         <div v-if="!isLoaded"  class="sliderPane flex gap-2 overflow-x-scroll px-2 md:px-4 lg:px-32 pb-2">
-                <div v-for="job in 10" :key="job" class="mb-2 rounded-3xl text-gray-300 h-10 py-2 px-4 text-white hover:bg-gray-300 bg-gray-300">
+                <div v-for="job in 10" :key="job" class="mb-2 rounded-3xl h-10 py-2 px-4 text-white hover:bg-gray-300 bg-gray-300">
                     sampletext</div>
         </div>
         <div class="grid p-4">
@@ -50,8 +50,8 @@
 </template>
 
 <script>
-import headerNavVue from '../seeker/utils/headerNav.vue'
-import menuNav from '../seeker/utils/menuNav.vue'
+import headerNavVue from '../institution/utils/headerNav.vue'
+import menuNav from '../institution/utils/menuNav.vue'
 import pageFooterVue from '../seeker/utils/pageFooter.vue'
 import FormInput from '../utils/FormInput.vue';
 import FormButton from '../utils/FormButton.vue';
@@ -83,6 +83,7 @@ import UniversityCardVue from '../utils/universityCard.vue';
                 this.datas = jobsList;
                 this.activeCat = jobsList.categories[0].name
                 this.isLoaded = true
+                document.title = 'Institution Dashboard'
             });
 
         },

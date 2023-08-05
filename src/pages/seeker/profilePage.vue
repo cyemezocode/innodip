@@ -192,6 +192,7 @@ export default {
     apiService.getProfile().then((profile) => {
       this.datas = profile.profile;
       this.isLoaded = true;
+      document.title="Personal Information"
     });
 
     const btn = document.querySelector(".toggleMobile");
@@ -208,7 +209,7 @@ export default {
       const form = document.getElementById("formData");
       const serializedData = apiService.serializeFormData(form);
       console.log(serializedData);
-      apiService.updateProfile(serializedData).then(console.log("sent"));
+      apiService.handleForm(serializedData).then(console.log("sent"));
     },
   },
 };

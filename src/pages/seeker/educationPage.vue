@@ -27,7 +27,7 @@
                             <FormInput placeholder="School" label="School" inputType="text"  required=true small=false name="school" :value="curSchool.school"></FormInput>
                             <FormInput placeholder="Specialization" label="Specialization" inputType="text"  required=true small=false name="specialization" :value="curSchool.specialization"></FormInput>
                             <FormInput placeholder="Degree" label="Degree" inputType="text"  required=true small=false name="degree" :value="curSchool.degree"></FormInput>
-                            <FormInput placeholder="Graduation Year" label="Graduation Year" inputType="text"  required=true small=false name="degree" :value="curSchool.graduated"></FormInput>
+                            <FormInput placeholder="Graduation Year" label="Graduation Year" inputType="text"  required=true small=false name="year" :value="curSchool.graduated"></FormInput>
                             
                             <div class="flex gap-1 md:gap-4">
                                 <FormButton type="submit" label="Add Education" bstyle="primary"></FormButton>
@@ -101,6 +101,7 @@ import apiService from '../../assets/api/apiService.js'
             apiService.getProfile().then(profile => {
                 this.datas = profile.profile.education;
                 this.isLoaded = true
+                document.title="Education Information"
             });
 
             
@@ -118,9 +119,10 @@ import apiService from '../../assets/api/apiService.js'
                 this.curSchool = this.datas[id]
             },
             sendData(){
-                const form = document.getElementById('formData');
+                const form = document.getElementById("formData");
                 const serializedData = apiService.serializeFormData(form);
                 console.log(serializedData);
+                apiService.handleForm(serializedData).then(console.log("sent"));
             },
             deleteSchool(id){
                 let data = {

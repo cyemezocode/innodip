@@ -9,7 +9,7 @@
             </div>
             <div class="flex flex-col items-center  bg-gray-200">
                 <h1 class="text-3xl text-center border-b border-gray-300 w-full py-3">Sign Up</h1>
-                <form class="w-full px-4 py-4" @submit.prevent="sendData(this)">
+                <form class="w-full px-4 py-4" @submit.prevent="sendData(this)" id="formData">
                     <div class="grid grid-cols-2 gap-2">
                         <FormInput placeholder="Firstname" label="Firstname" inputType="text" value="" name="fname" required=true small=false></FormInput>
                         <FormInput placeholder="Lastname" label="Lastname" inputType="text" value="" name="lname" required=true small=false></FormInput>
@@ -55,17 +55,17 @@ import apiService from '../../assets/api/apiService.js'
             apiService.getJobs().then(jobsList => {
                 this.datas = jobsList;
                 this.activeCat = jobsList.categories[0].name
+                document.title="Applicant Sign Up"
             });
 
         },
         methods: {
-            sendData() {
+            sendData(){
             const form = document.getElementById("formData");
-            console.log(form)
-            // const serializedData = apiService.serializeFormData(form);
-            // console.log(serializedData);
-            // apiService.loginUser(serializedData).then(console.log("sent"));
-            },
+            const serializedData = apiService.serializeFormData(form);
+            console.log(serializedData);
+            apiService.handleForm(serializedData).then(console.log("sent"));
+            }
         },
     }
 </script>

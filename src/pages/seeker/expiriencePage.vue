@@ -23,9 +23,9 @@
                     <div class="w-full md:w-1/2">
                         <div class="grid grid-col-1 md:grid-cols-2 gap-4 w-full">
                             <FormInput placeholder="School" label="School" inputType="text"  required=true small=false name="school" :value="curExpirience.institution "></FormInput>
-                            <FormInput placeholder="Position" label="Position" inputType="text"  required=true small=false name="specialization" :value="curExpirience.position"></FormInput>
-                            <FormInput placeholder="From" label="From" inputType="text"  required=true small=false name="degree" :value="curExpirience.from"></FormInput>
-                            <FormInput placeholder="To" label="To" inputType="text"  required=true small=false name="degree" :value="curExpirience.to"></FormInput>
+                            <FormInput placeholder="Position" label="Position" inputType="text"  required=true small=false name="position" :value="curExpirience.position"></FormInput>
+                            <FormInput placeholder="From" label="From" inputType="text"  required=true small=false name="from" :value="curExpirience.from"></FormInput>
+                            <FormInput placeholder="To" label="To" inputType="text"  required=true small=false name="to" :value="curExpirience.to"></FormInput>
                             
                             <div class="flex gap-4">
                                 <FormButton type="submit" label="Add Expirience" bstyle="primary"></FormButton>
@@ -97,6 +97,7 @@ import apiService from '../../assets/api/apiService.js'
             apiService.getProfile().then(profile => {
                 this.datas = profile.profile.expirience;
                 this.isLoaded = true
+                document.title="Experience Information"
             });
 
             
@@ -114,9 +115,10 @@ import apiService from '../../assets/api/apiService.js'
                 this.curExpirience = this.datas[id]
             },
             sendData(){
-                const form = document.getElementById('formData');
+                const form = document.getElementById("formData");
                 const serializedData = apiService.serializeFormData(form);
                 console.log(serializedData);
+                apiService.handleForm(serializedData).then(console.log("sent"));
             },
             deleteExpirience(id){
                 let data = {

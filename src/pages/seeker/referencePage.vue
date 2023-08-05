@@ -100,6 +100,7 @@ import apiService from '../../assets/api/apiService.js'
             apiService.getProfile().then(profile => {
                 this.datas = profile.profile.refrence;
                 this.isLoaded = true
+                document.title="Reference Information"
             });
 
             
@@ -118,9 +119,10 @@ import apiService from '../../assets/api/apiService.js'
             },
             
             sendData(){
-                const form = document.getElementById('formData');
+                const form = document.getElementById("formData");
                 const serializedData = apiService.serializeFormData(form);
                 console.log(serializedData);
+                apiService.handleForm(serializedData).then(console.log("sent"));
             },
             deleteRef(id){
                 let data = {

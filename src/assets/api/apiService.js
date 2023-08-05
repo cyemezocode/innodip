@@ -1,6 +1,7 @@
 import axios  from "./axios.js";
 // const url = 'https://innodip.netlify.app/';
 const url = '/';
+const dataUrl = 'http://localhost:80/ino/index.php';
 
 class apiService{
     static async getJobs() {
@@ -24,7 +25,7 @@ class apiService{
         return resp;
     }
     static async  handleForm(data) {
-        let res = await axios.post(url+'handleform',data)
+        let res = await axios.post(dataUrl,data)
         let resp = res.data;
         return resp;
     }

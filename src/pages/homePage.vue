@@ -85,7 +85,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-2 mb-5">
                 <div class="border rounded-lg overflow-hidden" v-for="mainCat in datas.mainCategories" :key="mainCat">
                     <h2 class="text-2xl w-full border-b p-4 bg-gray-100">{{mainCat.name}}</h2>
-                    <ul class="h-56 overflow-x-scroll p-4">
+                    <ul class="h-56 overflow-x-scroll p-4 custom-scrollbar">
                         <li v-for="(ty, index) in mainCat.cats" :key="ty" class="link"><router-link to="#">{{index+=1}}. {{ty.name}}</router-link></li>
                     </ul>
                 </div>
@@ -338,4 +338,55 @@ span:nth-child(3) {
 .dark2:hover img{
     mix-blend-mode: normal;
 }
+/* Custom scrollbar for all browsers */
+.custom-scrollbar {
+  scrollbar-width: thin;
+}
+
+/* WebKit-based browsers */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #108A37;
+  border-radius: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #B58C1A;
+}
+
+/* Firefox */
+.custom-scrollbar::-moz-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-moz-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+
+.custom-scrollbar::-moz-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Internet Explorer */
+.custom-scrollbar::-ms-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-ms-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+
+.custom-scrollbar::-ms-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
 </style>

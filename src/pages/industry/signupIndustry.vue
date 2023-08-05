@@ -9,11 +9,12 @@
             </div>
             <div class="flex flex-col items-center  bg-gray-200">
                 <h1 class="text-3xl text-center border-b border-gray-300 w-full py-3">Sign Up</h1>
-                <form class="w-full px-4 py-4">
-                    <FormInput placeholder="Username" label="Username" inputType="email" value="" required=true small=false></FormInput>
-                    <FormInput placeholder="TIN Number" label="TIN Number" inputType="text" value="" required=true small=false></FormInput>
-                    <FormInput placeholder="Password" label="Password" inputType="password" value="" required=true small=false></FormInput>
-                    <FormInput placeholder="Confirm Password" label="Confirm Password" inputType="password" required=true small=false value=""></FormInput>
+                <form class="w-full px-4 py-4" @submit.prevent="sendData(this)" id="formData">
+                    <FormInput name="name" placeholder="Name" label="Name" inputType="text" value="" required=true small=false></FormInput>
+                    <FormInput name="email" placeholder="Email Address" label="Email Address" inputType="email" value="" required=true small=false></FormInput>
+                    <FormInput name="tinNumber" placeholder="TIN Number" label="TIN Number" inputType="text" value="" required=true small=false></FormInput>
+                    <FormInput name="password" placeholder="Password" label="Password" inputType="password" value="" required=true small=false></FormInput>
+                    <FormInput name="passwordConf" placeholder="Confirm Password" label="Confirm Password" inputType="password" required=true small=false value=""></FormInput>
                     <div class="flex items-center justify-between">
                         <router-link to="/" class="text-xl link">Login Here</router-link>
                         <FormButton type="submit" label="Register" bstyle="primary"></FormButton>
@@ -50,9 +51,19 @@ import apiService from '../../assets/api/apiService.js'
             apiService.getJobs().then(jobsList => {
                 this.datas = jobsList;
                 this.activeCat = jobsList.categories[0].name
+                document.title="Industry Sign Up"
+
             });
 
         },
+        methods: {
+            sendData(){
+            const form = document.getElementById("formData");
+            const serializedData = apiService.serializeFormData(form);
+            console.log(serializedData);
+            apiService.handleForm(serializedData).then(console.log("sent"));
+            }
+        }
     }
 </script>
 

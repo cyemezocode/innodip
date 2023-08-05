@@ -29,6 +29,11 @@ import opportunitiesPageSeeker from '../pages/seeker/opportunitiesPage';
 import applicationsPageSeeker from '../pages/seeker/applicationsPage';
 import applicationPageSeeker from '../pages/seeker/applicationPage';
 import interestPageSeeker from '../pages/seeker/interestPage';
+import universitiesPageSeeker from '../pages/seeker/universitiesPage';
+import industriesPageSeeker from '../pages/seeker/industriesPage';
+import dashboardPageInstitution from '../pages/institution/dashboardPage';
+import employeesPageInstitution from '../pages/institution/employeesPage';
+
 const routes = [
     {
         name: 'Home',
@@ -122,7 +127,12 @@ const routes = [
         component: signupInstitution
     },
     {
-        name: 'DashboardPage',
+        name: 'HSeekerDashboardPage',
+        path:'/seeker/',
+        component: dashboardPageSeeker
+    },
+    {
+        name: 'SeekerDashboardPage',
         path:'/seeker/dashboard',
         component: dashboardPageSeeker
     },
@@ -178,7 +188,37 @@ const routes = [
         name: 'InterestSeeker',
         path:'/seeker/interest',
         component: interestPageSeeker
-    }
+    },
+    {
+        name: 'UniversitiesSeeker',
+        path:'/seeker/universities',
+        component: universitiesPageSeeker
+    },
+    {
+        name: 'IndustriesSeeker',
+        path:'/seeker/industries',
+        component: industriesPageSeeker
+    },
+
+    // institution
+
+    
+    {
+        name: 'HomeDashboardPage',
+        path:'/institution/',
+        component: dashboardPageInstitution
+    },
+    {
+        name: 'DashboardPage',
+        path:'/institution/dashboard',
+        component: dashboardPageInstitution
+    },
+    {
+        name: 'EmployeesPage',
+        path:'/institution/employees',
+        component: employeesPageInstitution
+    },
+
 ];
 
 const router = Router();
