@@ -29,13 +29,15 @@
                         <div class="col-span-3 flex flex-col justify-between">
                             <div class="flex flex-col">
                                 <h2 class="text-lg md:text-2xl">{{res.title}}</h2>
+                                <span class="text-gray-600">Category: <router-link to="#" class="link">{{res.writer}}</router-link></span>
                                 <span class="text-gray-600"><router-link to="#" class="link">{{res.writer}}</router-link></span>
                                 <span class="text-gray-600">Copyright Date: {{res.copyright_date}}</span>
-                                <span class="text-gray-600">Published by: <router-link to="#" class="link">{{res.writer}}</router-link></span>
+                                <span class="text-gray-600">Publisher by: <router-link to="#" class="link">{{res.writer}}</router-link></span>
+                                <span class="text-gray-600">Uploaded by: <router-link to="#" class="link">{{res.writer}}</router-link></span>
                                 <span class="text-gray-600">Pages: {{res.number_of_pages}}</span>
                             </div>
                             <div class="flex justify-end">
-                                <router-link to="#" class="btn-primary-sm">Full Paper</router-link>
+                                <router-link :to="res.book_url" class="btn-primary-sm">Full Paper</router-link>
                             </div>
                         </div>
                     </div>

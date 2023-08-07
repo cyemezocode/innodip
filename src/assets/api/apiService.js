@@ -1,11 +1,12 @@
 import axios  from "./axios.js";
 // const url = 'https://innodip.netlify.app/';
 const url = 'http://inodip.rw:8004/api/';
+const url2 = '/';
 const dataUrl = 'http://localhost:80/ino/index.php';
 
 class apiService{
     static async getJobs() {
-        let res = await axios.get(url+'data.json')
+        let res = await axios.get(url2+'data.json')
         let resp = res.data;
         return resp;
     }
@@ -15,7 +16,7 @@ class apiService{
         return resp;
     }
     static async getJob(id) {
-        let res = await axios.get(url+'data.json/',id)
+        let res = await axios.get(url2+'data.json/',id)
         let resp = res.data;
         return resp;
     }
