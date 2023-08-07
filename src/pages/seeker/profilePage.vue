@@ -34,6 +34,7 @@
           </div>
         </div>
         <div class="grid p-4">
+          {{ datas }}
           <div v-if="isLoaded">
             <form
               id="formData"
@@ -190,7 +191,7 @@ export default {
   },
   mounted() {
     apiService.getProfile().then((profile) => {
-      this.datas = profile.profile;
+      this.datas = profile;
       this.isLoaded = true;
       document.title="Personal Information"
     });

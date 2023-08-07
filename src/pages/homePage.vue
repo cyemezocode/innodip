@@ -68,7 +68,7 @@
                 <button class="absolute right-[-20px] top-1/2 translate-y-[-50%] z-10 bg-gray-900 w-10 h-10 rounded-full text-white flex justify-center items-center text-lg hover:bg-secondary transition duration-300 ease-in-out">&rarr;</button>
                 <button class="absolute left-[-20px] top-1/2 translate-y-[-50%] z-10 bg-gray-900 w-10 h-10 rounded-full text-white flex justify-center items-center text-lg hover:bg-secondary transition duration-300 ease-in-out">&larr;</button>
                 <div class="grid grid-cols-2 md:grid-cols-6 rounded-xl border border-slate-700 overflow-hidden mb-4 relative">
-                    <router-link to="" v-for="ind in datas.universities" :key="ind.id" class="card-hover dark2 h-44 flex flex-col justify-between items-center overflow-hidden">
+                    <router-link to="" v-for="ind in institutions" :key="ind.id" class="card-hover dark2 h-44 flex flex-col justify-between items-center overflow-hidden">
                         <img :src="ind.logo" :alt="ind.name" class="w-full px-4 object-cover">
                         <h1 class="text-xl text-center">{{ind.name}}</h1>
                     </router-link>
@@ -114,7 +114,7 @@
     @swiper="onSwiper"
     @slideChange="onSlideChange"
   >
-    <swiper-slide  v-for="(img, index) in images" :key="index" :style="getFirstItemStyle(index)"  class="mb-2 flex justify-center items-end flex-grow flex-shrink-0 rounded-3xl bg-gray-200 py-2 px-4 text-white h-52 hover:bg-green-700 relative  overflow-hidden cursor-pointer orgItem">
+    <swiper-slide  v-for="(img, index) in industries" :key="index" :style="getFirstItemStyle(index)"  class="mb-2 flex justify-center items-end flex-grow flex-shrink-0 rounded-3xl bg-gray-200 py-2 px-4 text-white h-52 hover:bg-green-700 relative  overflow-hidden cursor-pointer orgItem">
         <img :src="img.logo" :alt="img.name" class="absolute top-0 left-0 w-full h-full object-cover z-0">
                 <div class="absolute z-10 bg-gray-50 text-gray-600 top-auto w-[90%] left-[5%] rounded-3xl px-4 py-2 opacity-[.8] bottom-2 text-center">
                     {{ img.name }}
@@ -176,11 +176,12 @@ import 'swiper/css';
             return{
                 username: 'cyemezo',
                 datas:[],
-                images: [],
+                industries: [],
+                institutions: [],
                 activeCat:'all',
                 isLoaded:false,
-      distanceToLeft: 0,
-      itemsToShow:3
+                distanceToLeft: 0,
+                itemsToShow:3
             }
         },
         components:{
@@ -214,8 +215,11 @@ import 'swiper/css';
                 // this.activeCat = jobsList.categories[0].name;
                 this.isLoaded = true
             });
-            apiService.getImages().then(imageList => {
-                this.images = imageList.companies;
+            apiService.getIndustries().then(industryList => {
+                this.industries = industryList;
+            });
+            apiService.getInstitutions().then(instituteList => {
+                this.institutions = instituteList;
             });
             this.getDistanceToLeft();
             document.title="Innovative Digital Platform - HOME"

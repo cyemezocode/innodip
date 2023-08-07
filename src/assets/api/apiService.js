@@ -1,6 +1,6 @@
 import axios  from "./axios.js";
 // const url = 'https://innodip.netlify.app/';
-const url = '/';
+const url = 'http://inodip.rw:8004/api/';
 const dataUrl = 'http://localhost:80/ino/index.php';
 
 class apiService{
@@ -10,7 +10,7 @@ class apiService{
         return resp;
     }
     static async getProfile() {
-        let res = await axios.get(url+'data.json')
+        let res = await axios.get(url+'applicants')
         let resp = res.data;
         return resp;
     }
@@ -29,9 +29,15 @@ class apiService{
         let resp = res.data;
         return resp;
     }
-    static async getImages() {
+    static async getIndustries() {
         // let res = await axios.get('')
-        let res = await axios.get(url+'data.json')
+        let res = await axios.get(url+'industries')
+        let resp = res.data;
+        return resp;
+    }
+    static async getInstitutions() {
+        // let res = await axios.get('')
+        let res = await axios.get(url+'hl_institutions')
         let resp = res.data;
         return resp;
     }
