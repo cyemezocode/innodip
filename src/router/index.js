@@ -3,6 +3,7 @@ import homePage from '../pages/homePage';
 import handleForm from '../pages/handleForm';
 // import comingSoon from '../pages/comingSoon';
 import loginPage from '../pages/loginPage';
+import confirmAccount from '../pages/confirmAccount';
 import signupPage from '../pages/signupPage';
 import jobsPage from '../pages/jobsPage';
 import universitiesPage from '../pages/universitiesPage';
@@ -44,6 +45,11 @@ const routes = [
         name: 'LoginPage',
         path:'/login',
         component: loginPage
+    },
+    {
+        name: 'ConfirmAccount',
+        path:'/confirm',
+        component: confirmAccount
     },
     {
         name: 'JobsPage',
