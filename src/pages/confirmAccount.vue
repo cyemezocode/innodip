@@ -38,8 +38,6 @@
 <script>
 import headerNavVue from './utils/headerNav.vue'
 import pageFooterVue from './utils/pageFooter.vue'
-// import 'vue3-carousel/dist/carousel.css'
-// import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'\
 import apiService from '../assets/api/apiService.js'
 
     export default {
@@ -81,7 +79,7 @@ import apiService from '../assets/api/apiService.js'
     }
 </script>
 
-<style>
+<style scoped>
 .homeImg{
     height: 400px;
 }

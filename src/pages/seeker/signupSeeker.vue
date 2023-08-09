@@ -16,7 +16,13 @@
 
                     </div>
                     <FormInput placeholder="Email Address" label="Email Address" inputType="email" value="" name="email" required=true small=false></FormInput>
-                    <FormInput placeholder="National ID/Phone Number" label="National ID/Phone Number" inputType="text" value="" name="nidphone" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormInput>
+                    <div>  <v-phone-input
+      v-model="phone"
+      country-icon-mode="svg"
+  />
+                        <FormSelect placeholder="National ID/Phone Number" label="National ID/Phone Number" inputType="text" value="" name="nidphone" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormSelect>
+                        <FormInput placeholder="National ID/Phone Number" label="National ID/Phone Number" inputType="text" value="" name="nidphone" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormInput>
+                    </div>
                     <FormInput placeholder="Password" label="Password" inputType="password" value="" name="password" required=true small=false></FormInput>
                     <FormInput placeholder="Confirm Password" label="Confirm Password" inputType="password" name="passwordconf" required=true small=false value=""></FormInput>
                     <div class="flex items-center justify-between">
@@ -35,21 +41,34 @@
 import headerNavVue from '../utils/headerNav.vue'
 import pageFooterVue from '../utils/pageFooter.vue'
 import FormInput from '../utils/FormInput.vue';
+import FormSelect from '../utils/FormSelect.vue';
 import FormButton from '../utils/FormButton.vue';
 import apiService from '../../assets/api/apiService.js'
+import 'flag-icons/css/flag-icons.min.css';
+import 'v-phone-input/dist/v-phone-input.css';
+import { VPhoneInput } from 'v-phone-input';
+import { ref } from 'vue';
+
+const phone = ref('');
+
     export default {
-        data(){
+            
+            setup() {
+                const phone = ref('');
             return{
                 username: 'cyemezo',
                 datas:[],
-                activeCat:''
+                activeCat:'',
+                phone,
             }
         },
         components:{
             headerNavVue,
             pageFooterVue,
             FormInput,
-            FormButton, 
+            FormSelect,
+            FormButton,
+            VPhoneInput
         },
         mounted(){
             apiService.getJobs().then(jobsList => {
