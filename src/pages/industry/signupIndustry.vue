@@ -12,7 +12,7 @@
                 <form class="w-full px-4 py-4" @submit.prevent="sendData(this)" id="formData">
                     <FormInput name="name" placeholder="Name" label="Name" inputType="text" value="" required=true small=false></FormInput>
                     <FormInput name="email" placeholder="Email Address" label="Email Address" inputType="email" value="" required=true small=false></FormInput>
-                    <FormInput name="tinNumber" placeholder="TIN Number" label="TIN Number" inputType="text" value="" required=true small=false></FormInput>
+                    <FormInput name="tin" placeholder="TIN Number" label="TIN Number" inputType="text" value="" required=true small=false></FormInput>
                     <FormInput name="password" placeholder="Password" label="Password" inputType="password" value="" required=true small=false></FormInput>
                     <FormInput name="passwordConf" placeholder="Confirm Password" label="Confirm Password" inputType="password" required=true small=false value=""></FormInput>
                     <div class="flex items-center justify-between">
@@ -33,6 +33,25 @@ import pageFooterVue from '../utils/pageFooter.vue'
 import FormInput from '../utils/FormInput.vue';
 import FormButton from '../utils/FormButton.vue';
 import apiService from '../../assets/api/apiService.js'
+import AWN from "awesome-notifications"
+
+let globalOptions =  {
+  alert: "Oops! Something got wrong",
+
+}
+globalOptions.labels = {
+  alert: "Sign Up",
+}
+
+let signupOption =  {
+  success: "Your account is successful created.",
+
+}
+signupOption.labels = {
+  alert: "Sign Up",
+}
+
+let notifier = new AWN(globalOptions)
     export default {
         data(){
             return{
@@ -60,8 +79,32 @@ import apiService from '../../assets/api/apiService.js'
             sendData(){
             const form = document.getElementById("formData");
             const serializedData = apiService.serializeFormData(form);
-            console.log(serializedData);
-            apiService.handleForm(serializedData).then(console.log("sent"));
+            apiService.signIndustry(serializedData).then(data=>{
+
+                if(data.message=='success'){
+                    notifier.success('Your account is successful created.', signupOption)
+                    this.$router.push('/login');
+                }
+                if(data.errors){
+                    notifier.alert(data.errors[0], globalOptions)
+                }
+
+            }
+                ).catch(error=>{
+                    var extra;
+                    console.log(error.response.data)
+                    var info = error.response.data;
+                    if(info.errors.phone){
+                        extra = info.errors.phone[0];
+                    }
+                    if(info.errors.email){
+                        extra = info.errors.email[0];
+                    }
+                    if(info.errors.nid){
+                        extra = info.errors.nid[0];
+                    }
+                    notifier.alert(info.message+'\n'+extra, globalOptions)
+                });
             }
         }
     }

@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="grid p-4">
-          {{ datas }}
+          <!-- {{ datas }} -->
           <div v-if="isLoaded">
             <form
               id="formData"
@@ -105,7 +105,7 @@
                       required="true"
                       small="false"
                       name="dateOfBirth"
-                      :value="datas.dateOfBirth"
+                      :value="datas.dob"
                     ></FormInput>
                     <FormInput
                       placeholder="National Identification Number"
@@ -191,9 +191,12 @@ export default {
   },
   mounted() {
     apiService.getProfile().then((profile) => {
-      this.datas = profile;
+      this.datas = JSON.parse(localStorage.getItem('currentUser'));
       this.isLoaded = true;
-      document.title="Personal Information"
+      document.title="Personal Information";
+      
+      this.datas.dob = apiService.calendarDate(this.datas.dob)
+      console.log(this.datas.dob)
     });
 
     const btn = document.querySelector(".toggleMobile");

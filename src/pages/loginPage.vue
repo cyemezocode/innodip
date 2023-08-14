@@ -10,8 +10,9 @@
                 <div class="flex flex-col items-center bg-gray-200">
                     <h1 class="text-3xl text-center border-b border-gray-300 w-full py-3">Sign In</h1>
                     <form @submit.prevent="sendData(this)" class="w-full px-4 py-4" id="formData">
-                        <FormInput placeholder="Username" label="Username" inputType="email"  required=true small=false name="username"></FormInput>
-                        <FormInput placeholder="Password" label="Password" inputType="password" required=true small=false sub="Forgot Password?" toSub="forgot" name="password"></FormInput>
+                        <FormInput placeholder="Username" label="Username" inputType="email"  required=true small=false name="email"></FormInput>
+                        <FormInput placeholder="Password" label="Password" inputType="password" required=true small=false sub="Forgot Password?" toSub="forgot" name="currentPassword"></FormInput>
+
                         <div class="flex items-center justify-between">
                             <router-link to="/signup/" class="text-xl link">Register Here</router-link>
                             <FormButton type="submit" label="Sign In" bstyle="primary"></FormButton>
@@ -34,6 +35,26 @@ import FormButton from './utils/FormButton.vue';
 // import 'vue3-carousel/dist/carousel.css'
 // import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'\
 import apiService from '../assets/api/apiService.js'
+import AWN from "awesome-notifications"
+
+let globalOptions =  {
+  alert: "Oops! Something got wrong",
+
+}
+globalOptions.labels = {
+  alert: "Login",
+}
+
+let signupOption =  {
+  success: "You are successful loged in.",
+
+}
+signupOption.labels = {
+  alert: "Login In",
+}
+
+let notifier = new AWN(globalOptions)
+// let nextCallOptions = {}
     export default {
         data(){
             return{
@@ -48,14 +69,29 @@ import apiService from '../assets/api/apiService.js'
             headerNavVue,
             pageFooterVue,
             FormInput,
-            FormButton
+            FormButton,
         },
         methods:{
             sendData(){
             const form = document.getElementById("formData");
             const serializedData = apiService.serializeFormData(form);
-            console.log(serializedData);
-            apiService.handleForm(serializedData).then(console.log("sent"));
+            apiService.loginUser(serializedData).then(data=>{
+
+                if(data.message=='success'){
+                    if(data.type=='applicant'){
+                        localStorage.removeItem('currentUser');
+                        localStorage.setItem('currentUser', JSON.stringify(data.data));
+                        // console.log(data.data);
+                        notifier.success('You are successful loged in.', signupOption)
+                        this.$router.push('/seeker/');
+                    }
+                }
+
+            }
+                ).catch(error=>{
+                    console.log(error.response.data.message)
+                    notifier.alert('Incorrect email or password', globalOptions)
+                });
             }
         },
         mounted(){

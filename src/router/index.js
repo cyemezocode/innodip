@@ -35,6 +35,11 @@ import industriesPageSeeker from '../pages/seeker/industriesPage';
 import dashboardPageInstitution from '../pages/institution/dashboardPage';
 import employeesPageInstitution from '../pages/institution/employeesPage';
 
+// admin
+import homePageAdmin from '../pages/admin/homePage';
+import categoriesPage from '../pages/admin/categoriesPage';
+
+
 const routes = [
     {
         name: 'Home',
@@ -206,6 +211,26 @@ const routes = [
         component: industriesPageSeeker
     },
 
+    // admin
+
+    
+    {
+        name: 'AdminHomePage',
+        path:'/admin/',
+        component: homePageAdmin
+    },
+    {
+        name: 'CategoriesPage',
+        path:'/admin/categories',
+        component: categoriesPage
+    },
+    {
+        name: 'EmployeesPage',
+        path:'/institution/employees',
+        component: employeesPageInstitution
+    },
+
+    
     // institution
 
     

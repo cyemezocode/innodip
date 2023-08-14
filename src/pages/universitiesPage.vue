@@ -21,7 +21,7 @@
         </div>
         <div class="grid max-w-screen-lg mx-auto px-3 md:px-0 py-4">
             <div v-if="isLoaded" class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <UniversityCardVue v-for="job in datas.universities" :key="job" :datas="JSON.stringify(job)" router="/opportunity" :hasDesc=true></UniversityCardVue>
+                <UniversityCardVue v-for="job in datas" :key="job" :datas="JSON.stringify(job)" router="/opportunity" :hasDesc=true></UniversityCardVue>
             </div>
             <div v-if="!isLoaded">
                 <jobCardVueSkeleton v-for="job in 5" :key="job" :hasDesc=true></jobCardVueSkeleton>
@@ -60,9 +60,9 @@ import apiService from '../assets/api/apiService.js'
             jobCardVueSkeleton
         },
         mounted(){
-            apiService.getJobs().then(jobsList => {
+            apiService.getInstitutions().then(jobsList => {
                 this.datas = jobsList;
-                this.activeCat = jobsList.categories[0].name
+                // this.activeCat = jobsList.name
                 this.isLoaded = true,
                 document.title='Universities'
             });

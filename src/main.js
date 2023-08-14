@@ -5,7 +5,6 @@ import App from './App.vue'
 
 import './assets/css/app.css'
 import VOtpInput from "vue3-otp-input";
-
 // import router
 import router from './router'
 const app = createApp(App)

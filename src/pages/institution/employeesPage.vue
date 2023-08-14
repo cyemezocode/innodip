@@ -36,8 +36,8 @@
 </template>
 
 <script>
-import headerNavVue from '../institution/utils/headerNav.vue'
-import menuNav from '../institution/utils/menuNav.vue'
+import headerNavVue from './utils/headerNav.vue'
+import menuNav from './utils/menuNav.vue'
 import pageFooterVue from '../seeker/utils/pageFooter.vue'
 import apiService from '../../assets/api/apiService.js'
 import DataTable from 'datatables.net-vue3';

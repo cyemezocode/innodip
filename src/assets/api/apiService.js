@@ -25,6 +25,26 @@ class apiService{
         let resp = res.data;
         return resp;
     }
+    static async  loginUser(data) {
+        let res = await axios.post(url+'login',data)
+        let resp = res.data;
+        return resp;
+    }
+    static async  signApplicant(data) {
+        let res = await axios.post(url+'create_applicant',data)
+        let resp = res.data;
+        return resp;
+    }
+    static async  signIndustry(data) {
+        let res = await axios.post(url+'industry_signup',data)
+        let resp = res.data;
+        return resp;
+    }
+    static async  signInstitution(data) {
+        let res = await axios.post(url+'hl_institutions_signup',data)
+        let resp = res.data;
+        return resp;
+    }
     static async  handleForm(data) {
         let res = await axios.post(dataUrl,data)
         let resp = res.data;
@@ -46,6 +66,34 @@ class apiService{
         const formData = new FormData(form);
         return new URLSearchParams(formData).toString();
       }
+      static realDate(newdate){
+          let date = new Date(newdate);
+          let year = date.getFullYear();
+          let month = String(date.getMonth() + 1).padStart(2, '0');
+          let day = String(date.getDate()).padStart(2, '0');
+          let newDate = `${year}-${month}-${day}`;
+          date = new Date(newDate);
+          day = date.getDate();
+          month = date.toLocaleString("default", { month: "long" });
+          year = date.getFullYear();
+          const formattedDate = `${day}${this.getOrdinalSuffix(day)}-${month}-${year}`;
+          return formattedDate;
+      }
+      
+      static calendarDate(newdate){
+          let date = new Date(newdate);
+          let year = date.getFullYear();
+          let month = String(date.getMonth() + 1).padStart(2, '0');
+          let day = String(date.getDate()).padStart(2, '0');
+          let newDate = `${year}-${month}-${day}`;
+          return newDate;
+      }
+      static getOrdinalSuffix(number) {
+          const suffixes = ["th", "st", "nd", "rd"];
+          const lastDigit = number % 10;
+          const suffix = suffixes[lastDigit] || suffixes[0];
+          return suffix;
+      } 
 }
 
 export default apiService;
