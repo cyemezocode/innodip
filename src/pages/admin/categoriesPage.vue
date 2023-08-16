@@ -21,14 +21,7 @@
         </div>
         
         <div class="grid mx-auto px-4 md:px-4 py-4">
-            <DataTable  :data="data" class="display">
-                <thead>
-                    <tr>
-                        <th>First</th>
-                        <th>Second</th>
-                    </tr>
-                </thead>
-            </DataTable>
+            <categoriesPane></categoriesPane>
         </div>
         <pageFooterVue></pageFooterVue>
     </div>
@@ -39,42 +32,23 @@
 import headerNavVue from '../admin/utils/headerNav.vue'
 import menuNav from '../admin/utils/menuNav.vue'
 import pageFooterVue from '../seeker/utils/pageFooter.vue'
-import apiService from '../../assets/api/apiService.js'
-import DataTable from 'datatables.net-vue3';
-import DataTablesCore from 'datatables.net';
-import 'datatables.net-select';
-import 'datatables.net-responsive';
- 
-DataTable.use(DataTablesCore);
-const data = [
-  [1, 2],
-  [3, 4],
-];
+import categoriesPane from './utils/dataTables/categoriesPane.vue'
 
+// import apiService from '../../assets/api/apiService.js'
     export default {
         name: 'dashboardPage',
         data(){
             return{
                 username: 'cyemezo',
-                datas:[],
                 activeCat:'',
                 isLoaded:false,
-                data:data
             }
         },
         components:{
             headerNavVue,
             menuNav,
             pageFooterVue,
-        },
-        mounted(){
-            apiService.getJobs().then(jobsList => {
-                this.datas = jobsList;
-                this.activeCat = jobsList.categories[0].name
-                this.isLoaded = true
-                document.title = 'Institution Dashboard'
-            });
-
+            categoriesPane
         },
     }
 </script>
