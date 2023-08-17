@@ -52,6 +52,19 @@ export default {
                              "display": "flex", 
                              "justify-content":"space-between" 
                             });
+          $('#myTable').after('<div class="tableFooter"></div>');
+          $(".dataTables_paginate, .dataTables_info").appendTo(".tableFooter");
+          
+          $(".tableFooter").css({
+                             "display": "flex", 
+                             "justify-content":"space-between" 
+                            });
+          $(".pagination").css({
+                             "display": "flex", 
+                             "border":"1px solid #009879"
+                            });
+
+          
 
         })
         .catch((error) => {
@@ -83,5 +96,6 @@ export default {
     padding: 10px 15px;
     white-space: nowrap;
 }
+/* @import '@/assets/css/bootstrap.css'; */
 
 </style>

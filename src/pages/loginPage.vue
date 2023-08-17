@@ -85,6 +85,20 @@ let notifier = new AWN(globalOptions)
                         notifier.success('You are successful loged in.', signupOption)
                         this.$router.push('/seeker/');
                     }
+                    if(data.type=='industry'){
+                        localStorage.removeItem('currentUser');
+                        localStorage.setItem('currentUser', JSON.stringify(data.data));
+                        // console.log(data.data);
+                        notifier.success('You are successful loged in.', signupOption)
+                        this.$router.push('/industry/');
+                    }
+                    if(data.type=='institution'){
+                        localStorage.removeItem('currentUser');
+                        localStorage.setItem('currentUser', JSON.stringify(data.data));
+                        // console.log(data.data);
+                        notifier.success('You are successful loged in.', signupOption)
+                        this.$router.push('/institution/');
+                    }
                 }
 
             }
