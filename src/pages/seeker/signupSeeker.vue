@@ -17,9 +17,9 @@
                     </div>
                     <FormInput placeholder="Email Address" label="Email Address" inputType="email" value="" name="email" required=true small=false></FormInput>
                     <div>
-                        <FormSelect @setCitizen="settingCitizen" placeholder="Select Citizenship" label="Citizenship" inputType="text" value="" name="" required=true small=false ></FormSelect>
-                        <FormInput v-if="citizen" placeholder="National ID" label="National ID" inputType="text" value="" name="nid" required=true small=false></FormInput>
-                        <FormInput v-if="!citizen" placeholder="Phone Number" label="Phone Number" inputType="text" value="" name="phone" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormInput>
+                        <FormSelect @setCitizen="settingCitizen" placeholder="Select Citizenship" label="Citizenship" inputType="text" value="" name="isLocalSignUp" required=true small=false ></FormSelect>
+                        <FormInput v-if="citizen" placeholder="National ID" label="National ID" inputType="text" value="" name="nidOrPhone" required=true small=false></FormInput>
+                        <FormInput v-if="!citizen" placeholder="Phone Number" label="Phone Number" inputType="text" value="" name="nidOrPhone" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormInput>
                     </div>
                     <FormInput placeholder="Password" label="Password" inputType="password" value="" name="password" required=true small=false></FormInput>
                     <FormInput placeholder="Confirm Password" label="Confirm Password" inputType="password" name="currentPassword" required=true small=false value=""></FormInput>
@@ -70,6 +70,7 @@ let notifier = new AWN(globalOptions)
                 datas:[],
                 activeCat:'',
                 citizen:true,
+                isPasswordEqual:false
             }
         },
         components:{
@@ -120,7 +121,7 @@ let notifier = new AWN(globalOptions)
             },
             settingCitizen(event){
                 if(event.target.value!=''){
-                const val = event.target.value=='true'?true:false
+                const val = event.target.value=='1'?true:false
                 this.citizen = val
                 }
             }

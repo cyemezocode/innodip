@@ -5,8 +5,8 @@
             <label v-if="small=='false'" class="text-sm mb-2">{{ label }} <strong v-if="required" class="text-red-400">*</strong></label>
             <select @change="setCitizen" class="w-fullblock appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-secondary" :class="small==true?'mt-4':''" :required="required" :placeholder="placeholder" :name="name" :value="value">
                 <option value="">{{placeholder}}</option>
-                <option value=true>Rwandan</option>
-                <option value=false>Non-Rwandan</option>
+                <option value=1>Rwandan</option>
+                <option value=0>Non-Rwandan</option>
             </select>
             <router-link  :to="`${toSub}`" v-if="sub" class="link text-xs">{{sub}}</router-link>
         </div>

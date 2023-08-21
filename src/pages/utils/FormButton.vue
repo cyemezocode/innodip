@@ -1,6 +1,6 @@
 <template>
     <div class="mt-5">
-        <button :class="bstyle=='primary'?'btn-primary':'btn-secondary'" :type="type">{{ label }}</button>
+        <button :disabled="!disabled" :class="bstyle=='primary'?'btn-primary':'btn-secondary'" :type="type">{{ label }}</button>
     </div>
 </template>
 
@@ -10,7 +10,8 @@
         props:{
             label: String,
             type: String,
-            bstyle:String
+            bstyle:String,
+            disabled:Boolean
         },
         data(){
             return{
