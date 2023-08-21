@@ -4,10 +4,10 @@
         <div class="max-w-screen-lg mx-auto px-3 md:px-0 py-4 justify-center">
             <div class="border border-1 mb-5 rounded-lg overflow-hidden grid w-full grid-cols-1 md:grid-cols-3">
                 <div class="flex flex-col items-center justify-center col-span-2">
-                    <h2 class="text-3xl my-3">Create Job Seeker account</h2>
+                    <h2 class="text-3xl my-3">Create Applicant account</h2>
                 <img src="@/assets/illustrations/seeker.svg" class="px-18 homeImg">
             </div>
-            <div class="flex flex-col items-center  bg-gray-200">
+            <div class="flex flex-col items-center  bg-slate-100 border-l border-1">
                 <h1 class="text-3xl text-center border-b border-gray-300 w-full py-3">Sign Up</h1>
                 <form class="w-full px-4 py-4" @submit.prevent="sendData(this)" id="formData">
                     <div class="grid grid-cols-2 gap-2">
@@ -17,9 +17,9 @@
                     </div>
                     <FormInput placeholder="Email Address" label="Email Address" inputType="email" value="" name="email" required=true small=false></FormInput>
                     <div>
-                        <FormSelect placeholder="National ID/Phone Number" label="National ID/Phone Number" inputType="text" value="" name="" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormSelect>
-                        <FormInput placeholder="National ID/Phone Number" label="National ID/Phone Number" inputType="text" value="" name="nid" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormInput>
-                        <FormInput placeholder="Phone Number" label="National ID/Phone Number" inputType="text" value="" name="phone" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormInput>
+                        <FormSelect @setCitizen="settingCitizen" placeholder="Select Citizenship" label="Citizenship" inputType="text" value="" name="" required=true small=false ></FormSelect>
+                        <FormInput v-if="citizen" placeholder="National ID" label="National ID" inputType="text" value="" name="nid" required=true small=false></FormInput>
+                        <FormInput v-if="!citizen" placeholder="Phone Number" label="Phone Number" inputType="text" value="" name="phone" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormInput>
                     </div>
                     <FormInput placeholder="Password" label="Password" inputType="password" value="" name="password" required=true small=false></FormInput>
                     <FormInput placeholder="Confirm Password" label="Confirm Password" inputType="password" name="currentPassword" required=true small=false value=""></FormInput>
@@ -64,11 +64,12 @@ signupOption.labels = {
 let notifier = new AWN(globalOptions)
     export default {
             
-            setup() {
+        data() {
             return{
                 username: 'cyemezo',
                 datas:[],
                 activeCat:'',
+                citizen:true,
             }
         },
         components:{
@@ -116,6 +117,12 @@ let notifier = new AWN(globalOptions)
                     }
                     notifier.alert(info.message+'\n'+extra, globalOptions)
                 });
+            },
+            settingCitizen(event){
+                if(event.target.value!=''){
+                const val = event.target.value=='true'?true:false
+                this.citizen = val
+                }
             }
         },
     }

@@ -25,7 +25,7 @@
         </div>
         <div class="grid p-4">
             <div v-if="isLoaded">
-                <jobCardVue v-for="job in datas.jobs" :key="job" :datas="JSON.stringify(job)" router="/seeker/opportunity" :hasDesc=true></jobCardVue>
+                <jobCardVue v-for="job in datas" :key="job" :datas="JSON.stringify(job)" router="/seeker/opportunity" :hasDesc=true></jobCardVue>
             </div>
             <div v-if="!isLoaded">
                 <jobCardVueSkeleton v-for="job in 5" :key="job" :hasDesc=true></jobCardVueSkeleton>
@@ -66,12 +66,11 @@ import apiService from '../../assets/api/apiService.js'
             FormButton, 
         },
         mounted(){
-            apiService.getJobs().then(jobsList => {
+            apiService.getOpportunities().then(jobsList => {
                 this.datas = jobsList;
-                this.activeCat = jobsList.categories[0].name
+                // this.activeCat = jobsList.categories[0].name;
                 this.isLoaded = true
             });
-
         },
     }
 </script>

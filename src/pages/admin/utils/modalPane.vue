@@ -1,7 +1,7 @@
 <template>
     <div class="">
-        <div v-if="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex top-0">
-      <div class="relative w-auto my-6 mx-auto max-w-6xl">
+        <div v-if="showModal" v-on:click="triggerToggleModal()" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex top-0">
+      <div class="relative w-auto my-6 mx-auto max-w-6xl" @click.stop>
         <!--content-->
         <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
           <!--header-->
@@ -16,19 +16,21 @@
             </button>
           </div>
           <!--body-->
+            <form class="w-full max-w-lg" @submit.prevent="sendData(this)" id="formData">
           <div class="relative p-6 flex-auto">
             <slot name="form" class="my-4 text-slate-500 text-lg leading-relaxed">
             </slot>
           </div>
           <!--footer-->
-          <div class="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-            <button class="text-red-500 bg-transparent border border-solid border-red-500 hover:bg-red-500 hover:text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" v-on:click="triggerToggleModal()">
+          <div class="flex gap-3 items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+            <button class="btn-secondary" type="button" v-on:click="triggerToggleModal()">
               Close
             </button>
-            <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" v-on:click="triggerToggleModal()">
-              Save Changes
+            <button class="btn-primary">
+              Save
             </button>
           </div>
+          </form>
         </div>
       </div>
     </div>
@@ -37,13 +39,54 @@
 </template>
 
 <script>
+import apiService from '../../../assets/api/apiService.js'
+import AWN from "awesome-notifications"
+
+let globalOptions =  {
+  alert: "Oops! Something got wrong",
+
+}
+globalOptions.labels = {
+  alert: "Sign Up",
+}
+
+let signupOption =  {
+  success: "Your account is successful created.",
+
+}
+signupOption.labels = {
+  alert: "Sign Up",
+}
+
+
+let notifier = new AWN(globalOptions)
     export default {
-        props:['showModal'],
+        props:['showModal','endpoint','alertTitle'],
         
         methods: {
             triggerToggleModal() {
             this.$emit("triggerModal");
             },
+            sendData(){
+            const form = document.getElementById("formData");
+            const serializedData = apiService.serializeFormData(form);
+            apiService.modalRequest(serializedData,this.endpoint).then(data=>{
+
+                if(data.message=='success'){
+                    notifier.success('Your account is successful created.', signupOption)
+                    this.$router.push('/login');
+                }
+                if(data.errors){
+                    notifier.alert(data.errors[0], globalOptions)
+                }
+
+            }
+                ).catch(error=>{
+                    console.log(error.response.data)
+                    var info = error.response.data;
+                    notifier.alert(info.message, globalOptions)
+                });
+            }
         },
     }
 </script>

@@ -20,6 +20,11 @@ class apiService{
         let resp = res.data;
         return resp;
     }
+    static async getOpportunities() {
+        let res = await axios.get(url+'opportunities/')
+        let resp = res.data;
+        return resp;
+    }
     static async  updateProfile(data) {
         let res = await axios.post(url+'pro/',data)
         let resp = res.data;
@@ -47,6 +52,13 @@ class apiService{
     }
     static async  handleForm(data) {
         let res = await axios.post(dataUrl,data)
+        let resp = res.data;
+        return resp;
+    }
+    
+    static async modalRequest(data,endpoint) {
+        // let res = await axios.get('')
+        let res = await axios.post(url+''+endpoint,data)
         let resp = res.data;
         return resp;
     }

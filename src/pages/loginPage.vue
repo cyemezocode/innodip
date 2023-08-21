@@ -7,7 +7,7 @@
                     <h2 class="text-3xl my-3">Get Started</h2>
                     <img src="../assets/illustrations/Interview-cuate.svg" class="px-18 homeImg">
                 </div>
-                <div class="flex flex-col items-center bg-gray-200">
+                <div class="flex flex-col items-center bg-slate-100 border-l border-1">
                     <h1 class="text-3xl text-center border-b border-gray-300 w-full py-3">Sign In</h1>
                     <form @submit.prevent="sendData(this)" class="w-full px-4 py-4" id="formData">
                         <FormInput placeholder="Username" label="Username" inputType="email"  required=true small=false name="email"></FormInput>

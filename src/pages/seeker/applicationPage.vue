@@ -171,10 +171,10 @@ import apiService from '../../assets/api/apiService.js'
             this.jobId = this.$route.params.id;
             this.loadJob();
 
-            apiService.getJobs().then(jobsList => {
+            apiService.getOpportunities().then(jobsList => {
                 this.datas = jobsList;
-                this.activeCat = jobsList.categories[0].name;
-
+                // this.activeCat = jobsList.categories[0].name;
+                this.isLoaded = true
             });
         },
         methods:{

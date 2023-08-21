@@ -1,26 +1,20 @@
 <template>
+        {{ locOpts }}
+
         <div class="w-full flex flex-col" :class="small=='false'?'mb-4':''" v-if="inputType!='textarea'">
             <label v-if="small=='false'" class="text-sm mb-2">{{ label }} <strong v-if="required" class="text-red-400">*</strong></label>
-            <select class="w-full border border-gray-400 px-3 py-2 rounded-xl outline-none focus:border-primary focus:border-2 transition ease-in-out duration-500" :class="small==true?'mt-4':''" :required="required" :placeholder="placeholder" :type="inputType" :name="name" :value="value">
-                <option>Select {{ label }}</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
+            <select @change="setCitizen" class="w-fullblock appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-secondary" :class="small==true?'mt-4':''" :required="required" :placeholder="placeholder" :name="name" :value="value">
+                <option value="">{{placeholder}}</option>
+                <option value=true>Rwandan</option>
+                <option value=false>Non-Rwandan</option>
             </select>
             <router-link  :to="`${toSub}`" v-if="sub" class="link text-xs">{{sub}}</router-link>
         </div>
 </template>
 
 <script>
-  // Initialization for ES Users
-  import {
-    Input,
-    initTE,
-  } from "tw-elements";
-
-  initTE({ Input });
     export default {
+        emits: ['setCitizen'],
         name: 'FormInput',
         props:{
             placeholder: String,
@@ -32,6 +26,12 @@
             required: String,
             small: String,
             name:String,
+            locOpts:Object
+        },
+        methods:{
+            setCitizen(event){
+                this.$emit('setCitizen',event)
+            }
         }
     }
 </script>

@@ -146,7 +146,7 @@
                     sampletext</div>
         </div>
             <div v-if="isLoaded">
-                <jobCardVue v-for="job in datas.jobs" :key="job" :datas="JSON.stringify(job)" router="/opportunity" :hasDesc=true></jobCardVue>
+                <jobCardVue v-for="job in datas" :key="job" :datas="JSON.stringify(job)" router="/opportunity" :hasDesc=true></jobCardVue>
             </div>
             <div v-if="!isLoaded">
                 <jobCardVueSkeleton v-for="job in 3" :key="job" :hasDesc=true></jobCardVueSkeleton>
@@ -210,7 +210,7 @@ import 'swiper/css';
         };
         },
         mounted(){
-            apiService.getJobs().then(jobsList => {
+            apiService.getOpportunities().then(jobsList => {
                 this.datas = jobsList;
                 // this.activeCat = jobsList.categories[0].name;
                 this.isLoaded = true

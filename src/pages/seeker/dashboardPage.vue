@@ -21,7 +21,7 @@
         
         <div class="grid mx-auto px-4 md:px-4 py-4">
             <div v-if="isLoaded" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                <UniversityCardVue v-for="job in datas.companies" :key="job" :datas="JSON.stringify(job)" router="/opportunity" :hasDesc=true></UniversityCardVue>
+                <UniversityCardVue v-for="job in companies" :key="job" :datas="JSON.stringify(job)" router="/opportunity" :hasDesc=true></UniversityCardVue>
             </div>
             </div>
         <div v-if="isLoaded" class="sliderPane flex gap-2 overflow-x-scroll px-4 pb-2">
@@ -35,7 +35,7 @@
         </div>
         <div class="grid p-4">
             <div v-if="isLoaded">
-                <jobCardVue v-for="job in datas.jobs" :key="job" :datas="JSON.stringify(job)" router="/seeker/opportunity" :hasDesc=true></jobCardVue>
+                <jobCardVue v-for="job in datas" :key="job" :datas="JSON.stringify(job)" router="/seeker/opportunity" :hasDesc=true></jobCardVue>
             </div>
             <div v-if="!isLoaded">
                 <jobCardVueSkeleton v-for="job in 5" :key="job" :hasDesc=true></jobCardVueSkeleton>
@@ -65,6 +65,7 @@ import UniversityCardVue from '../utils/universityCard.vue';
             return{
                 username: 'cyemezo',
                 datas:[],
+                companies:[],
                 activeCat:'',
                 isLoaded:false
             }
@@ -79,9 +80,14 @@ import UniversityCardVue from '../utils/universityCard.vue';
             UniversityCardVue
         },
         mounted(){
-            apiService.getJobs().then(jobsList => {
+            apiService.getOpportunities().then(jobsList => {
                 this.datas = jobsList;
-                this.activeCat = jobsList.categories[0].name
+                // this.activeCat = jobsList.categories[0].name;
+                this.isLoaded = true
+            });
+            apiService.getIndustries().then(jobsList => {
+                this.companies = jobsList;
+                // this.activeCat = jobsList.categories[0].name;
                 this.isLoaded = true
             });
 
