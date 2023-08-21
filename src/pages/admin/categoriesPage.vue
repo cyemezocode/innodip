@@ -1,6 +1,15 @@
 <template>
+    
+    <modalPane :showModal="showModal" @triggerModal="toggleModal" class="z-1000">
+        <template v-slot:title>
+            <h1>Add Category</h1>
+        </template>
+        <template v-slot:form>
+            <h1>Page Title</h1>
+        </template>
+    </modalPane>
     <div class="grid grid-cols-10">
-        <div class="col-span-12 md:col-span-2 h-full sticky z-50 top-0">
+        <div class="col-span-12 md:col-span-2 h-full sticky z-49 top-0">
             <menuNav></menuNav>
         </div>
         <div class="col-span-12 md:col-span-8">
@@ -14,28 +23,105 @@
                 </svg>
                 <h1 class="text-4xl text-gray-500">Categories</h1>
             </div>
-            <div class="w-full md:w-auto px-2 md:px-0">
-                <FormInput placeholder="Search..." label="" inputType="text" small="true"></FormInput>
-            </div>
+            
+    <button class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
+      Open large modal
+    </button>
         </div>
         </div>
         
-        <div class="grid mx-auto px-4 md:px-4 py-4">
-  <div
-    class="relative mb-3"
-    data-te-datepicker-init
-    data-te-input-wrapper-init>
-    <input
-      type="text"
-      class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-      placeholder="Select a date" />
-    <label
-      for="floatingInput"
-      class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-      >Select a date</label
-    >
-  </div>
-            <categoriesPane></categoriesPane>
+        <div class="grid mx-auto">
+            <div class="container mx-auto px-4 sm:px-8">
+        <div class="py-8">
+            <div class="my-2 flex sm:flex-row flex-col">
+                <div class="block relative">
+                    <span class="h-full absolute inset-y-0 left-0 flex items-center pl-2">
+                        <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current text-gray-500">
+                            <path
+                                d="M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z">
+                            </path>
+                        </svg>
+                    </span>
+                    <input placeholder="Search" class="appearance-none rounded border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
+                </div>
+            </div>
+            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                    <table class="min-w-full leading-normal">
+                        <thead>
+                            <tr>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Name
+                                </th>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="category in datas" :key="category">
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 w-10 h-10">
+                                            <img class="w-full h-full rounded-full"
+                                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                                                alt="" />
+                                        </div>
+                                        <div class="ml-3">
+                                            <p class="text-gray-900 whitespace-no-wrap">
+                                               {{category.category_name}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-end">
+                                    
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                        <span class="relative">Sub Categories</span>
+                                    </span>
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                        <span class="relative">Update</span>
+                                    </span>
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+                                        <span class="relative">Delete</span>
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <div
+                        class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
+                        <span class="text-xs xs:text-sm text-gray-900">
+                            Showing 1 to 4 of 50 Entries
+                        </span>
+                        <div class="inline-flex mt-2 xs:mt-0">
+                            <button
+                                class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-l">
+                                Prev
+                            </button>
+                            <button
+                                class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-r">
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
         </div>
         <pageFooterVue></pageFooterVue>
     </div>
@@ -46,35 +132,38 @@
 import headerNavVue from '../admin/utils/headerNav.vue'
 import menuNav from '../admin/utils/menuNav.vue'
 import pageFooterVue from '../seeker/utils/pageFooter.vue'
-import categoriesPane from './utils/dataTables/categoriesPane.vue'
-
-  import { onMounted } from "vue";
-  import { Datepicker, Input, initTE } from "tw-elements";
-
-  onMounted(() => {
-    initTE({ Datepicker, Input });
-  });
-// import apiService from '../../assets/api/apiService.js'
+import apiService from '../../assets/api/apiService.js'
+import modalPane from './utils/modalPane.vue'
     export default {
         name: 'dashboardPage',
         data(){
             return{
-                username: 'cyemezo',
-                activeCat:'',
+                datas:[],
                 isLoaded:false,
+                showModal: false
             }
         },
         components:{
             headerNavVue,
             menuNav,
             pageFooterVue,
-            categoriesPane
+            modalPane
         },
+        mounted(){
+            apiService.getCategories().then(jobsList => {
+                this.datas = jobsList;
+                this.isLoaded = true
+                document.title = 'Main Categories'
+            });
+
+        },
+        methods: {
+            toggleModal: function(){
+            this.showModal = !this.showModal;
+            }
+        }
     }
 </script>
 
 <style scoped>
-.homeImg{
-    height: 400px;
-}
 </style>

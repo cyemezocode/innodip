@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-200 border-r border-gray-400 h-[100vh] flex flex-col items-center pt-4 sticky top-0 mobile-menu">
+    <div class="bg-gray-200 border-r border-gray-400 h-[100vh] flex flex-col items-center pt-4 sticky top-0 mobile-menu z-49">
             <div class="block md:hidden absolute top-5 right-5 text-3xl cursor-pointer toggleMobile">&times;</div>
             <router-link to="/admin/"><img src="../../../assets/logo.png" class="h-10" alt=""></router-link>
             <div class="md:block w-full p-4">

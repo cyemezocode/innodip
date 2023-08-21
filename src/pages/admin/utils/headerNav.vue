@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-200 border-b  border-gray-400 sticky top-0 z-50">
+    <div class="bg-gray-200 border-b  border-gray-400 sticky top-0 z-49">
         <div class="px-4 py-1 md:p-1 md:px-3  flex flex-wrap  mx-auto items-center justify-between">
             <div class="flex gap-8 items-center">
                 <div class="hidden md:block rounded-lg bg-white items-center overflow-hidden relative">
