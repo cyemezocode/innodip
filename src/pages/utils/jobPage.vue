@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="grid grid-cols-10 gap-4">
-            <div class="col-span-3 border border-gray-200 rounded-lg overflow-hidden">
+            <div class="col-span-10 md:col-span-3 border border-gray-200 rounded-lg overflow-hidden">
                 <h1 class="bg-gray-300 p-3 text-xl">Recommended</h1>
                 <div v-if="isLoadedRelated">
                     <relatedJob v-for="job in datas.jobs" :key="job" :datas="JSON.stringify(job)"></relatedJob>
@@ -10,7 +10,7 @@
                     <relatedJobSkeleton v-for="job in 5" :key="job"></relatedJobSkeleton>
                 </div>
             </div>
-            <div class="col-span-7 grid-cols-10">
+            <div class="col-span-7 md:col-span-7 grid-cols-10">
                 <div class="w-full flex card relative" v-if="isLoaded">
                     <span class="md:absolute top-3 right-3 border border-1 px-2 py-1 rounded-lg bg-gray-400 text-white">{{ jobData.category }}</span>
                     <div class="col-span-2 flex justify-start">

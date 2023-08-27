@@ -2,8 +2,8 @@
     <div>
         <headerNavVue></headerNavVue>
         <div class="max-w-screen-lg mx-auto px-3 md:px-0 py-4 justify-center">
-            <div class="border border-1 mb-5 rounded-lg overflow-hidden grid w-full grid-cols-1 md:grid-cols-3">
-                <div class="flex flex-col items-center justify-center col-span-2">
+            <div class="border border-1 mb-5 rounded-lg overflow-hidden grid w-full grid-cols-1 md:grid-cols-2">
+                <div class="flex flex-col items-center justify-center">
                     <h2 class="text-3xl my-3">Create Applicant account</h2>
                 <img src="@/assets/illustrations/seeker.svg" class="px-18 homeImg">
             </div>
@@ -17,16 +17,27 @@
                     </div>
                     <FormInput placeholder="Email Address" label="Email Address" inputType="email" value="" name="email" required=true small=false></FormInput>
                     <div>
-                        <FormSelect @setCitizen="settingCitizen" placeholder="Select Citizenship" label="Citizenship" inputType="text" value="" name="isLocalSignUp" required=true small=false ></FormSelect>
+                        <FormSelect @setCitizen="settingCitizen" placeholder="Select Citizenship" label="Citizenship" inputType="text" value="" name="isLocalSignUp" required=true small=false >
+                            <option value=1>Rwandan</option>
+                            <option value=0>Non-Rwandan</option>
+                        </FormSelect>
                         <FormInput v-if="citizen" placeholder="National ID" label="National ID" inputType="text" value="" name="nidOrPhone" required=true small=false></FormInput>
-                        <FormInput v-if="!citizen" placeholder="Phone Number" label="Phone Number" inputType="text" value="" name="nidOrPhone" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormInput>
+                        <div v-if="!citizen" class="grid grid-cols-2 gap-2">
+                            <FormSelect @setCitizen="settingCitizen" placeholder="Select Country" label="Country" inputType="text" value="" name="isLocalSignUp" required=true small=false >
+                                <option v-for="cnt in countries" :key="cnt" value=1>{{ cnt.country_en }} (+{{cnt.phone_code}})</option>
+                            </FormSelect>
+                            <FormInput placeholder="Phone Number" label="Phone Number" inputType="text" value="" name="nidOrPhone" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormInput>
+                        </div>
                     </div>
                     <FormInput placeholder="Password" label="Password" inputType="password" value="" name="password" required=true small=false></FormInput>
                     <FormInput placeholder="Confirm Password" label="Confirm Password" inputType="password" name="currentPassword" required=true small=false value=""></FormInput>
-                    <div class="flex items-center justify-between">
-                        <router-link to="/login/" class="text-xl link">Login Here</router-link>
+                    <div class="flex items-center justify-end">
                         <FormButton type="submit" label="Register" bstyle="primary"></FormButton>
                     </div>
+                        <div class="text-sm">
+                            <span>Have an account?</span>&nbsp;
+                            <router-link to="/login/" class="link">Login Here</router-link>
+                        </div>
                 </form>
             </div>
             </div>
@@ -70,7 +81,8 @@ let notifier = new AWN(globalOptions)
                 datas:[],
                 activeCat:'',
                 citizen:true,
-                isPasswordEqual:false
+                isPasswordEqual:false,
+                countries:[]
             }
         },
         components:{
@@ -81,11 +93,12 @@ let notifier = new AWN(globalOptions)
             FormButton,
         },
         mounted(){
-            apiService.getJobs().then(jobsList => {
-                this.datas = jobsList;
-                this.activeCat = jobsList.categories[0].name
-                document.title="Applicant Sign Up"
+            apiService.getData('all_countries').then((response) => {
+            this.countries = response;
+            
             });
+            document.title="Applicant Sign Up"
+
 
         },
         methods: {

@@ -211,7 +211,8 @@ import 'swiper/css';
         },
         mounted(){
             apiService.getOpportunities().then(jobsList => {
-                this.datas = jobsList;
+                this.datas = jobsList,
+                console.log(jobsList)
                 // this.activeCat = jobsList.categories[0].name;
                 this.isLoaded = true
             });

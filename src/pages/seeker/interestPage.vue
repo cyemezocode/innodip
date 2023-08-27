@@ -4,7 +4,7 @@
             <menuNav></menuNav>
         </div>
         <div class="w-[100%] md-[80%]">
-        <headerNavVue></headerNavVue>
+        <headerNavVue @userData="getUser"></headerNavVue>
         <div class="p-4 justify-center content">
         <div class="flex flex-col md:flex-row flex-wrap items-center justify-between gap-4">
             <div class="flex items-center w-full md:w-auto px-2 md:px-0">

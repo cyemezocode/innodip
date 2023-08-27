@@ -4,7 +4,7 @@
             <menuNav></menuNav>
         </div>
         <div class="w-[100%] md-[80%]">
-        <headerNavVue></headerNavVue>
+        <headerNavVue @userData="getUser"></headerNavVue>
         <div class="p-4 justify-center content">
         <div class="flex flex-col md:flex-row flex-wrap items-center justify-between gap-4">
             <div class="flex items-center w-full md:w-auto px-2 md:px-0">
@@ -25,24 +25,24 @@
 <div class="side-bar bg-secondary">
     <div class="mugshot">
         <div class="logo">
-          <img src="@/assets/images/photo.jpg" alt="image">
+          <img :src="selectedFilePreview" alt="image">
         </div>
     </div>
     <p>Phone: {{ profile.phone }}</p>
     <p>Email Address: {{ profile.email }}</p>
-    <p>Birth Date: {{ profile.dateOfBirth }}</p>
+    <p>Birth Date: {{ profile.dob }}</p>
     <p>National ID: {{ profile.nid }}</p>
-    <p>Address: {{ profile.address }}</p><br>
+    <p>Address: <span v-for="add in profile.address" :key="add">{{ add }} - </span></p><br>
 </div>
 <div class="rela-block content-container">
     <h2 class="rela-block caps title">Resume</h2>
     <div class="rela-block separator"></div>
     <!-- <div class="rela-block caps greyed">Profile</div> -->
-    <p class="long-margin">{{ profile.biography }}</p>
+    <p class="long-margin">{{ profile.headline }}</p>
     <div class="rela-block caps greyed">Experience</div>
                       <ol class="border-l border-neutral-300 dark:border-neutral-500">
                         <!--First item-->
-                        <li v-for="(acad, key) in profile.expirience" :key="key">
+                        <li v-for="(acad, key) in profile.workExperience" :key="key">
                           <div class="flex-start flex items-center pt-3">
                             <div
                               class="-ml-[5px] mr-3 h-[9px] w-[9px] rounded-full bg-neutral-300 dark:bg-neutral-500"></div>
@@ -53,20 +53,23 @@
                           <div class="mb-6 ml-4 mt-2">
                             <h4 class="mb-1.5 text-xl font-semibold">{{ acad.position }}</h4>
                             <p class="mb-3">
-                              {{ acad.institution }}
+                              {{ acad.employer }}
+                            </p>
+                            <p class="mb-3">
+                             Skills: <span class="text-sm">{{ acad.employer }}</span>
                             </p>
                           </div>
                         </li>
                       </ol>                
       <div class="rela-block caps greyed">Education</div>
       <div
-                        v-for="(acad, key) in profile.education"
+                        v-for="(acad, key) in profile.academicProfile"
                         :key="key"
                       >
                         <div class="m-b30">
                           <div class="job-post-info">
                                 <i class="fa fa-map-marker"></i> Institution:
-                                {{ acad.institution }}
+                                {{ acad.school }}
                               <br />
                                 <i class="fa fa-bookmark"></i> Qualification:
                                 : {{ acad.specialization }}
@@ -75,30 +78,30 @@
                                 {{ acad.graduated }}
                               <br />
                                 <i class="fa fa-book"></i> Degree:
-                                {{ acad.degree }}
+                                {{ acad.degreeObtained }}
                           </div>
                         </div>
                       </div>
     <div class="rela-block caps greyed">Reference</div>
 
-                    <div v-for="(acad, key) in profile.refrence"
+                    <div v-for="(acad, key) in profile.workExperience"
                         :key="key">
                         <div class="m-b30">
                           <div class="job-post-info">
                                 <i class="fa fa-map-marker"></i> Institution:
-                                {{ acad.institution }}
+                                {{ acad.employer }}
                               <br />
                                 <i class="fa fa-bookmark"></i> Position: 
-                                {{ acad.position }}
+                                {{ acad.refereePosition }}
                               <br />
-                                <i class="fa fa-user"></i> Name: 
-                                {{ acad.name }}
+                                <i class="fa fa-user"></i> Referee Name: 
+                                {{ acad.refereeName }}
                               <br />
                                 <i class="fa fa-envelope"></i> Email Address:
-                                {{ acad.email }}
+                                {{ acad.refereeEmail }}
                               <br />
                                 <i class="fa fa-phone"></i> Phone Number: 
-                                {{ acad.phone }}
+                                {{ acad.refereePhone }}
                               <br />
                           </div>
                         </div>
@@ -126,7 +129,9 @@ import apiService from '../../assets/api/apiService.js'
                 username: 'cyemezo',
                 profile:[],
                 activeCat:'',
-                isLoaded:false
+                isLoaded:false,
+                baseUrl : 'http://innodip.rw:8004/',
+                selectedFilePreview:''
             }
         },
         components:{
@@ -137,11 +142,6 @@ import apiService from '../../assets/api/apiService.js'
             // FormButton, 
         },
         mounted(){
-            apiService.getProfile().then(profile => {
-                this.profile = profile.profile;
-                this.isLoaded = true
-            });
-
             
             const btn = document.querySelector(".toggleMobile");
             const menu = document.querySelector(".mobile-menu");
@@ -153,10 +153,12 @@ import apiService from '../../assets/api/apiService.js'
             });
         },
         methods:{
-            sendData(){
-                const form = document.getElementById('formData');
-                const serializedData = apiService.serializeFormData(form);
-                console.log(serializedData);
+            getUser(data){
+              this.profile = JSON.parse(data);
+              this.selectedFilePreview = this.baseUrl+this.profile.picture
+              this.isLoaded = true;
+              document.title=this.profile.fname+" Personal Information";
+              this.profile.dob = apiService.calendarDate(this.profile.dod)
             },
             
             

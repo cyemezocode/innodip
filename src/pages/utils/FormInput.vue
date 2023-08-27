@@ -6,9 +6,7 @@
     </div>
     <div class="w-full flex flex-col" :class="small=='false'?'mt-4':''" v-if="inputType=='textarea'">
         <label v-if="small=='false'" class="text-sm mb-2">{{ label }} <strong v-if="required" class="text-red-400">*</strong></label>
-        <textarea rows="5" class="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary" :class="small==true?'mt-4':''" :required="required" :placeholder="placeholder" :type="inputType" :name="name">
-        
-        </textarea>
+        <textarea rows="5" class="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary" :class="small==true?'mt-4':''" :required="required" :placeholder="placeholder" :type="inputType" :name="name"><slot></slot></textarea>
     </div>
 </template>
 

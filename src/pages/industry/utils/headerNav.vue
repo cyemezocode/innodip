@@ -64,7 +64,7 @@
             });
             
             this.userId = JSON.parse(localStorage.getItem('currentUser'));
-            apiService.getData('institution/display/details/'+this.userId).then((res) => {
+            apiService.getData('industry/display/details/'+this.userId).then((res) => {
             this.data = res.data;
             this.picture = 'http://innodip.rw:8004/'+res.data.picture
             

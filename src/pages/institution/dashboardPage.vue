@@ -1,9 +1,11 @@
 <template>
-    <div class="grid grid-cols-10">
-        <div class="col-span-12 md:col-span-2 h-full sticky z-50 top-0">
-            <menuNav></menuNav>
-        </div>
-        <div class="col-span-12 md:col-span-8">
+    <div class="block md:flex relative">
+      <div
+        class="hidden md:block w-full md:w-[20%] sticky top-0 h-[100vh] mobile-menu"
+      >
+        <menuNav></menuNav>
+      </div>
+      <div class="w-[100%] md:w-[80%]">
         <headerNavVue></headerNavVue>
         <div class="p-4 justify-center">
         <div class="flex flex-col md:flex-row flex-wrap items-center justify-between gap-4">
@@ -79,11 +81,15 @@ import UniversityCardVue from '../utils/universityCard.vue';
             UniversityCardVue
         },
         mounted(){
-            apiService.getJobs().then(jobsList => {
+            apiService.getOpportunities().then(jobsList => {
                 this.datas = jobsList;
-                this.activeCat = jobsList.categories[0].name
+                // this.activeCat = jobsList.categories[0].name;
                 this.isLoaded = true
-                document.title = 'Institution Dashboard'
+            });
+            apiService.getIndustries().then(jobsList => {
+                this.companies = jobsList;
+                // this.activeCat = jobsList.categories[0].name;
+                this.isLoaded = true
             });
 
         },

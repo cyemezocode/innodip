@@ -32,8 +32,16 @@ import applicationPageSeeker from '../pages/seeker/applicationPage';
 import interestPageSeeker from '../pages/seeker/interestPage';
 import universitiesPageSeeker from '../pages/seeker/universitiesPage';
 import industriesPageSeeker from '../pages/seeker/industriesPage';
+
 import dashboardPageInstitution from '../pages/institution/dashboardPage';
 import employeesPageInstitution from '../pages/institution/employeesPage';
+import opportunitiesPageInstitution from '../pages/institution/opportunitiesPage';
+import opportunityAddInstitution from '../pages/institution/addOpportunity';
+
+import dashboardPageIndustry from '../pages/industry/dashboardPage';
+import opportunitiesIndustry from '../pages/industry/opportunitiesPage';
+import opportunityAddIndustry from '../pages/industry/addOpportunity';
+
 
 // admin
 import homePageAdmin from '../pages/admin/homePage';
@@ -164,7 +172,7 @@ const routes = [
     },
     {
         name: 'ReferencePage',
-        path:'/seeker/profile/Reference',
+        path:'/seeker/profile/certificate',
         component: referencePageSeeker
     },
     {
@@ -229,6 +237,16 @@ const routes = [
         path:'/institution/employees',
         component: employeesPageInstitution
     },
+    {
+        name: 'OpportunitiesPage',
+        path:'/institution/opportunities',
+        component: opportunitiesPageInstitution
+    },
+    {
+        name: 'OpportunityAdd',
+        path:'/institution/opportunity/add',
+        component: opportunityAddInstitution
+    },
 
     
     // institution
@@ -250,6 +268,22 @@ const routes = [
         component: employeesPageInstitution
     },
 
+    
+    {
+        name: 'InduDashboardPage',
+        path:'/industry/',
+        component: dashboardPageIndustry
+    },
+    {
+        name: 'OpportunitiesPageInd',
+        path:'/industry/opportunities',
+        component: opportunitiesIndustry
+    },
+    {
+        name: 'OpportunityAddInd',
+        path:'/industry/opportunity/add',
+        component: opportunityAddIndustry
+    },
 ];
 
 const router = Router();

@@ -8,19 +8,19 @@
                     <div class="flex justify-center items-center w-full h-full px-8">
                     <img src="../assets/illustrations/seeker.svg" class="w-30">
                     </div>
-                    <h1 class="text-4xl py-4">Applicant</h1>
+                    <h1 class="text-4xl py-4 text-center">Applicant</h1>
                 </router-link>
                 <router-link to="/signup/industry/" class="flex flex-col items-center justify-between hover:bg-gray-200 transition duration-500 ease-in-out  border">
                     <div class="flex justify-center items-center w-full h-full px-8">
                     <img src="../assets/illustrations/industry.svg">
                     </div>
-                    <h1 class="text-4xl py-4">Industry</h1>
+                    <h1 class="text-4xl py-4 text-center">Institution</h1>
                 </router-link>
                 <router-link to="/signup/institution/" class="flex w-full flex-col items-center justify-between hover:bg-gray-200 transition duration-500 ease-in-out border">
                     <div class="flex justify-center items-center w-full h-full px-8">
                         <img src="../assets/illustrations/institution.svg">
                     </div>
-                    <h1 class="text-4xl py-4">Institution</h1>
+                    <h1 class="text-4xl py-4 text-center">Higher Learning Institutions</h1>
                 </router-link>
             </div>
             </div>

@@ -2,7 +2,7 @@ import axios  from "./axios.js";
 // const url = 'https://innodip.netlify.app/';
 const url = 'http://149.102.158.68:8004/api/';
 const url2 = '/';
-const dataUrl = 'http://localhost:80/ino/index.php';
+// const dataUrl = 'http://localhost:80/ino/index.php';
 
 class apiService{
     static async getJobs() {
@@ -12,6 +12,11 @@ class apiService{
     }
     static async getProfile() {
         let res = await axios.get(url+'applicants')
+        let resp = res.data;
+        return resp;
+    }
+    static async getData(ep) {
+        let res = await axios.get(url+ep)
         let resp = res.data;
         return resp;
     }
@@ -50,8 +55,8 @@ class apiService{
         let resp = res.data;
         return resp;
     }
-    static async  handleForm(data) {
-        let res = await axios.post(dataUrl,data)
+    static async  handleForm(ep,data) {
+        let res = await axios.post(url+ep,data)
         let resp = res.data;
         return resp;
     }
@@ -82,7 +87,7 @@ class apiService{
     }
     static serializeFormData(form) {
         const formData = new FormData(form);
-        return new URLSearchParams(formData).toString();
+        return new URLSearchParams(formData);
       }
       static realDate(newdate){
           let date = new Date(newdate);

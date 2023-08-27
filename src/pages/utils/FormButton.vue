@@ -1,6 +1,6 @@
 <template>
     <div class="mt-5">
-        <button :disabled="!disabled" :class="bstyle=='primary'?'btn-primary':'btn-secondary'" :type="type">{{ label }}</button>
+        <button :class="bstyle=='primary'?'btn-primary':'btn-secondary'" :type="type">{{ label }}</button>
     </div>
 </template>
 

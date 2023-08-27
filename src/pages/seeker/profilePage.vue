@@ -6,8 +6,8 @@
       >
         <menuNav></menuNav>
       </div>
-      <div class="w-[100%] md-[80%]">
-        <headerNavVue></headerNavVue>
+      <div class="w-[100%] md:w-[80%]">
+        <headerNavVue @userData="getUser"></headerNavVue>
         <div class="p-4 justify-center content">
           <div
             class="flex flex-col md:flex-row flex-wrap items-center justify-between gap-4"
@@ -34,23 +34,28 @@
           </div>
         </div>
         <div class="grid p-4">
-          <!-- {{ datas }} -->
           <div v-if="isLoaded">
             <form
               id="formData"
               @submit.prevent="sendData"
               enctype="multipart/form-data"
+              
             >
               <div class="grid grid-cols-8 w-full">
                 <div class="col-span-8 mb-4 md:col-span-2 pr-0 md:pr-8">
-                  <input type="file" name="photo" id="photo" class="hidden" />
+                  <input type="file" name="photo" id="photo" class="hidden" @change="handleFileChange" />
                   <div
                     class="w-full image border border-gray-400 rounded-lg overflow-hidden flex object-fit relative"
                   >
                     <img
                       src="@/assets/images/photo.jpg"
                       alt=""
-                      class="object-cover w-full h-full"
+                      class="object-cover w-full h-full absolute z-0"
+                    />
+                    <img
+                      s v-if="selectedFile || selectedFilePreview" :src="selectedFilePreview"
+                      alt=""
+                      class="object-cover w-full h-full absolute z-1"
                     />
                     <label
                       for="photo"
@@ -60,15 +65,17 @@
                     >
                   </div>
                 </div>
+
                 <div class="col-span-8 md:col-span-4 w-full">
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                    <input type="hidden" name="" v-model="datas.isLocalSignUp">
                     <FormInput
                       placeholder="First name"
                       label="First name"
                       inputType="text"
                       required="true"
                       small="false"
-                      name="fname"
+                      name="f_name"
                       :value="datas.fname"
                     ></FormInput>
                     <FormInput
@@ -77,7 +84,7 @@
                       inputType="text"
                       required="true"
                       small="false"
-                      name="lname"
+                      name="l_name"
                       :value="datas.lname"
                     ></FormInput>
                     <FormInput
@@ -86,7 +93,7 @@
                       inputType="text"
                       required="true"
                       small="false"
-                      name="phone"
+                      name="phone_nmbr"
                       :value="datas.phone"
                     ></FormInput>
                     <FormInput
@@ -95,7 +102,7 @@
                       inputType="email"
                       required="true"
                       small="false"
-                      name="email"
+                      name="email_addr"
                       :value="datas.email"
                     ></FormInput>
                     <FormInput
@@ -104,19 +111,28 @@
                       inputType="date"
                       required="true"
                       small="false"
-                      name="dateOfBirth"
-                      :value="datas.dob"
+                      name="d_o_b"
+                      :value="datas.dod"
                     ></FormInput>
                     <FormInput
+                    v-if="datas.isLocalSignUp"
                       placeholder="National Identification Number"
                       label="National Identification Number"
                       inputType="text"
                       required="true"
                       small="false"
-                      name="nid"
+                      name="aplnt_nid"
                       :value="datas.nid"
                     ></FormInput>
                   </div>
+                  <div v-if="!datas.isLocalSignUp" class="grid grid-cols-2 gap-2">
+                            <FormSelect @setCitizen="settingCitizen" placeholder="Select Country" label="Country" inputType="text" value="" name="isLocalSignUp" required=true small=false >
+                                <option v-for="cnt in countries" :key="cnt" value=1>{{ cnt.country_en }} (+{{cnt.phone_code}})</option>
+                            </FormSelect>
+                            <FormInput placeholder="Phone Number" label="Phone Number" inputType="text" :value="datas.dob" name="nidOrPhone" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"
+                            
+                            ></FormInput>
+                        </div>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                     <FormInput
                       placeholder="Address"
@@ -124,20 +140,16 @@
                       inputType="text"
                       required="true"
                       small="false"
-                      name="address"
+                      name="aplnt_address"
                       :value="datas.address"
                     ></FormInput>
                   </div>
                   <div class="grid grid-cols-1 gap-4 w-full">
-                    <FormInput
-                      placeholder="Biography"
-                      label="Biography"
-                      inputType="textarea"
-                      required="true"
-                      small="false"
-                      name="bio"
-                      :value="datas.biography"
-                    ></FormInput>
+                    
+    <div class="w-full flex flex-col">
+        <label class="text-sm mb-2">Biography<strong class="text-red-400">*</strong></label>
+        <textarea rows="5" class="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary" placeholder="Biography" name="biograph" required v-model="datas.headline"></textarea>
+    </div>
                   </div>
                 </div>
               </div>
@@ -172,14 +184,42 @@ import menuNav from "../seeker/utils/menuNav.vue";
 import pageFooterVue from "../seeker/utils/pageFooter.vue";
 import FormInput from "../utils/FormInput.vue";
 import FormButton from "../utils/FormButton.vue";
+import FormSelect from '../utils/FormSelect.vue';
 import apiService from "../../assets/api/apiService.js";
+import axios from 'axios';
+import AWN from "awesome-notifications"
+
+let globalOptions =  {
+  alert: "Oops! Something got wrong",
+
+}
+globalOptions.labels = {
+  alert: "Profile",
+}
+
+let signupOption =  {
+  success: "Profile",
+
+}
+signupOption.labels = {
+  alert: "Profile",
+}
+
+let notifier = new AWN(globalOptions)
+
 export default {
   name: "profilePage",
   data() {
     return {
       datas: [],
-      activeCat: "",
+      userId: "",
       isLoaded: false,
+      selectedFile: null,
+      baseUrl : 'http://innodip.rw:8004/',
+      selectedFilePreview:null,
+      countries:[],
+      address:''
+
     };
   },
   components: {
@@ -188,16 +228,13 @@ export default {
     pageFooterVue,
     FormInput,
     FormButton,
+    FormSelect
   },
   mounted() {
-    apiService.getProfile().then((profile) => {
-      this.datas = JSON.parse(localStorage.getItem('currentUser'));
-      this.isLoaded = true;
-      document.title="Personal Information";
-      
-      this.datas.dob = apiService.calendarDate(this.datas.dob)
-      console.log(this.datas.dob)
-    });
+      apiService.getData('all_countries').then((response) => {
+            this.countries = response;
+            
+      });
 
     const btn = document.querySelector(".toggleMobile");
     const menu = document.querySelector(".mobile-menu");
@@ -209,12 +246,45 @@ export default {
     });
   },
   methods: {
+    async handleFileChange(event) {
+      this.selectedFile = event.target.files[0];
+      // this.selectedFilePreview = URL.createObjectURL(this.selectedFile); // Create data URL for preview
+      const formData = new FormData();
+      formData.append('picture', this.selectedFile);
+      if(this.selectedFile!=null){
+      try {
+        const response = await axios.post('http://innodip.rw:8004/api/applicant/upload_picture/'+this.datas._id, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        this.selectedFilePreview = this.baseUrl+response.data.data.picture
+
+        notifier.success("Profile picture updated", globalOptions)
+
+      } catch (error) {
+        console.error('Error uploading file:', error),
+        notifier.alert("Picture not uploaded", globalOptions)
+
+      }
+
+    }
+    },
     sendData() {
       const form = document.getElementById("formData");
       const serializedData = apiService.serializeFormData(form);
       console.log(serializedData);
-      apiService.handleForm(serializedData).then(console.log("sent"));
+      apiService.handleForm('applicant/update/one/'+this.datas._id,serializedData).then(
+        notifier.success('Profile Updated.', signupOption),
+        );
     },
+    getUser(data){
+      this.datas = JSON.parse(data);
+      this.selectedFilePreview = this.baseUrl+this.datas.picture
+      this.isLoaded = true;
+      document.title=this.datas.fname+" Personal Information";
+      this.datas.dob = apiService.calendarDate(this.datas.dob)
+    }
   },
 };
 </script>

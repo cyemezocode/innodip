@@ -1,9 +1,11 @@
 <template>
-    <div class="grid grid-cols-10">
-        <div class="col-span-12 md:col-span-2 h-full sticky z-50 top-0">
-            <menuNav></menuNav>
-        </div>
-        <div class="col-span-12 md:col-span-8">
+    <div class="block md:flex relative">
+      <div
+        class="hidden md:block w-full md:w-[20%] sticky top-0 h-[100vh] mobile-menu"
+      >
+        <menuNav></menuNav>
+      </div>
+      <div class="w-[100%] md:w-[80%]">
         <headerNavVue></headerNavVue>
         <div class="p-4 justify-center">
         <div class="flex flex-col md:flex-row flex-wrap items-center justify-between gap-4">
@@ -50,8 +52,8 @@
 </template>
 
 <script>
-import headerNavVue from '../admin/utils/headerNav.vue'
-import menuNav from '../admin/utils/menuNav.vue'
+import headerNavVue from '../industry/utils/headerNav.vue'
+import menuNav from '../industry/utils/menuNav.vue'
 import pageFooterVue from '../seeker/utils/pageFooter.vue'
 import FormInput from '../utils/FormInput.vue';
 import FormButton from '../utils/FormButton.vue';

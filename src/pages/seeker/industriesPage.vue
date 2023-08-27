@@ -1,10 +1,12 @@
 <template>
-    <div class="grid grid-cols-10">
-        <div class="col-span-2 h-full">
-            <menuNav></menuNav>
-        </div>
-        <div class="col-span-8">
-        <headerNavVue></headerNavVue>
+    <div class="block md:flex relative">
+      <div
+        class="hidden md:block w-full md:w-[20%] sticky top-0 h-[100vh] mobile-menu"
+      >
+        <menuNav></menuNav>
+      </div>
+      <div class="w-[100%] md:w-[80%]">
+        <headerNavVue @userData="getUser"></headerNavVue>
         <div class="p-4 justify-center">
         <div class="flex flex-col md:flex-row flex-wrap items-center justify-between gap-4">
             <div class="flex items-center w-full md:w-auto px-2 md:px-0">

@@ -5,7 +5,7 @@
             <menuNav></menuNav>
         </div>
         <div class="w-[100%] md:w-[80%]">
-        <headerNavVue></headerNavVue>
+        <headerNavVue @userData="getUser"></headerNavVue>
         <div class="p-4 justify-center content">
         <div class="flex flex-col md:flex-row flex-wrap items-center justify-between gap-4">
             <div class="flex items-center w-full md:w-auto px-2 md:px-0">
@@ -20,15 +20,18 @@
         </div>
         </div>
         <div class="grid p-4">
-            <form v-if="isLoaded" id="formData" @submit.prevent="sendData">
+            <form v-if="isLoaded" id="formData" @submit.prevent="sendData" multipart>
                 <div class="flex flex-col md:flex-row gap-4 w-full">
                     <div class="w-full md:w-1/2">
                         <div class="grid grid-col-1 md:grid-cols-2 gap-4 w-full">
-                            <FormInput placeholder="School" label="School" inputType="text"  required=true small=false name="school" :value="curSchool.school"></FormInput>
+                            <FormInput placeholder="School" label="School" inputType="text"  required=true small=false name="skul" :value="curSchool.school"></FormInput>
                             <FormInput placeholder="Specialization" label="Specialization" inputType="text"  required=true small=false name="specialization" :value="curSchool.specialization"></FormInput>
                             <FormInput placeholder="Degree" label="Degree" inputType="text"  required=true small=false name="degree" :value="curSchool.degree"></FormInput>
                             <FormInput placeholder="Graduation Year" label="Graduation Year" inputType="text"  required=true small=false name="year" :value="curSchool.graduated"></FormInput>
                             
+                            <div class="w-full flex flex-col col-span-2">
+                            <FormInput placeholder="Document (It must be in PDF format)" label="Attach Document (It must be in PDF format)" inputType="file"  required=true small=false name="attachement"></FormInput>
+                            </div>
                             <div class="flex gap-1 md:gap-4">
                                 <FormButton type="submit" label="Add Education" bstyle="primary"></FormButton>
                                 <FormButton type="button" label="Reset" bstyle="secondary" @click="curSchool=[]"></FormButton>
@@ -37,12 +40,13 @@
                     </div>
                     <div class="flex flex-col w-full md:w-1/2">
                         <h1 class="text-2xl text-gray-500 mb-4">My Educations</h1>
-                        <div class="card-hover flex justify-between" v-for="school in datas" :key="school.id">
+                        <div class="card-hover flex justify-between" v-for="school in datas.academicProfile" :key="school">
                             <div class="">
                                 <h1><b>School</b>: {{ school.school }}</h1>
                                 <h1><b>Specialization</b>: {{ school.specialization }}</h1>
-                                <h1><b>Degree</b>: {{ school.degree }}</h1>
-                                <h1><b>Graduation Year</b>: {{ school.graduated }}</h1>
+                                <h1><b>Degree</b>: {{ school.degreeObtained }}</h1>
+                                <h1><b>Graduation Year</b>: {{ school.yearOfGraduation }}</h1>
+                                <h1><b>Document</b>: <a :href="baseUrl+school.document" target="_blank" rel="noopener noreferrer">Open Document</a></h1>
                             </div>
                             <div class="flex flex-col justify-between">
                                 <button type="button" @click="setSchool(school.id)">Edit</button>
@@ -77,6 +81,28 @@ import FormInput from '../utils/FormInput.vue'
 import FormButton from '../utils/FormButton.vue'
 import modalPage from '../utils/modalPage.vue'
 import apiService from '../../assets/api/apiService.js'
+import AWN from "awesome-notifications"
+import axios from 'axios';
+import $ from 'jquery'
+
+let globalOptions =  {
+  alert: "Oops! Something got wrong",
+
+}
+globalOptions.labels = {
+  alert: "Profile",
+}
+
+let signupOption =  {
+  success: "Profile",
+
+}
+signupOption.labels = {
+  alert: "Profile",
+}
+
+let notifier = new AWN(globalOptions)
+
     export default {
         name: 'educationPage',
         data(){
@@ -86,7 +112,9 @@ import apiService from '../../assets/api/apiService.js'
                 modalData:[],
                 activeCat:'',
                 isLoaded:false,
-                isModal:false
+                isModal:false,
+                baseUrl : 'http://innodip.rw:8004/',
+                userId: null
             }
         },
         components:{
@@ -98,12 +126,6 @@ import apiService from '../../assets/api/apiService.js'
             modalPage, 
         },
         mounted(){
-            apiService.getProfile().then(profile => {
-                this.datas = profile.profile.education;
-                this.isLoaded = true
-                document.title="Education Information"
-            });
-
             
             const btn = document.querySelector(".toggleMobile");
             const menu = document.querySelector(".mobile-menu");
@@ -118,11 +140,36 @@ import apiService from '../../assets/api/apiService.js'
             setSchool(id){
                 this.curSchool = this.datas[id]
             },
-            sendData(){
-                const form = document.getElementById("formData");
-                const serializedData = apiService.serializeFormData(form);
-                console.log(serializedData);
-                apiService.handleForm(serializedData).then(console.log("sent"));
+            handleFormSubmission(form,id,base) {
+            form.addEventListener("submit", function (e) {
+                e.preventDefault(); // Prevent the default form submission
+                
+                const formData = new FormData(form); // Use the submitted form
+                const endpoint = base+'api/applicants/'+id+'/insert/academicProfile';
+                axios.post(endpoint, formData)
+                .then(response => {
+                    $('form').tirrger('reset')
+                    console.log("Upload successful:", response);
+                    notifier.success(response.message, signupOption)
+                })
+                .catch(error => {
+                    console.error("Error uploading:", error);
+                    notifier.alert(error.response.data.errors.attachment[0], signupOption)
+                });
+            });
+            },
+            sendData() {
+                
+            const uploadForm = document.getElementById("formData");
+            this.handleFormSubmission(uploadForm,this.datas._id,this.baseUrl);
+            
+            },
+            getUser(data){
+            this.datas = JSON.parse(data);
+            this.selectedFilePreview = this.baseUrl+this.datas.picture
+            this.isLoaded = true;
+            document.title=this.datas.fname+" Personal Information";
+            this.datas.dob = apiService.calendarDate(this.datas.dob)
             },
             deleteSchool(id){
                 let data = {
@@ -133,19 +180,19 @@ import apiService from '../../assets/api/apiService.js'
                 this.modalData = data
                 this.isModal=true
             },
-            modalDecision(modalAction){
-                if(modalAction){
-                    apiService.getProfile().then(profile => {
-                    this.datas = profile.profile.education;
-                    this.isLoaded = true
-                    this.isModal=false
-                });
-                }
-                else{
-                    this.isModal=false
-                }
+            // modalDecision(modalAction){
+            //     if(modalAction){
+            //         apiService.getProfile().then(profile => {
+            //         this.datas = profile.profile.education;
+            //         this.isLoaded = true
+            //         this.isModal=false
+            //     });
+            //     }
+            //     else{
+            //         this.isModal=false
+            //     }
 
-            }
+            // }
         }
     }
 </script>

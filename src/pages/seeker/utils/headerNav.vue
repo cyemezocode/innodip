@@ -8,7 +8,7 @@
             </div>
             <div class="flex gap-1 md:gap-4 items-center">
                 <router-link to="/seeker/profile" class="w-14 h-14 image border border-gray-400 rounded-full overflow-hidden flex object-fit relative">
-                    <img src="@/assets/images/photo.jpg" alt="" class="object-cover w-full h-full">
+                    <img :src="picture" alt="" class="object-cover w-full h-full">
                 </router-link>
                 <div class="md:hidden flex items-center">
 						<button class="outline-none mobile-menu-button bg-primary rounded-lg p-2 hover:bg-secondary toggleMobile">
@@ -28,7 +28,6 @@
 
         </div>
             </div>
-            
     </div>
     <!-- <div class="hidden md:hidden flex flex-col gap-2 items-center bg-gray-100 p-3 border-b  border-gray-300 mobile-menu">
         <div class="w-full rounded-lg bg-white items-center overflow-hidden relative">
@@ -45,15 +44,30 @@
 </template>
 
 <script>
+import apiService from "../../../assets/api/apiService.js";
     export default {
         name: 'headerNav',
+        data(){
+            return{
+                data:[],
+                picture:'',
+                userId:''
+            }
+        },
         mounted(){
-            
             const btn = document.querySelector("button.toggleMobile");
             const menu = document.querySelector(".mobile-menu");
-
             btn.addEventListener("click", () => {
                 menu.classList.toggle("hidden");
+            });
+            
+            this.userId = JSON.parse(localStorage.getItem('currentUser'));
+            apiService.getData('applicant/display/details/'+this.userId).then((res) => {
+            this.data = res.data;
+            this.picture = 'http://innodip.rw:8004/'+res.data.picture
+            
+            this.$emit('userData',JSON.stringify(this.data));
+            // console.log(res)
             });
         }
     }

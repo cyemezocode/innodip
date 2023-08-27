@@ -13,11 +13,15 @@
                         <FormInput placeholder="Username" label="Username" inputType="email"  required=true small=false name="email"></FormInput>
                         <FormInput placeholder="Password" label="Password" inputType="password" required=true small=false sub="Forgot Password?" toSub="forgot" name="currentPassword"></FormInput>
 
-                        <div class="flex items-center justify-between">
-                            <router-link to="/signup/" class="text-xl link">Register Here</router-link>
+                        <div class="flex items-center justify-end">
                             <FormButton type="submit" label="Sign In" bstyle="primary"></FormButton>
                             <!-- <router-link to="/seeker/dashboard/" class="btn-primary">Sign In</router-link> -->
                         </div>
+                        
+                        <div class="text-sm mt-4">
+                            <span>Don't have an account?</span> &nbsp;
+                            <router-link to="/signup/" class="link">Register Now</router-link>
+                            </div>
                     </form>
                 </div>
             </div>
@@ -80,21 +84,21 @@ let notifier = new AWN(globalOptions)
                 if(data.message=='success'){
                     if(data.type=='applicant'){
                         localStorage.removeItem('currentUser');
-                        localStorage.setItem('currentUser', JSON.stringify(data.data));
+                        localStorage.setItem('currentUser', JSON.stringify(data.data._id));
                         // console.log(data.data);
                         notifier.success('You are successful loged in.', signupOption)
                         this.$router.push('/seeker/');
                     }
                     if(data.type=='industry'){
                         localStorage.removeItem('currentUser');
-                        localStorage.setItem('currentUser', JSON.stringify(data.data));
+                        localStorage.setItem('currentUser', JSON.stringify(data.data._id));
                         // console.log(data.data);
                         notifier.success('You are successful loged in.', signupOption)
                         this.$router.push('/industry/');
                     }
                     if(data.type=='institution'){
                         localStorage.removeItem('currentUser');
-                        localStorage.setItem('currentUser', JSON.stringify(data.data));
+                        localStorage.setItem('currentUser', JSON.stringify(data.data._id));
                         // console.log(data.data);
                         notifier.success('You are successful loged in.', signupOption)
                         this.$router.push('/institution/');

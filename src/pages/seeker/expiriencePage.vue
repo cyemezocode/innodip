@@ -4,7 +4,7 @@
             <menuNav></menuNav>
         </div>
         <div class="w-[100%] md-[80%]">
-        <headerNavVue></headerNavVue>
+        <headerNavVue @userData="getUser"></headerNavVue>
         <div class="p-4 justify-center content">
         <div class="flex flex-col md:flex-row flex-wrap items-center justify-between gap-4">
             <div class="flex items-center w-full md:w-auto px-2 md:px-0">
@@ -22,12 +22,21 @@
                 <div class="flex flex-col md:flex-row gap-4 w-full">
                     <div class="w-full md:w-1/2">
                         <div class="grid grid-col-1 md:grid-cols-2 gap-4 w-full">
-                            <FormInput placeholder="School" label="School" inputType="text"  required=true small=false name="school" :value="curExpirience.institution "></FormInput>
+                            <FormInput placeholder="Institution" label="Institution" inputType="text"  required=true small=false name="institution" :value="curExpirience.institution "></FormInput>
                             <FormInput placeholder="Position" label="Position" inputType="text"  required=true small=false name="position" :value="curExpirience.position"></FormInput>
-                            <FormInput placeholder="From" label="From" inputType="text"  required=true small=false name="from" :value="curExpirience.from"></FormInput>
-                            <FormInput placeholder="To" label="To" inputType="text"  required=true small=false name="to" :value="curExpirience.to"></FormInput>
-                            
-                            <div class="flex gap-4">
+                            <FormInput placeholder="From" label="From" inputType="date"  required=true small=false name="from" :value="curExpirience.from"></FormInput>
+                            <FormInput placeholder="To" label="To" inputType="date"  required=true small=false name="till" :value="curExpirience.to"></FormInput>
+                            <div class="flex items-center col-span-2">
+                                <input id="default-checkbox" type="checkbox" value="1" name="youStillWorkHere" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Current Work here</label>
+                            </div>
+                            <FormInput placeholder="Name Of Referee" label="Name Of Referee" inputType="text"  required=true small=false name="NameOfReferee" :value="curExpirience.to"></FormInput>
+                            <FormInput placeholder="Position Of Referee" label="Position Of Referee" inputType="text"  required=true small=false name="PositionOfReferee" :value="curExpirience.to"></FormInput>
+                            <FormInput placeholder="Email Of Referee" label="Email Of Referee" inputType="email"  required=true small=false name="EmailOfReferee" :value="curExpirience.to"></FormInput>
+                            <FormInput placeholder="Phone Of Referee" label="Phone Of Referee" inputType="text"  required=true small=false name="PhoneOfReferee" :value="curExpirience.to"></FormInput>
+                            <FormInput placeholder="Skills Gained" label="Skills Gained" inputType="text"  required=true small=false name="SkillsGained" :value="curExpirience.to"></FormInput>
+
+                            <div class="flex gap-4 col-span-2">
                                 <FormButton type="submit" label="Add Expirience" bstyle="primary"></FormButton>
                                 <FormButton type="button" label="Reset" bstyle="secondary" @click="curExpirience=[]"></FormButton>
                             </div>
@@ -35,9 +44,9 @@
                     </div>
                     <div class="flex flex-col w-full md:w-1/2">
                         <h1 class="text-2xl text-gray-500 mb-4">My Expiriences</h1>
-                        <div class="card-hover flex justify-between" v-for="school in datas" :key="school.id">
+                        <div class="card-hover flex justify-between" v-for="school in datas.workExperience" :key="school.id">
                             <div class="">
-                                <h1><b>Institution</b>: {{ school.institution }}</h1>
+                                <h1><b>Institution</b>: {{ school.employer }}</h1>
                                 <h1><b>Postion</b>: {{ school.position }}</h1>
                                 <h1><b>Period</b>: {{ school.from }} - {{ school.to }}</h1>
                                 <h1><b>Current</b>: {{ school.isCurrent?'Yes':'No' }}</h1>
@@ -55,7 +64,7 @@
             <div class="flex items-center justify-end" v-if="isLoaded">
                 <div class="flex justify-between md:justify-end gap-1 md:gap-4 w-full md:w-auto">
                     <router-link to="/seeker/profile/education"><FormButton type="button" label="&larr; Education" bstyle="normal"></FormButton></router-link>
-                    <router-link to="/seeker/profile/reference"><FormButton type="button" label="Reference &rarr;" bstyle="normal"></FormButton></router-link>
+                    <router-link to="/seeker/profile/certificate"><FormButton type="button" label="Certificate &rarr;" bstyle="normal"></FormButton></router-link>
                 </div>
             </div>
         </form>
@@ -74,6 +83,27 @@ import FormInput from '../utils/FormInput.vue';
 import FormButton from '../utils/FormButton.vue';
 import ModalPage from '../utils/modalPage.vue'
 import apiService from '../../assets/api/apiService.js'
+import AWN from "awesome-notifications"
+import $ from 'jquery'
+
+let globalOptions =  {
+  alert: "Oops! Something got wrong",
+
+}
+globalOptions.labels = {
+  alert: "Profile",
+}
+
+let signupOption =  {
+  success: "Profile",
+
+}
+signupOption.labels = {
+  alert: "Profile",
+}
+
+let notifier = new AWN(globalOptions)
+
     export default {
         name: 'educationPage',
         data(){
@@ -94,13 +124,6 @@ import apiService from '../../assets/api/apiService.js'
             ModalPage, 
         },
         mounted(){
-            apiService.getProfile().then(profile => {
-                this.datas = profile.profile.expirience;
-                this.isLoaded = true
-                document.title="Experience Information"
-            });
-
-            
             const btn = document.querySelector(".toggleMobile");
             const menu = document.querySelector(".mobile-menu");
             const content = document.querySelector(".content");
@@ -114,11 +137,14 @@ import apiService from '../../assets/api/apiService.js'
             setSchool(id){
                 this.curExpirience = this.datas[id]
             },
-            sendData(){
-                const form = document.getElementById("formData");
-                const serializedData = apiService.serializeFormData(form);
-                console.log(serializedData);
-                apiService.handleForm(serializedData).then(console.log("sent"));
+            sendData() {
+            const form = document.getElementById("formData");
+            const serializedData = apiService.serializeFormData(form);
+            console.log(serializedData);
+            apiService.handleForm('applicants/'+this.datas._id+'/insert/workExperiance',serializedData).then(
+                notifier.success('Expirience Updated.', signupOption),
+                $('form').trigger('reset')
+                );
             },
             deleteExpirience(id){
                 let data = {
@@ -129,19 +155,26 @@ import apiService from '../../assets/api/apiService.js'
                 this.modalData = data
                 this.isModal=true
             },
-            modalDecision(modalAction){
-                if(modalAction){
-                    apiService.getProfile().then(profile => {
-                    this.datas = profile.profile.expirience;
-                    this.isLoaded = true
-                    this.isModal=false
-                });
-                }
-                else{
-                    this.isModal=false
-                }
+            getUser(data){
+            this.datas = JSON.parse(data);
+            this.selectedFilePreview = this.baseUrl+this.datas.picture
+            this.isLoaded = true;
+            document.title=this.datas.fname+" Personal Information";
+            this.datas.dob = apiService.calendarDate(this.datas.dob)
+            },
+            // modalDecision(modalAction){
+            //     if(modalAction){
+            //         apiService.getProfile().then(profile => {
+            //         this.datas = profile.profile.expirience;
+            //         this.isLoaded = true
+            //         this.isModal=false
+            //     });
+            //     }
+            //     else{
+            //         this.isModal=false
+            //     }
 
-            }
+            // }
         }
     }
 </script>
