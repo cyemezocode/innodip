@@ -58,7 +58,7 @@
             </div>
             <div class="flex items-center justify-end" v-if="isLoaded">
                 <div class="flex justify-between md:justify-end gap-1 md:gap-4 w-full md:w-auto">
-                    <router-link to="/seeker/profile/education"><FormButton type="button" label="&larr; Education" bstyle="normal"></FormButton></router-link>
+                    <router-link to="/seeker/profile/experience"><FormButton type="button" label="&larr; Experience" bstyle="normal"></FormButton></router-link>
                     <router-link to="/seeker/resume"><FormButton type="button" label="Resume &rarr;" bstyle="normal"></FormButton></router-link>
                 </div>
             </div>
@@ -144,9 +144,9 @@ let notifier = new AWN(globalOptions)
                 const endpoint = base+'api/applicants/'+id+'/insert/awardedCertificate';
                 axios.post(endpoint, formData)
                 .then(response => {
-                    $('form').tirrger('reset')
+                    $('form').trigger('reset')
                     console.log("Upload successful:", response.data);
-                    notifier.success(response.message, signupOption)
+                    notifier.success(response.data.message, signupOption)
                 })
                 .catch(error => {
                     console.error("Error uploading:", error);

@@ -61,7 +61,7 @@
             <div class="flex items-center justify-end" v-if="isLoaded">
                 <div class="flex justify-between md:justify-end gap-1 md:gap-4 w-full md:w-auto">
                     <router-link to="/seeker/profile/"><FormButton type="button" label="&larr; Profile" bstyle="normal"></FormButton></router-link>
-                    <router-link to="/seeker/profile/expirience"><FormButton type="button" label="Expirience &rarr;" bstyle="normal"></FormButton></router-link>
+                    <router-link to="/seeker/profile/experience"><FormButton type="button" label="Expirience &rarr;" bstyle="normal"></FormButton></router-link>
                 </div>
             </div>
         </form>
@@ -148,9 +148,9 @@ let notifier = new AWN(globalOptions)
                 const endpoint = base+'api/applicants/'+id+'/insert/academicProfile';
                 axios.post(endpoint, formData)
                 .then(response => {
-                    $('form').tirrger('reset')
-                    console.log("Upload successful:", response);
-                    notifier.success(response.message, signupOption)
+                    $('form').trigger('reset')
+                    console.log("Upload successful:", response.data);
+                    notifier.success(response.data.message, signupOption)
                 })
                 .catch(error => {
                     console.error("Error uploading:", error);
@@ -168,7 +168,7 @@ let notifier = new AWN(globalOptions)
             this.datas = JSON.parse(data);
             this.selectedFilePreview = this.baseUrl+this.datas.picture
             this.isLoaded = true;
-            document.title=this.datas.fname+" Personal Information";
+            document.title=this.datas.fname+" Education Information";
             this.datas.dob = apiService.calendarDate(this.datas.dob)
             },
             deleteSchool(id){

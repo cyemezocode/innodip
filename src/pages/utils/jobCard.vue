@@ -34,7 +34,7 @@
 <span>Dealine: {{ realDate(job.deadline) }}</span>
             </div>
             </div>
-            <p v-if="hasDesc==true" class="w-full text-sm">{{ job.description }}</p>
+            <p v-if="hasDesc==true" class="w-full text-sm">{{ fewWords(job.description,20) }}</p>
         </div> 
     </router-link>
 </template>
@@ -59,6 +59,10 @@ import apiService from '../../assets/api/apiService.js'
         methods:{
             realDate(date){
                 return apiService.realDate(date);
+            },
+            fewWords(words,num){
+                return apiService.displayWords(words,num);
+
             }
         }
     }

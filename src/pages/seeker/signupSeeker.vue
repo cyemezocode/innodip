@@ -24,11 +24,12 @@
                         <FormInput v-if="citizen" placeholder="National ID" label="National ID" inputType="text" value="" name="nidOrPhone" required=true small=false></FormInput>
                         <div v-if="!citizen" class="grid grid-cols-2 gap-2">
                             <FormSelect @setCitizen="settingCitizen" placeholder="Select Country" label="Country" inputType="text" value="" name="isLocalSignUp" required=true small=false >
-                                <option v-for="cnt in countries" :key="cnt" value=1>{{ cnt.country_en }} (+{{cnt.phone_code}})</option>
+                                <option v-for="cnt in countries" :key="cnt" :value="cnt.phone_code">{{ cnt.country_en }} (+{{cnt.phone_code}})</option>
                             </FormSelect>
-                            <FormInput placeholder="Phone Number" label="Phone Number" inputType="text" value="" name="nidOrPhone" required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormInput>
+                            <FormInput @setNewVal="setNewVal" placeholder="Phone Number" label="Phone Number" inputType="text" value=""  required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormInput>
                         </div>
                     </div>
+                    <input type="hidden" v-model="phoneNumber" name="nidOrPhone">
                     <FormInput placeholder="Password" label="Password" inputType="password" value="" name="password" required=true small=false></FormInput>
                     <FormInput placeholder="Confirm Password" label="Confirm Password" inputType="password" name="currentPassword" required=true small=false value=""></FormInput>
                     <div class="flex items-center justify-end">
@@ -82,7 +83,9 @@ let notifier = new AWN(globalOptions)
                 activeCat:'',
                 citizen:true,
                 isPasswordEqual:false,
-                countries:[]
+                countries:[],
+                phoneNumber:'',
+                countryCode:''
             }
         },
         components:{
@@ -102,6 +105,12 @@ let notifier = new AWN(globalOptions)
 
         },
         methods: {
+            setPhone(){
+                // this.phoneNumber = 
+            },
+            setCountry(data){
+                this.countryCode = data
+            },
             sendData(){
             const form = document.getElementById("formData");
             const serializedData = apiService.serializeFormData(form);
@@ -136,6 +145,12 @@ let notifier = new AWN(globalOptions)
                 if(event.target.value!=''){
                 const val = event.target.value=='1'?true:false
                 this.citizen = val
+                this.countryCode='+'+event.target.value
+                }
+            },
+            setNewVal(event){
+                if(event.target.value!=''){
+                this.phoneNumber=this.countryCode+event.target.value
                 }
             }
         },

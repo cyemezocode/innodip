@@ -11,7 +11,7 @@
                 <svg class="w-16 h-16 text-secondary" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
-                <h1 class="text-4xl text-gray-500">My Expirience</h1>
+                <h1 class="text-4xl text-gray-500">My Experience</h1>
             </div>
             <div class="w-full md:w-auto px-2 md:px-0">
             </div>
@@ -22,29 +22,30 @@
                 <div class="flex flex-col md:flex-row gap-4 w-full">
                     <div class="w-full md:w-1/2">
                         <div class="grid grid-col-1 md:grid-cols-2 gap-4 w-full">
-                            <FormInput placeholder="Institution" label="Institution" inputType="text"  required=true small=false name="institution" :value="curExpirience.institution "></FormInput>
-                            <FormInput placeholder="Position" label="Position" inputType="text"  required=true small=false name="position" :value="curExpirience.position"></FormInput>
-                            <FormInput placeholder="From" label="From" inputType="date"  required=true small=false name="from" :value="curExpirience.from"></FormInput>
-                            <FormInput placeholder="To" label="To" inputType="date"  required=true small=false name="till" :value="curExpirience.to"></FormInput>
+                            <FormInput placeholder="Institution" label="Institution" inputType="text"  required=true small=false name="institution" :value="curExperience.employer "></FormInput>
+                            <FormInput placeholder="Position" label="Position" inputType="text"  required=true small=false name="position" :value="curExperience.position"></FormInput>
+                            <FormInput placeholder="From" label="From" inputType="date"  required=true small=false name="from" :value="curExperience.from"></FormInput>
+                            <FormInput placeholder="To" label="To" inputType="date"  required=true small=false name="till" :value="curExperience.to"></FormInput>
                             <div class="flex items-center col-span-2">
-                                <input id="default-checkbox" type="checkbox" value="1" name="youStillWorkHere" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <input id="default-checkbox" type="checkbox" @click="youStillWorkHere=!youStillWorkHere" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Current Work here</label>
                             </div>
-                            <FormInput placeholder="Name Of Referee" label="Name Of Referee" inputType="text"  required=true small=false name="NameOfReferee" :value="curExpirience.to"></FormInput>
-                            <FormInput placeholder="Position Of Referee" label="Position Of Referee" inputType="text"  required=true small=false name="PositionOfReferee" :value="curExpirience.to"></FormInput>
-                            <FormInput placeholder="Email Of Referee" label="Email Of Referee" inputType="email"  required=true small=false name="EmailOfReferee" :value="curExpirience.to"></FormInput>
-                            <FormInput placeholder="Phone Of Referee" label="Phone Of Referee" inputType="text"  required=true small=false name="PhoneOfReferee" :value="curExpirience.to"></FormInput>
-                            <FormInput placeholder="Skills Gained" label="Skills Gained" inputType="text"  required=true small=false name="SkillsGained" :value="curExpirience.to"></FormInput>
+                            <input type="hidden" name="youStillWorkHere" :value="youStillWorkHere==false?0:1">
+                            <FormInput placeholder="Name Of Referee" label="Name Of Referee" inputType="text"  required=true small=false name="NameOfReferee" :value="curExperience.refereeName"></FormInput>
+                            <FormInput placeholder="Position Of Referee" label="Position Of Referee" inputType="text"  required=true small=false name="PositionOfReferee" :value="curExperience.refereePosition"></FormInput>
+                            <FormInput placeholder="Email Of Referee" label="Email Of Referee" inputType="email"  required=true small=false name="EmailOfReferee" :value="curExperience.refereeEmail"></FormInput>
+                            <FormInput placeholder="Phone Of Referee" label="Phone Of Referee" inputType="text"  required=true small=false name="PhoneOfReferee" :value="curExperience.refereePhone"></FormInput>
+                            <FormInput placeholder="Skills Gained" label="Skills Gained" inputType="text"  required=true small=false name="SkillsGained" :value="curExperience.gainedSkills"></FormInput>
 
                             <div class="flex gap-4 col-span-2">
                                 <FormButton type="submit" label="Add Expirience" bstyle="primary"></FormButton>
-                                <FormButton type="button" label="Reset" bstyle="secondary" @click="curExpirience=[]"></FormButton>
+                                <FormButton type="button" label="Reset" bstyle="secondary" @click="curExperience=[]"></FormButton>
                             </div>
                         </div>
                     </div>
                     <div class="flex flex-col w-full md:w-1/2">
-                        <h1 class="text-2xl text-gray-500 mb-4">My Expiriences</h1>
-                        <div class="card-hover flex justify-between" v-for="school in datas.workExperience" :key="school.id">
+                        <h1 class="text-2xl text-gray-500 mb-4">My Experiences</h1>
+                        <div class="card-hover flex justify-between" v-for="(school,index) in datas.workExperience" :key="index">
                             <div class="">
                                 <h1><b>Institution</b>: {{ school.employer }}</h1>
                                 <h1><b>Postion</b>: {{ school.position }}</h1>
@@ -52,8 +53,8 @@
                                 <h1><b>Current</b>: {{ school.isCurrent?'Yes':'No' }}</h1>
                             </div>
                             <div class="flex flex-col justify-between">
-                                <button type="button" @click="setSchool(school.id)">Edit</button>
-                                <button type="button" @click="deleteExpirience(school.id)">Delete</button>
+                                <button type="button" @click="setExperience(index)">Edit</button>
+                                <button type="button" @click="deleteExpirience(index)">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -109,10 +110,11 @@ let notifier = new AWN(globalOptions)
         data(){
             return{
                 datas:[],
-                curExpirience:[],
+                curExperience:[],
                 activeCat:'',
                 isLoaded:false,
-                isModal: false
+                isModal: false,
+                youStillWorkHere:false
             }
         },
         components:{
@@ -134,23 +136,29 @@ let notifier = new AWN(globalOptions)
             });
         },
         methods:{
-            setSchool(id){
-                this.curExpirience = this.datas[id]
+            setExperience(id){
+                this.curExperience = this.datas.workExperience[id]
             },
             sendData() {
             const form = document.getElementById("formData");
             const serializedData = apiService.serializeFormData(form);
-            console.log(serializedData);
             apiService.handleForm('applicants/'+this.datas._id+'/insert/workExperiance',serializedData).then(
-                notifier.success('Expirience Updated.', signupOption),
-                $('form').trigger('reset')
-                );
+                response => {
+                    $('form').trigger('reset')
+                    console.log("Upload successful:", response.data);
+                    notifier.success(response.message, signupOption)
+                    this.$router.reload()
+                })
+                .catch(error => {
+                    console.error("Error uploading:", error);
+                    // notifier.alert(error.response.data.errors.attachment[0], signupOption)
+                });
             },
             deleteExpirience(id){
                 let data = {
                     "title":'Delete Expirience',
-                    "message": "Do you realy want to delete "+this.datas[id].institution+" expirience?",
-                    "data":this.datas[id]
+                    "message": "Do you realy want to delete "+this.datas.workExperience[id].employer+" experience?",
+                    "data":this.datas.workExperience[id]
                 };
                 this.modalData = data
                 this.isModal=true
@@ -159,22 +167,19 @@ let notifier = new AWN(globalOptions)
             this.datas = JSON.parse(data);
             this.selectedFilePreview = this.baseUrl+this.datas.picture
             this.isLoaded = true;
-            document.title=this.datas.fname+" Personal Information";
+            document.title=this.datas.fname+" Experience Information";
             this.datas.dob = apiService.calendarDate(this.datas.dob)
             },
-            // modalDecision(modalAction){
-            //     if(modalAction){
-            //         apiService.getProfile().then(profile => {
-            //         this.datas = profile.profile.expirience;
-            //         this.isLoaded = true
-            //         this.isModal=false
-            //     });
-            //     }
-            //     else{
-            //         this.isModal=false
-            //     }
+            modalDecision(modalAction){
+                if(modalAction){
+                this.isModal=false
 
-            // }
+                }
+                else{
+                    this.isModal=false
+                }
+
+            }
         }
     }
 </script>

@@ -82,8 +82,7 @@
                         <input type="hidden" name="isSalary" :value="isSalary?1:0">
                         <input type="hidden" name="isPayable" :value="isPayable?1:0">
                             <div class="flex gap-4 col-span-2">
-                                <FormButton type="submit" label="Add Expirience" bstyle="primary"></FormButton>
-                                <FormButton type="button" label="Reset" bstyle="secondary" @click="curExpirience=[]"></FormButton>
+                                <FormButton type="submit" label="Add Opportunity" bstyle="primary"></FormButton>
                             </div>
                         </div>
                     </div>

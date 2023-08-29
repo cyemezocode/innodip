@@ -23,7 +23,7 @@
         
         <div class="grid mx-auto px-4 md:px-4 py-4">
             <div v-if="isLoaded" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                <UniversityCardVue v-for="job in companies" :key="job" :datas="JSON.stringify(job)" router="/opportunity" :hasDesc=true></UniversityCardVue>
+                <UniversityCardVue v-for="job in companies" :key="job" :datas="JSON.stringify(job)" router="/industry" :hasDesc=true></UniversityCardVue>
             </div>
             </div>
         <div v-if="isLoaded" class="sliderPane flex gap-2 overflow-x-scroll px-4 pb-2">
@@ -92,7 +92,7 @@ import UniversityCardVue from '../utils/universityCard.vue';
                 // this.activeCat = jobsList.categories[0].name;
                 this.isLoaded = true
             });
-
+            document.title="Dashboard"
         },
     }
 </script>

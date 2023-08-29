@@ -51,7 +51,7 @@ import apiService from "../../../assets/api/apiService.js";
             return{
                 data:[],
                 picture:'',
-                userId:''
+                userId:null
             }
         },
         mounted(){
@@ -62,6 +62,7 @@ import apiService from "../../../assets/api/apiService.js";
             });
             
             this.userId = JSON.parse(localStorage.getItem('currentUser'));
+            if(this.userId!=null){
             apiService.getData('applicant/display/details/'+this.userId).then((res) => {
             this.data = res.data;
             this.picture = 'http://innodip.rw:8004/'+res.data.picture
@@ -69,6 +70,9 @@ import apiService from "../../../assets/api/apiService.js";
             this.$emit('userData',JSON.stringify(this.data));
             // console.log(res)
             });
+        }else{
+            this.$router.push('/')
+        }
         }
     }
 </script>

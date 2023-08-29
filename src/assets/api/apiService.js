@@ -117,6 +117,16 @@ class apiService{
           const suffix = suffixes[lastDigit] || suffixes[0];
           return suffix;
       } 
+      static displayWords(inputString, numWords) {
+        const words = inputString.split(' ');
+
+        if (words.length <= numWords) {
+            return inputString;
+        } else {
+            const displayedWords = words.slice(0, numWords).join(' ');
+            return displayedWords + '...';
+        }
+    }
 }
 
 export default apiService;

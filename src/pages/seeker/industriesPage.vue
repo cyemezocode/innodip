@@ -23,7 +23,7 @@
         
         <div class="grid mx-auto px-4 md:px-4 py-4">
             <div v-if="isLoaded" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                <UniversityCardVue v-for="job in datas" :key="job" :datas="JSON.stringify(job)" router="/opportunity" :hasDesc=true></UniversityCardVue>
+                <UniversityCardVue v-for="job in datas" :key="job" :datas="JSON.stringify(job)" router="/seeker/industry" :hasDesc=true></UniversityCardVue>
             </div>
             <div v-if="!isLoaded">
                 <jobCardVueSkeleton v-for="job in 5" :key="job" :hasDesc=true></jobCardVueSkeleton>

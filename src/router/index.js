@@ -7,7 +7,9 @@ import confirmAccount from '../pages/confirmAccount';
 import signupPage from '../pages/signupPage';
 import jobsPage from '../pages/jobsPage';
 import universitiesPage from '../pages/universitiesPage';
+import universityPage from '../pages/universityPage';
 import industriesPage from '../pages/industriesPage';
+import industryPage from '../pages/industryPage';
 import researchPage from '../pages/researchPage';
 import curriculumPage from '../pages/curriculumPage';
 import publicationPage from '../pages/publicationPage';
@@ -32,6 +34,8 @@ import applicationPageSeeker from '../pages/seeker/applicationPage';
 import interestPageSeeker from '../pages/seeker/interestPage';
 import universitiesPageSeeker from '../pages/seeker/universitiesPage';
 import industriesPageSeeker from '../pages/seeker/industriesPage';
+import universityPageSeeker from '../pages/seeker/universityPage';
+import industryPageSeeker from '../pages/seeker/industryPage';
 
 import dashboardPageInstitution from '../pages/institution/dashboardPage';
 import employeesPageInstitution from '../pages/institution/employeesPage';
@@ -73,6 +77,18 @@ const routes = [
         name: 'UniversitiesPage',
         path:'/universities',
         component: universitiesPage
+    },
+    {
+        name: 'UniversityPage',
+        path:'/university/:id',
+        component: universityPage,
+        props:true
+    },
+    {
+        name: 'industryPage',
+        path:'/industry/:id',
+        component: industryPage,
+        props:true
     },
     {
         name: 'ResearchPage',
@@ -167,7 +183,7 @@ const routes = [
     },
     {
         name: 'ExpiriencePage',
-        path:'/seeker/profile/expirience',
+        path:'/seeker/profile/experience',
         component: expiriencePageSeeker
     },
     {
@@ -214,9 +230,21 @@ const routes = [
         component: universitiesPageSeeker
     },
     {
+        name: 'UniversitySeeker',
+        path:'/seeker/university/:id',
+        component: universityPageSeeker,
+        props:true
+    },
+    {
         name: 'IndustriesSeeker',
         path:'/seeker/industries',
         component: industriesPageSeeker
+    },
+    {
+        name: 'industrySeeker',
+        path:'/seeker/industry/:id',
+        component: industryPageSeeker,
+        props:true
     },
 
     // admin

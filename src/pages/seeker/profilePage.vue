@@ -284,6 +284,8 @@ export default {
       this.isLoaded = true;
       document.title=this.datas.fname+" Personal Information";
       this.datas.dob = apiService.calendarDate(this.datas.dob)
+      const ad = this.datas.address
+      this.datas.address = Object.values(ad).join(', ')
     }
   },
 };

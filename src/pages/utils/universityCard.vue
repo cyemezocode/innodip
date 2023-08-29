@@ -2,10 +2,10 @@
     <div class="card-secondary p-0 grid grid-cols-1 relative">
         <div class="w-full bg-gray-700 relative h-36 md:h-24 flex border-b border-gray-300">
             <!-- <span class="absolute top-3 right-3 border border-1 px-2 py-1 rounded-lg bg-gray-400 text-white">+</span> -->
-            <h1 class="col-span-2 flex absolute left-1/2 top-5 translate-x-[-50%] p-1 opacity-[.8] rounded-lg bg-gray-600 text-white z-10 text-center">{{ job.abbreviation }}</h1>
+            <h1 class="col-span-2 flex absolute left-1/2 top-5 translate-x-[-50%] p-1 opacity-[.8] rounded-lg bg-gray-600 text-white z-10 text-center">{{ job.name }}</h1>
             <img src="@/assets/images/background.jpg" alt="" class="w-full h-full object-cover">
             <div class="col-span-2 flex absolute left-5 top-16">
-                <div class="hidden md:flex w-10 h-10 md:w-16 md:h-16 items-center justify-center bg-gray-200 border border-gray-300 rounded-lg overflow-hidden"><img :src="job.logo" alt=""></div>
+                <div class="hidden md:flex w-10 h-10 md:w-16 md:h-16 items-center justify-center bg-gray-200 border border-gray-300 rounded-lg overflow-hidden"><img :src="baseUrl+job.logo" alt=""></div>
             </div>
         </div>
         <div class="w-full col-span-8 p-3 pt-10 h-42">
@@ -26,7 +26,7 @@
                 </svg> Website: <a :href="`http://${job.url}`" target="_blank" rel="noopener noreferrer"> {{ job.url }}</a>
             </h2>
             <div class="flex justify-end">
-                <router-link to="/seeker/resume"><FormButton type="button" label="Visit &rarr;" bstyle="normal"></FormButton></router-link>
+                <router-link :to="router+'/'+job._id"><FormButton type="button" label="Visit &rarr;" bstyle="normal"></FormButton></router-link>
             </div>
             <p v-if="hasDesc==true" class="w-full text-sm">{{ job.desc }}</p>
         </div> 
@@ -44,6 +44,7 @@ import FormButton from './FormButton.vue'
         },
         data(){
             return{
+                baseUrl: 'http://innodip.rw:8004/',
                 job: []
             }
         },
