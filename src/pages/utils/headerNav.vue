@@ -7,8 +7,8 @@
                     <ul class="flex gap-8">
                         <li class="hover:text-primary"><router-link to="/">Home</router-link></li>
                         <li class="hover:text-primary"><router-link to="/opportunities/">Opportunities</router-link></li>
-                        <li class="hover:text-primary"><a href="/universities/">Universities</a></li>
-                        <li class="link"><a href="/industries/">Industries</a></li>
+                        <li class="hover:text-primary"><a href="/universities/">Academias</a></li>
+                        <li class="link"><a href="/industries/">Institutions</a></li>
                     </ul>
                 </div>
             </div>
@@ -43,11 +43,11 @@
                     <svg class="w-6 h-6 text-gray-500 absolute top-2 left-2" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
                     <input type="text" id="search-navbar" class="bg-white pl-10 p-2 rounded-lg  w-full border-2 border-gray-400  outline-none focus:border-primary" placeholder="Search..."></div>
                 <div class="w-full">
-                    <ul class="flex flex-col gap-2 justify-start w-full items-start">
-                        <li class="hover:text-primary"><router-link to="/">Home</router-link></li>
-                        <li class="hover:text-primary"><router-link to="/opportunities/">Opportunities</router-link></li>
-                        <li class="hover:text-primary"><a href="/universities/">Universities</a></li>
-                        <li class="link"><a href="/industries/">Industries</a></li>
+                    <ul class="flex flex-col gap-2 justify-start items-start w-full">
+                        <li class="hover:text-primary w-full"><router-link to="/">Home</router-link></li>
+                        <li class="hover:text-primary w-full"><router-link to="/opportunities/">Opportunities</router-link></li>
+                        <li class="hover:text-primary w-full"><router-link to="/universities/">Academias</router-link></li>
+                        <li class="hover:text-primary w-full"><router-link to="/industries/">Institutions</router-link></li>
                     </ul>
                 </div>
             </div>

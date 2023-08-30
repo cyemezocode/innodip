@@ -3,24 +3,23 @@
         <headerNavVue></headerNavVue>
         <div class="max-w-screen-lg mx-auto px-3 md:px-0 py-4 justify-center">
             <div class="border border-1 mb-5 rounded-lg overflow-hidden grid w-full grid-cols-1 md:grid-cols-3">
-                <div class="flex flex-col items-center justify-center col-span-2">
-                    <h2 class="text-3xl my-3">Get Started</h2>
-                    <img src="../assets/illustrations/Interview-cuate.svg" class="px-18 homeImg">
+                <div class="flex flex-col items-center justify-center col-span-2 pt-3">
+                    <!-- <h2 class="text-3xl my-3">Get Started</h2> -->
+                    <img src="../assets/illustrations/reset.svg" class="px-18 homeImg">
                 </div>
                 <div class="flex flex-col items-center bg-slate-100 border-l border-1">
-                    <h1 class="text-3xl text-center border-b border-gray-300 w-full py-3">Sign In</h1>
+                    <h1 class="text-3xl text-center border-b border-gray-300 w-full py-3">Reset Password</h1>
                     <form @submit.prevent="sendData(this)" class="w-full px-4 py-4" id="formData">
-                        <FormInput placeholder="Username" label="Username" inputType="email"  required=true small=false name="email"></FormInput>
-                        <FormInput placeholder="Password" label="Password" inputType="password" required=true small=false sub="Forgot Password?" toSub="/reset" name="currentPassword"></FormInput>
+                        <FormInput placeholder="Email Address" label="Email Address" inputType="email"  required=true small=false name="email"></FormInput>
 
                         <div class="flex items-center justify-end">
-                            <FormButton type="submit" label="Sign In" bstyle="primary"></FormButton>
+                            <FormButton type="submit" label="Reset" bstyle="primary"></FormButton>
                             <!-- <router-link to="/seeker/dashboard/" class="btn-primary">Sign In</router-link> -->
                         </div>
                         
                         <div class="text-sm mt-4">
-                            <span>Don't have an account?</span> &nbsp;
-                            <router-link to="/signup/" class="link">Register Now</router-link>
+                            <span>Have an account?</span> &nbsp;
+                            <router-link to="/login/" class="link">Login Now</router-link>
                             </div>
                     </form>
                 </div>

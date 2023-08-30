@@ -39,7 +39,7 @@
 
                             <div class="flex gap-4 col-span-2">
                                 <FormButton type="submit" label="Add Expirience" bstyle="primary"></FormButton>
-                                <FormButton type="button" label="Reset" bstyle="secondary" @click="curExperience=[]"></FormButton>
+                                <!-- <FormButton type="button" label="Reset" bstyle="secondary" @click="curExperience=[]"></FormButton> -->
                             </div>
                         </div>
                     </div>

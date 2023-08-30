@@ -2,7 +2,7 @@
     <div>
         <headerNavVue></headerNavVue>
             
-        <div class="max-w-screen-lg mx-auto py-4">
+        <div class="max-w-screen-lg mx-auto px-4 md:px-0 py-4">
             <universityCardVue :data="datas"></universityCardVue>
         </div>
         <pageFooterVue></pageFooterVue>

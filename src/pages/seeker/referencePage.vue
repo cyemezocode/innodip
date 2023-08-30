@@ -34,7 +34,7 @@
                             </div>
                             <div class="flex gap-4">
                                 <FormButton type="submit" label="Add Reference" bstyle="primary"></FormButton>
-                                <FormButton type="button" label="Reset" bstyle="secondary" @click="curRef=[]"></FormButton>
+                                <!-- <FormButton type="button" label="Reset" bstyle="secondary" @click="curRef=[]"></FormButton> -->
                             </div>
                         </div>
                     </div>

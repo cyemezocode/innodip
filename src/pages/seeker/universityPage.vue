@@ -41,7 +41,6 @@ import apiService from '../../assets/api/apiService.js'
         },
         mounted(){
             const id = this.$route.params.id;
-            console.log(id)
             apiService.getData('institution/display/details/'+id).then(res => {
                 this.datas = res.data;
                 // this.activeCat = jobsList.categories[0].name;

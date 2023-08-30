@@ -4,7 +4,7 @@
         <div class="max-w-screen-lg mx-auto px-3 md:px-0 py-4 justify-center">
             <div class="border border-1 mb-5 rounded-lg overflow-hidden grid w-full grid-cols-1 md:grid-cols-3">
                 <div class="flex flex-col items-center justify-center col-span-2">
-                    <h2 class="text-3xl my-3">Create Institution account</h2>
+                    <h2 class="text-2xl md:text-3xl p-3 my-3">Create Academia account</h2>
                 <img src="@/assets/illustrations/institution.svg" class="px-18 homeImg">
             </div>
                 <div class="flex flex-col items-center bg-slate-100 border-l border-1">

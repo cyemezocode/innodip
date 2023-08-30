@@ -3,6 +3,7 @@ import homePage from '../pages/homePage';
 import handleForm from '../pages/handleForm';
 // import comingSoon from '../pages/comingSoon';
 import loginPage from '../pages/loginPage';
+import resetPage from '../pages/resetPage';
 import confirmAccount from '../pages/confirmAccount';
 import signupPage from '../pages/signupPage';
 import jobsPage from '../pages/jobsPage';
@@ -62,6 +63,11 @@ const routes = [
         name: 'LoginPage',
         path:'/login',
         component: loginPage
+    },
+    {
+        name: 'ResetPage',
+        path:'/reset',
+        component: resetPage
     },
     {
         name: 'ConfirmAccount',
@@ -132,7 +138,7 @@ const routes = [
     },
     {
         name: 'TrainingPage',
-        path:'/training',
+        path:'/internship',
         component: trainingPage
     },
     {

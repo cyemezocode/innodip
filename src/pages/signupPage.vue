@@ -2,25 +2,25 @@
     <div>
         <headerNavVue></headerNavVue>
         <div class="max-w-screen-lg mx-auto px-3 md:px-0 py-4 justify-center flex flex-col items-center">
-            <h1 class="text-4xl mb-6 text-gray-600">Select account category</h1>
+            <h1 class="text-2xl md:text-4xl mb-6 text-gray-600">Select account category</h1>
             <div class="grid grid-cols-1 md:grid-cols-3 border border-1 mb-5 rounded-lg overflow-hidden w-full">
                 <router-link to="/signup/seeker/" class="flex flex-col items-center justify-between hover:bg-gray-200 transition duration-500 ease-in-out  border">
                     <div class="flex justify-center items-center w-full h-full px-8">
                     <img src="../assets/illustrations/seeker.svg" class="w-30">
                     </div>
-                    <h1 class="text-4xl py-4 text-center">Applicant</h1>
+                    <h1 class="text-2xl md:text-4xl py-4 text-center">Applicant</h1>
                 </router-link>
                 <router-link to="/signup/industry/" class="flex flex-col items-center justify-between hover:bg-gray-200 transition duration-500 ease-in-out  border">
                     <div class="flex justify-center items-center w-full h-full px-8">
                     <img src="../assets/illustrations/industry.svg">
                     </div>
-                    <h1 class="text-4xl py-4 text-center">Institution</h1>
+                    <h1 class="text-2xl md:text-4xl py-4 text-center">Institution</h1>
                 </router-link>
                 <router-link to="/signup/institution/" class="flex w-full flex-col items-center justify-between hover:bg-gray-200 transition duration-500 ease-in-out border">
                     <div class="flex justify-center items-center w-full h-full px-8">
                         <img src="../assets/illustrations/institution.svg">
                     </div>
-                    <h1 class="text-4xl py-4 text-center">Higher Learning Institutions</h1>
+                    <h1 class="text-2xl md:text-4xl py-4 text-center">Academia</h1>
                 </router-link>
             </div>
             </div>

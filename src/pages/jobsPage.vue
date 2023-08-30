@@ -71,57 +71,14 @@ import apiService from '../assets/api/apiService.js'
             jobCardVueSkeleton
         },
         mounted(){
-            // apiService.getJobs().then(jobsList => {
-            //     this.datas = jobsList;
-            //     this.activeCat = jobsList.categories[0].name
-            //     this.isLoaded = true,
-            //     document.title='Opportunities'
-
-            // });
-            
-            apiService.getOpportunities().then(jobsList => {
-                this.datas = jobsList;
-                // this.activeCat = jobsList.categories[0].name;
-                this.isLoaded = true
-                document.title='Opportunities'
+            apiService.getData('opportunities').then(res => {
+                this.datas = res,
+                this.isLoaded = true,
+                document.title = 'Internship'
             });
-
         },
-        breakpoints: {
-      // 700px and up
-      640: {
-        itemsToShow: 2.5,
-        snapAlign: 'center',
-      },
-      // 1024 and up
-      1024: {
-        itemsToShow: 5,
-        snapAlign: 'start',
-      },
-    },
     }
 </script>
 
 <style scoped>
-.sliderPane .carousel__slide{
-    margin: 0px 10px;
-    cursor: pointer;
-}
-.sliderPane {
-  scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
-}
-
-.sliderPane::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
-
-.sliderPane::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
-
-.sliderPane::-webkit-scrollbar-track {
-  background-color: transparent;
-}
 </style>
