@@ -3,7 +3,7 @@
         <div class="w-full bg-gray-700 relative h-36 md:h-24 flex border-b border-gray-300">
             <!-- <span class="absolute top-3 right-3 border border-1 px-2 py-1 rounded-lg bg-gray-400 text-white">+</span> -->
             <h1 class="col-span-2 flex absolute left-1/2 top-5 translate-x-[-50%] p-1 opacity-[.8] rounded-lg bg-gray-600 text-white z-10 text-center">{{ job.name }}</h1>
-            <img src="@/assets/images/background.jpg" alt="" class="w-full h-full object-cover">
+            <img :src="baseUrl+job.banner" alt="." class="w-full h-full object-cover bgCover">
             <div class="col-span-2 flex absolute left-5 top-16">
                 <div class="hidden md:flex w-10 h-10 md:w-16 md:h-16 items-center justify-center bg-gray-200 border border-gray-300 rounded-lg overflow-hidden"><img :src="baseUrl+job.logo" alt=""></div>
             </div>
@@ -58,5 +58,8 @@ import FormButton from './FormButton.vue'
 </script>
 
 <style scoped>
-
+    .bgCover{
+        background: url(@/assets/images/background.jpg);
+        background-size: cover;
+    }
 </style>

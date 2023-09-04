@@ -1,8 +1,8 @@
 <template>
     <router-link :to="`${router+'/'+job._id}`" class="card-hover grid grid-cols-1 md:grid-cols-10 relative">
-        <span class="md:absolute top-3 right-3 border border-1 px-2 py-1 rounded-lg bg-gray-400 text-white">{{ job.category.name }}</span>
+        <span class="md:absolute top-3 right-3 border border-1 px-2 py-1 rounded-lg bg-gray-400 text-white">{{ job.category.industryCategoryName }}</span>
         <div class="col-span-2 flex justify-center justify-start">
-            <div class="hidden md:flex w-44 h-44 md:w-32 md:h-32 items-center justify-center bg-gray-200 border border-gray-300 rounded-lg overflow-hidden"><img :src="job.provider.logo" alt=""></div>
+            <div class="hidden md:flex w-44 h-44 md:w-32 md:h-32 items-center justify-center bg-gray-200 border border-gray-300 rounded-lg overflow-hidden"><img :src="baseUrl+job.provider.industryLogo" alt=""></div>
         </div>
         <div class="w-full col-span-8 p-3 pt-0">
             <h2 class="text-xl text-gray-500">{{ job.name }}</h2>
@@ -50,7 +50,8 @@ import apiService from '../../assets/api/apiService.js'
         }, 
         data(){
             return{
-                job: []
+                job: [],
+                baseUrl:'http://innodip.rw:8004/'
             }
         },
         created(){

@@ -22,7 +22,7 @@
 						</svg>
 					</button>
 					</div>
-                <router-link to="/seeker/profile" class="w-14 h-14 image border border-gray-400 rounded-full overflow-hidden flex object-fit relative">
+                <router-link to="/industry/profile" class="w-14 h-14 image border border-gray-400 rounded-full overflow-hidden flex object-fit relative">
                     <img :src="picture" alt="" class="object-cover w-full h-full">
                 </router-link>
                 

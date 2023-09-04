@@ -4,7 +4,7 @@
         
         <!-- <span class="absolute top-3 right-3 border border-1 px-2 py-1 rounded-lg bg-gray-400 text-white">+</span> -->
         <h1 class="col-span-2 flex absolute left-1/2 top-12 md:top-20 text-3xl translate-x-[-50%] p-1 opacity-[.8] rounded-lg bg-gray-600 text-white z-10 text-center">{{ data.abbreviation }}</h1>
-        <img :src="baseUrl+data.banner" alt="" class="w-full h-full object-cover">
+        <img :src="baseUrl+data.banner" alt="." class="w-full h-full object-cover bgCover">
         <div class="col-span-2 flex absolute left-5 top-24">
             <div class="hidden md:flex w-10 h-10 md:w-48 md:h-48 items-center justify-center bg-gray-200 border border-gray-300 rounded-lg overflow-hidden"><img :src="baseUrl+data.logo" alt=""></div>
         </div>
@@ -56,4 +56,8 @@
 
 <style scoped>
 
+.bgCover{
+        background: url(@/assets/images/background.jpg);
+        background-size: cover;
+    }
 </style>

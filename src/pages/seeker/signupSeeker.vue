@@ -29,7 +29,7 @@
                             <FormInput @setNewVal="setNewVal" placeholder="Phone Number" label="Phone Number" inputType="text" value=""  required=true small=false  sub="Phone Number for non-rwandan user" toSub="non-rwandan"></FormInput>
                         </div>
                     </div>
-                    <input type="hidden" v-model="phoneNumber" name="nidOrPhone">
+                    <input v-if="!citizen" type="hidden" v-model="phoneNumber" name="nidOrPhone">
                     <FormInput placeholder="Password" label="Password" inputType="password" value="" name="password" required=true small=false></FormInput>
                     <FormInput placeholder="Confirm Password" label="Confirm Password" inputType="password" name="currentPassword" required=true small=false value=""></FormInput>
                     <div class="flex items-center justify-end">

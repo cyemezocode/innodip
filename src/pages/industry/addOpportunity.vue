@@ -26,7 +26,7 @@
                 <form id="formData" @submit.prevent="sendData">
                     <input type="hidden" v-model="datas._id" name="provider">
                 <div class="flex flex-col md:flex-row gap-4 w-full">
-                    <div class="w-full md:w-1/2">
+                    <div class="w-full md:w-3/4">
                         <div class="grid grid-col-1 md:grid-cols-2 gap-4 w-full">
                             <div class="col-span-2">
                                 <FormInput placeholder="Opportunity Title" label="Opportunity Title" inputType="text"  required=true small=false name="name"></FormInput>
