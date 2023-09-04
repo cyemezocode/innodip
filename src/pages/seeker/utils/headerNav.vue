@@ -62,17 +62,16 @@ import apiService from "../../../assets/api/apiService.js";
             });
             
             this.userId = JSON.parse(localStorage.getItem('currentUser'));
-            if(this.userId!=null){
-            apiService.getData('applicant/display/details/'+this.userId).then((res) => {
-            this.data = res.data;
-            this.picture = 'http://innodip.rw:8004/'+res.data.picture
-            
-            this.$emit('userData',JSON.stringify(this.data));
-            // console.log(res)
+            if(this.userId!=null && localStorage.getItem('currentType')=='applicant'){
+                apiService.getData('applicant/display/details/'+this.userId).then((res) => {
+                this.data = res.data;
+                this.picture = 'http://innodip.rw:8004/'+res.data.picture
+                
+                this.$emit('userData',JSON.stringify(this.data));
             });
-        }else{
-            this.$router.push('/')
-        }
+            }else{
+                this.$router.push('/')
+            }
         }
     }
 </script>

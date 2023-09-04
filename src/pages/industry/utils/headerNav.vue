@@ -23,7 +23,7 @@
 					</button>
 					</div>
                 <router-link to="/seeker/profile" class="w-14 h-14 image border border-gray-400 rounded-full overflow-hidden flex object-fit relative">
-                    <img src="@/assets/images/New-mtn-logo.jpg" alt="" class="object-cover w-full h-full">
+                    <img :src="picture" alt="" class="object-cover w-full h-full">
                 </router-link>
                 
 
@@ -53,7 +53,7 @@
             return{
                 data:[],
                 picture:'',
-                userId:''
+                userId:null
             }
         },
         mounted(){
@@ -63,14 +63,18 @@
                 menu.classList.toggle("hidden");
             });
             
-            this.userId = JSON.parse(localStorage.getItem('currentUser'));
-            apiService.getData('industry/display/details/'+this.userId).then((res) => {
-            this.data = res.data;
-            this.picture = 'http://innodip.rw:8004/'+res.data.picture
             
-            this.$emit('userData',JSON.stringify(this.data));
-            console.log(res)
+            this.userId = JSON.parse(localStorage.getItem('currentUser'));
+            if(this.userId!=null && localStorage.getItem('currentType')=='industry'){
+                apiService.getData('industry/display/details/'+this.userId).then((res) => {
+                this.data = res.data;
+                this.picture = 'http://innodip.rw:8004/'+res.data.logo
+                
+                this.$emit('userData',JSON.stringify(this.data));
             });
+            }else{
+                this.$router.push('/')
+            }
         }
     }
 </script>

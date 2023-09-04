@@ -25,6 +25,11 @@ class apiService{
         let resp = res.data;
         return resp;
     }
+    static async getDummies() {
+        let res = await axios.get(url2+'data.json/')
+        let resp = res.data;
+        return resp;
+    }
     static async getOpportunities() {
         let res = await axios.get(url+'opportunities/')
         let resp = res.data;

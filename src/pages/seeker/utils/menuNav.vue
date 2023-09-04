@@ -70,6 +70,7 @@ Sign Out</router-link></li>
         methods:{
             logOut(){
                 localStorage.removeItem('currentUser');
+                localStorage.removeItem('currentType');
                 this.$router.push('/')
             }
         }

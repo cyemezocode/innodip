@@ -85,6 +85,7 @@ let notifier = new AWN(globalOptions)
                     if(data.type=='applicant'){
                         localStorage.removeItem('currentUser');
                         localStorage.setItem('currentUser', JSON.stringify(data.data._id));
+                        localStorage.setItem('currentType', 'applicant');
                         // console.log(data.data);
                         notifier.success('You are successful loged in.', signupOption)
                         this.$router.push('/seeker/');
@@ -92,6 +93,7 @@ let notifier = new AWN(globalOptions)
                     if(data.type=='industry'){
                         localStorage.removeItem('currentUser');
                         localStorage.setItem('currentUser', JSON.stringify(data.data._id));
+                        localStorage.setItem('currentType', 'industry');
                         // console.log(data.data);
                         notifier.success('You are successful loged in.', signupOption)
                         this.$router.push('/industry/');
@@ -99,6 +101,7 @@ let notifier = new AWN(globalOptions)
                     if(data.type=='institution'){
                         localStorage.removeItem('currentUser');
                         localStorage.setItem('currentUser', JSON.stringify(data.data._id));
+                        localStorage.setItem('currentType', 'institution');
                         // console.log(data.data);
                         notifier.success('You are successful loged in.', signupOption)
                         this.$router.push('/institution/');

@@ -27,7 +27,7 @@ Applications</router-link></li>
 </svg>
 Profile</router-link></li>
                    
-                    <li class="text-lg link danger"><router-link to="/" class="flex items-center gap-2">
+                    <li class="text-lg link danger"><router-link  to="" @click="logOut" class="flex items-center gap-2">
                         <svg class="w-6 h-6" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path d="M5.636 5.636a9 9 0 1012.728 0M12 3v9" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
@@ -48,6 +48,13 @@ Sign Out</router-link></li>
             btn.addEventListener("click", () => {
                 menu.classList.toggle("hidden");
             });
+        },
+        methods:{
+            logOut(){
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('currentType');
+                this.$router.push('/')
+            }
         }
     }
 </script>

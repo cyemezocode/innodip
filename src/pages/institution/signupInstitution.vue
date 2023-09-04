@@ -15,10 +15,13 @@
                     <FormInput name="tin" placeholder="TIN Number" label="TIN Number" inputType="text" value="" required=true small=false></FormInput>
                     <FormInput name="password" placeholder="Password" label="Password" inputType="password" value="" required=true small=false></FormInput>
                     <FormInput name="passwordConf" placeholder="Confirm Password" label="Confirm Password" inputType="password" required=true small=false value=""></FormInput>
-                    <div class="flex items-center justify-between">
-                        <router-link to="/" class="text-xl link">Login Here</router-link>
+                    <div class="flex items-center justify-end">
                         <FormButton type="submit" label="Register" bstyle="primary"></FormButton>
                     </div>
+                        <div class="text-sm">
+                            <span>Have an account?</span>&nbsp;
+                            <router-link to="/login/" class="link">Login Here</router-link>
+                        </div>
                 </form>
             </div>
             </div>

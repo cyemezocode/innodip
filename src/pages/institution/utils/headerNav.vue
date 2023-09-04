@@ -22,7 +22,7 @@
 						</svg>
 					</button>
 					</div>
-                <router-link to="/seeker/profile" class="w-14 h-14 image border border-gray-400 rounded-full overflow-hidden flex object-fit relative">
+                <router-link to="/institution/profile" class="w-14 h-14 image border border-gray-400 rounded-full overflow-hidden flex object-fit relative">
                     <img src="@/assets/images/New-mtn-logo.jpg" alt="" class="object-cover w-full h-full">
                 </router-link>
                 
@@ -53,7 +53,7 @@
             return{
                 data:[],
                 picture:'',
-                userId:''
+                userId: null
             }
         },
         mounted(){
@@ -64,13 +64,17 @@
             });
             
             this.userId = JSON.parse(localStorage.getItem('currentUser'));
-            apiService.getData('institution/display/details/'+this.userId).then((res) => {
-            this.data = res.data;
-            this.picture = 'http://innodip.rw:8004/'+res.data.picture
-            
-            this.$emit('userData',JSON.stringify(this.data));
-            console.log(res)
+            console.log(localStorage.getItem('currentType'))
+            if(this.userId!=null && localStorage.getItem('currentType')=='institution'){
+                apiService.getData('institution/display/details/'+this.userId).then((res) => {
+                this.data = res.data;
+                this.picture = 'http://innodip.rw:8004/'+res.data.picture
+                
+                this.$emit('userData',JSON.stringify(this.data));
             });
+            }else{
+                this.$router.push('/')
+            }
         }
     }
 </script>

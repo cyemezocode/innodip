@@ -62,7 +62,7 @@
                 <svg class="w-12 h-12 text-secondary" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
-                 <h1 class="text-3xl text-gray-500">Our Institutions</h1>
+                 <h1 class="text-3xl text-gray-500">Our Academias</h1>
             </div>
             
             <div class="relative">
@@ -84,7 +84,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-2 mb-5">
-                <div class="border rounded-lg overflow-hidden" v-for="mainCat in datas.mainCategories" :key="mainCat">
+                <div class="border rounded-lg overflow-hidden" v-for="mainCat in dummies.mainCategories" :key="mainCat">
                     <h2 class="text-2xl w-full border-b p-4 bg-gray-100">{{mainCat.name}}</h2>
                     <ul class="h-56 overflow-x-scroll p-4 custom-scrollbar">
                         <li v-for="(ty, index) in mainCat.cats" :key="ty" class="link"><router-link to="#">{{index+=1}}. {{ty.name}}</router-link></li>
@@ -97,7 +97,7 @@
         <svg class="w-12 h-12 text-secondary"  aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
-        <h1 class="text-3xl text-gray-500">Top Review Industries</h1>
+        <h1 class="text-3xl text-gray-500">Top Reviewed Institutions</h1>
         </div>
         </div>
         <!-- <div class="sliderPane flex gap-2 overflow-x-scroll px-3 md:px-4 lg:px-32 pb-2">
@@ -116,7 +116,7 @@
   >
     <swiper-slide @click="hello(img._id)" v-for="(img, index) in industries" :key="index" :style="getFirstItemStyle(index)"  class="mb-2 flex justify-center items-end flex-grow flex-shrink-0 rounded-3xl bg-gray-200 py-2 px-4 text-white h-52 hover:bg-green-700 relative  overflow-hidden cursor-pointer orgItem">
         <img :src="baseUrl+img.logo" :alt="img.name" class="absolute top-0 left-0 w-full h-full object-cover z-0">
-                <div class="absolute z-10 bg-gray-50 text-gray-600 top-auto w-[90%] left-[5%] rounded-3xl px-4 py-2 opacity-[.8] bottom-2 text-center">
+                <div class="absolute z-10 bg-gray-50 text-gray-600 top-auto w-[90%] left-[5%] rounded-3xl px-4 py-2 opacity-[.9] bottom-2 text-center">
                     {{ img.name }}
                 </div>
     </swiper-slide>
@@ -176,6 +176,7 @@ import 'swiper/css';
             return{
                 username: 'cyemezo',
                 datas:[],
+                dummies:[],
                 industries: [],
                 institutions: [],
                 activeCat:'all',
@@ -211,6 +212,10 @@ import 'swiper/css';
         };
         },
         mounted(){
+            apiService.getDummies().then(res => {
+                this.dummies = res,
+                this.isLoaded = true
+            });
             apiService.getOpportunities().then(jobsList => {
                 this.datas = jobsList,
                 console.log(jobsList)

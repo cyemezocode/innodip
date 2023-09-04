@@ -42,10 +42,12 @@ import dashboardPageInstitution from '../pages/institution/dashboardPage';
 import employeesPageInstitution from '../pages/institution/employeesPage';
 import opportunitiesPageInstitution from '../pages/institution/opportunitiesPage';
 import opportunityAddInstitution from '../pages/institution/addOpportunity';
+import profilePageInstitution from '../pages/institution/profilePage';
 
 import dashboardPageIndustry from '../pages/industry/dashboardPage';
 import opportunitiesIndustry from '../pages/industry/opportunitiesPage';
 import opportunityAddIndustry from '../pages/industry/addOpportunity';
+import profilePageIndustry from '../pages/industry/profilePage';
 
 
 // admin
@@ -183,6 +185,11 @@ const routes = [
         component: profilePageSeeker
     },
     {
+        name: 'ProfilePageIndus',
+        path:'/industry/profile',
+        component: profilePageIndustry
+    },
+    {
         name: 'EducationPage',
         path:'/seeker/profile/education',
         component: educationPageSeeker
@@ -317,6 +324,11 @@ const routes = [
         name: 'OpportunityAddInd',
         path:'/industry/opportunity/add',
         component: opportunityAddIndustry
+    },
+    {
+        name: 'ProfilePageInst',
+        path:'/institution/profile',
+        component: profilePageInstitution
     },
 ];
 
