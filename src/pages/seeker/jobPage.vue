@@ -161,7 +161,7 @@
 
               <a
                 target="_blank"
-                :href="`http://twitter.com/share?&url=${curUrl}&text=${msg}&hashtags=${tags}`"
+                :href="`http://twitter.com/share?&url=${curUrl}&text=${msg}&hashtags=${tags.trim()}`"
                 class="bg-blue-400 p-2 font-semibold text-white inline-flex items-center space-x-2 rounded"
               >
                 <svg
@@ -273,7 +273,7 @@ import apiService from '../../assets/api/apiService.js'
                 document.title = this.jobData.name,
                 this.curUrl = window.location.href
                 this.title = res.data.name
-                this.msg = res.data.description
+                this.msg = res.data.name+' Innovative Digital Platform'
                 this.tags = res.data.keyword.join(',')
             });
             }
