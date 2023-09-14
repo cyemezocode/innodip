@@ -26,21 +26,21 @@
                         <div class="grid grid-col-1 md:grid-cols-2 gap-4 w-full">
                             <FormInput placeholder="School" label="School" inputType="text"  required=true small=false name="skul" :value="curSchool.school"></FormInput>
                             <FormInput placeholder="Specialization" label="Specialization" inputType="text"  required=true small=false name="specialization" :value="curSchool.specialization"></FormInput>
-                            <FormInput placeholder="Degree" label="Degree" inputType="text"  required=true small=false name="degree" :value="curSchool.degree"></FormInput>
-                            <FormInput placeholder="Graduation Year" label="Graduation Year" inputType="text"  required=true small=false name="year" :value="curSchool.graduated"></FormInput>
+                            <FormInput placeholder="Degree" label="Degree" inputType="text"  required=true small=false name="degree" :value="curSchool.degreeObtained"></FormInput>
+                            <FormInput placeholder="Graduation Year" label="Graduation Year" inputType="text"  required=true small=false name="year" :value="curSchool.yearOfGraduation"></FormInput>
                             
                             <div class="w-full flex flex-col col-span-2">
                             <FormInput placeholder="Document (It must be in PDF format)" label="Attach Document (It must be in PDF format)" inputType="file"  required=true small=false name="attachement"></FormInput>
                             </div>
                             <div class="flex gap-1 md:gap-4">
-                                <FormButton type="submit" label="Add Education" bstyle="primary"></FormButton>
+                                <FormButton type="submit" :label="!isEdit?'Add Education':'Update Education'" bstyle="primary"></FormButton>
                                 <!-- <FormButton type="button" label="Reset" bstyle="secondary" @click="curSchool=[]"></FormButton> -->
                             </div>
                         </div>
                     </div>
                     <div class="flex flex-col w-full md:w-1/2">
                         <h1 class="text-2xl text-gray-500 mb-4">My Educations</h1>
-                        <div class="card-hover flex justify-between" v-for="school in datas.academicProfile" :key="school">
+                        <div class="card-hover flex justify-between" v-for="(school,index) in datas.academicProfile" :key="index">
                             <div class="">
                                 <h1><b>School</b>: {{ school.school }}</h1>
                                 <h1><b>Specialization</b>: {{ school.specialization }}</h1>
@@ -49,8 +49,8 @@
                                 <h1><b>Document</b>: <a :href="baseUrl+school.document" target="_blank" rel="noopener noreferrer">Open Document</a></h1>
                             </div>
                             <div class="flex flex-col justify-between">
-                                <button type="button" @click="setSchool(school.id)">Edit</button>
-                                <button type="button" @click="deleteSchool(school.id)">Delete</button>
+                                <button type="button" @click="setSchool(index)">Edit</button>
+                                <button type="button" @click="deleteSchool(index)">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,9 @@ let notifier = new AWN(globalOptions)
                 isLoaded:false,
                 isModal:false,
                 baseUrl : 'http://innodip.rw:8004/',
-                userId: null
+                userId: null,
+                isEdit:false,
+                dataId:null
             }
         },
         components:{
@@ -138,15 +140,26 @@ let notifier = new AWN(globalOptions)
         },
         methods:{
             setSchool(id){
-                this.curSchool = this.datas[id]
+                this.curSchool = this.datas.academicProfile[id]
+                this.isEdit = true
+                this.dataId=id
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             },
             handleFormSubmission(form,id,base) {
             form.addEventListener("submit", function (e) {
                 e.preventDefault(); // Prevent the default form submission
                 
                 const formData = new FormData(form); // Use the submitted form
-                const endpoint = base+'api/applicants/'+id+'/insert/academicProfile';
-                axios.post(endpoint, formData)
+                
+            let path = '';
+            if(this.isEdit){
+                path = base+'api/applicants/'+id+'/update/academicProfile/'+this.dataId;
+            }else{
+                path = base+'api/applicants/'+id+'/insert/academicProfile';
+
+            }
+                // const endpoint = base+'api/applicants/'+id+'/insert/academicProfile';
+                axios.post(path, formData)
                 .then(response => {
                     $('form').trigger('reset')
                     console.log("Upload successful:", response.data);
@@ -174,25 +187,27 @@ let notifier = new AWN(globalOptions)
             deleteSchool(id){
                 let data = {
                     "title":'Delete Education',
-                    "message": "Do you realy want to delete "+this.datas[id].school+" education?",
-                    "data":this.datas[id]
+                    "message": "Do you realy want to delete <b>"+this.datas.academicProfile[id].school+"</b> education?",
+                    "data":this.datas.academicProfile[id],
+                    "id":id
                 };
                 this.modalData = data
                 this.isModal=true
             },
-            // modalDecision(modalAction){
-            //     if(modalAction){
-            //         apiService.getProfile().then(profile => {
-            //         this.datas = profile.profile.education;
-            //         this.isLoaded = true
-            //         this.isModal=false
-            //     });
-            //     }
-            //     else{
-            //         this.isModal=false
-            //     }
+            modalDecision(modalAction){
+                if(modalAction.status){
+                    this.isModal=false
+                    const id = this.datas._id;
+                    apiService.deleteData('applicants/'+id+'/delete/academicProfile/'+modalAction.id).then(res => {
+                        this.datas.academicProfile.splice(modalAction.id, 1);
+                        notifier.success(res.message, signupOption)
+                    });
+                }
+                else{
+                    this.isModal=false
+                }
 
-            // }
+            }
         }
     }
 </script>

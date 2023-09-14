@@ -29,7 +29,7 @@
         <div class="flex justify-end">
             <router-link :to="router+'/'+data._id"><FormButton type="button" label="Visit &rarr;" bstyle="normal"></FormButton></router-link>
         </div>
-        <p class="w-full">{{ data.description }}</p>
+        <p class="w-full" v-html="data.description"></p>
     </div> 
 </div>
 </template>

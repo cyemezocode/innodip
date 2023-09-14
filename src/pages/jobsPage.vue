@@ -13,7 +13,7 @@
             <div class="w-full md:w-auto px-2 md:px-0">
                 <keep-alive>
                     <form action="">
-                        <FormInput placeholder="Search..." label="" inputType="text" small="true"></FormInput>
+                        <FormInput @setNewVal="setKeyword" placeholder="Search..." label="" inputType="text" small="true"></FormInput>
                     </form>
                 </keep-alive>
             </div>
@@ -21,16 +21,21 @@
         </div>
         
         <div v-if="isLoaded" class="sliderPane flex gap-2 overflow-x-scroll px-2 md:px-4 lg:px-32 pb-2">
-                <button v-for="job in datas.categories" :key="job" :datas="JSON.stringify(job)" class="mb-2 rounded-3xl py-2 px-4 text-white hover:bg-green-700 whitespace-nowrap" :class="job.name==activeCat?'bg-green-500':'bg-stone-700'" @click="activeCat=job.name">
-                {{ job.name }}
-                    </button>
+            <div class="mb-2 rounded-3xl py-2 px-4 text-white hover:bg-green-700 whitespace-nowrap cursor-pointer" :class="'all'==activeCat?'bg-green-500':'bg-stone-700'" @click="filterJobs('all')">
+            All
+            </div>
+            <div v-for="(job, index) in categories" :key="index" :datas="JSON.stringify(job)" class="mb-2 rounded-3xl py-2 px-4 text-white hover:bg-green-700 whitespace-nowrap cursor-pointer" :class="job.name==activeCat?'bg-green-500':'bg-stone-700'" @click="filterJobs(index)">
+            {{ job.name }}
+            </div>
         </div>
-        <div v-if="!isLoaded"  class="sliderPane flex gap-2 overflow-x-scroll px-2 md:px-4 lg:px-32 pb-2">
-                <div v-for="job in 10" :key="job" class="mb-2 rounded-3xl text-gray-300 h-10 py-2 px-4 text-white hover:bg-gray-300 bg-gray-300">
+        <div v-if="!isLoaded"  class="sliderPane flex gap-2 overflow-x-scroll px-2 md:px-4 lg:px-40 pb-2">
+                <div v-for="job in 10" :key="job" class="mb-2 rounded-3xl text-gray-300 h-10 py-2 px-4 hover:bg-gray-300 bg-gray-300">
                     sampletext</div>
         </div>
         <div class="grid max-w-screen-lg mx-auto px-3 md:px-0 py-4">
+        <div class="mb-4">Search for <b>{{ keyword!=''?keyword:activeCat }}</b></div>
             <div v-if="isLoaded">
+                <div class="alert-info" v-if="datas == ''"><b>Sorry! </b>No opportunity found in this category</div>
                 <jobCardVue v-for="job in datas" :key="job" :datas="JSON.stringify(job)" router="/opportunity" :hasDesc=true></jobCardVue>
             </div>
             <div v-if="!isLoaded">
@@ -56,9 +61,11 @@ import apiService from '../assets/api/apiService.js'
     export default {
         data(){
             return{
-                username: 'cyemezo',
+                keyword: '',
                 datas:[],
-                activeCat:'',
+                datasTemp:[],
+                activeCat:'all',
+                categories:[],
                 isLoaded:false
             }
         },
@@ -73,10 +80,57 @@ import apiService from '../assets/api/apiService.js'
         mounted(){
             apiService.getData('opportunities').then(res => {
                 this.datas = res,
+                this.datasTemp = res,
                 this.isLoaded = true,
-                document.title = 'Internship'
+                document.title = 'Opportunities'
+                
+                apiService.getData('all_opportunity_categories').then(res => {
+                    this.categories = res,
+                    this.isLoaded = true
+                });
             });
         },
+        methods:{
+            
+            async filterJobs(id){
+                this.keyword = ''
+                apiService.getData('opportunities').then(res => {
+                   this.datas = res
+                   if(id!='all'){
+                       this.activeCat=this.categories[id].name
+                       const filteredJobsArray = Object.values(this.datas).filter((value) => {
+                       if (value.category && value.category.industryCategoryName === this.activeCat) {
+                           return true;
+                       }
+                       return false;
+                       });
+                       this.datas = filteredJobsArray;
+                       this.datasTemp = filteredJobsArray
+                   }else{
+                       this.activeCat=id
+                   }
+               })
+
+           },
+           setKeyword(e){
+                this.keyword=e.target.value
+                this.searchJobs(this.keyword)
+           },
+           searchJobs(keyword){
+            if(keyword!=''){
+            const filteredJobsArray = Object.values(this.datas).filter((value) => {
+            if (value.name && value.name.toLowerCase().includes(keyword.toLowerCase())) {
+                return true;
+            }
+            return false;
+            });
+            this.datas = filteredJobsArray;
+           }else{
+            this.datas = this.datasTemp;
+           }
+        }
+
+        }
     }
 </script>
 

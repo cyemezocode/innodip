@@ -45,7 +45,8 @@
                             
                         <div class="w-full flex flex-col col-span-2">
                             <label class="text-sm mb-2">Description<strong class="text-red-400">*</strong></label>
-                            <textarea rows="5" class="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary" placeholder="Description" name="description" required></textarea>
+                            <textarea rows="5" v-model="descCont" class="w-full appearance-none hidden bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary" placeholder="Description" name="description" required></textarea>
+                            <ckeditor :editor="editor" v-model="descCont" @ready="onReady" @input="onChange"></ckeditor>
                         </div>
                             <div class="flex items-center col-span-2">
                                 <input id="default-checkbox" type="checkbox" @click="isSalary=!isSalary" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
@@ -69,11 +70,13 @@
                         
                             <div class="w-full flex flex-col col-span-2">
                             <label class="text-sm mb-2">Requirements<strong class="text-red-400">*</strong></label>
-                            <textarea rows="5" class="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary" placeholder="Requirements" name="requirement" required></textarea>
+                            <textarea rows="5" v-model="reqCont" class="w-full appearance-none hidden bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary" placeholder="Requirements" name="requirement" required></textarea>
+                            <ckeditor :editor="editor1" v-model="reqCont" @ready="onReady" @input="onChange"></ckeditor>
                         </div>
                             <div class="w-full flex flex-col col-span-2">
                             <label class="text-sm mb-2">Qualification<strong class="text-red-400">*</strong></label>
-                            <textarea rows="5" class="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary" placeholder="Qualification" name="qualification" required></textarea>
+                            <textarea rows="5" v-model="quaCont" class="w-full appearance-none hidden bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary" placeholder="Qualification" name="qualification" required></textarea>
+                            <ckeditor :editor="editor2" v-model="quaCont" @ready="onReady" @input="onChange"></ckeditor>
                         </div>
                         
                         <div class="w-full flex flex-col col-span-2">
@@ -106,6 +109,8 @@ import apiService from '../../assets/api/apiService.js'
 import AWN from "awesome-notifications"
 import $ from 'jquery'
 
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import CKEditor from "@ckeditor/ckeditor5-vue"
 let globalOptions =  {
   alert: "Oops! Something got wrong",
 
@@ -135,7 +140,13 @@ let notifier = new AWN(globalOptions)
                 facilities:[],
                 isSalary:false,
                 isPayable:false,
-                currencies:[{name:'RWF'},{name:'USD'}]
+                currencies:[{name:'RWF'},{name:'USD'}],
+                editor: ClassicEditor,
+                editor1: ClassicEditor,
+                editor2: ClassicEditor,
+                reqCont: "",
+                quaCont: "",
+                descCont: "",
             }
         },
         components:{
@@ -144,7 +155,9 @@ let notifier = new AWN(globalOptions)
             pageFooterVue,
             FormButton,
             FormInput,
-            FormSelect
+            FormSelect,
+            ckeditor: CKEditor.component
+
         },
         mounted(){
             apiService.getData('all_opportunity_categories').then((response) => {

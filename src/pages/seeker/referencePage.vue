@@ -22,33 +22,33 @@
                 <div class="flex flex-col md:flex-row  gap-4 w-full">
                     <div class="w-full md:w-1/2">
                         <div class="grid grid-col-1 md:grid-cols-2 gap-4 w-full">
-                            <FormInput placeholder="Certificate Title" label="Certificate Title" inputType="text"  required=true small=false name="certificateTitle" :value="curRef.name"></FormInput>
-                            <FormInput placeholder="Date Of Award" label="Date Of Award" inputType="date"  required=true small=false name="dateOfAward" :value="curRef.position"></FormInput>
+                            <FormInput placeholder="Certificate Title" label="Certificate Title" inputType="text"  required=true small=false name="certificateTitle" :value="curRef.title"></FormInput>
+                            <FormInput placeholder="Date Of Award" label="Date Of Award" inputType="date"  required=true small=false name="dateOfAward" :value="curRef.date_awarded"></FormInput>
                                
     <div class="w-full flex flex-col col-span-2">
         <label class="text-sm mb-2">Description<strong class="text-red-400">*</strong></label>
-        <textarea rows="5" class="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary" placeholder="Description" name="certificateDescription" required></textarea>
+        <textarea rows="5" class="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary" placeholder="Description" name="certificateDescription" required v-model="curRef.description"></textarea>
     </div>
     <div class="w-full flex flex-col col-span-2">
                             <FormInput placeholder="Document (It must be in PDF format)" label="Attach Document (It must be in PDF format)" inputType="file"  required=true small=false name="attachmentOfCertificate" :value="curRef.position"></FormInput>
                             </div>
                             <div class="flex gap-4">
-                                <FormButton type="submit" label="Add Reference" bstyle="primary"></FormButton>
+                                <FormButton type="submit" :label="!isEdit?'Add Certificate':'Update Certificate'" bstyle="primary"></FormButton>
                                 <!-- <FormButton type="button" label="Reset" bstyle="secondary" @click="curRef=[]"></FormButton> -->
                             </div>
                         </div>
                     </div>
                     <div class="flex flex-col w-full md:w-1/2">
-                        <h1 class="text-2xl text-gray-500 mb-4">My References</h1>
-                        <div class="card-hover flex justify-between" v-for="school in datas.awardedCertificates" :key="school.id">
+                        <h1 class="text-2xl text-gray-500 mb-4">My Certificates</h1>
+                        <div class="card-hover flex justify-between" v-for="(school,index) in datas.awardedCertificates" :key="index">
                             <div class="">
                                 <h1><b>Title</b>: {{ school.title }}</h1>
                                 <h1><b>Date</b>: {{ school.date_awarded }}</h1>
                                 <h1><b>Document</b>: <a :href="baseUrl+school.document" target="_blank" rel="noopener noreferrer">Open Document</a></h1>
                             </div>
                             <div class="flex flex-col justify-between">
-                                <button type="button" @click="setSchool(school.id)">Edit</button>
-                                <button type="button" @click="deleteRef(school.id)">Delete</button>
+                                <button type="button" @click="setSchool(index)">Edit</button>
+                                <button type="button" @click="deleteRef(index)">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -110,7 +110,9 @@ let notifier = new AWN(globalOptions)
                 isLoaded:false,
                 isModal: false,
                 baseUrl : 'http://innodip.rw:8004/',
-                userId: null
+                userId: null,
+                isEdit:false,
+                dataId:null
             }
         },
         components:{
@@ -134,15 +136,26 @@ let notifier = new AWN(globalOptions)
         },
         methods:{
             setSchool(id){
-                this.curRef = this.datas[id]
+                this.curRef = this.datas.awardedCertificates[id]
+                this.isEdit = true
+                this.dataId=id
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             },
             handleFormSubmission(form,id,base) {
             form.addEventListener("submit", function (e) {
                 e.preventDefault(); // Prevent the default form submission
                 
                 const formData = new FormData(form); // Use the submitted form
-                const endpoint = base+'api/applicants/'+id+'/insert/awardedCertificate';
-                axios.post(endpoint, formData)
+                
+            let path = '';
+            if(this.isEdit){
+                path = base+'api/applicants/'+id+'/update/awardedCertificate/'+this.dataId;
+            }else{
+                path = base+'api/applicants/'+id+'/insert/awardedCertificate';
+
+            }
+                // const endpoint = base+'api/applicants/'+id+'/insert/awardedCertificate';
+                axios.post(path, formData)
                 .then(response => {
                     $('form').trigger('reset')
                     console.log("Upload successful:", response.data);
@@ -171,19 +184,21 @@ let notifier = new AWN(globalOptions)
             deleteRef(id){
                 let data = {
                     "title":'Delete Expirience',
-                    "message": "Do you realy want to delete "+this.datas[id].institution+" reference?",
-                    "data":this.datas[id]
+                    "message": "Do you realy want to delete <b>"+this.datas.awardedCertificates[id].title+"</b> certificate?",
+                    "data":this.datas.awardedCertificates[id],
+                    "id":id
                 };
                 this.modalData = data
                 this.isModal=true
             },
             modalDecision(modalAction){
-                if(modalAction){
-                    apiService.getProfile().then(profile => {
-                    this.datas = profile.profile.refrence;
-                    this.isLoaded = true
+                if(modalAction.status){
                     this.isModal=false
-                });
+                    const id = this.datas._id;
+                    apiService.deleteData('applicants/'+id+'/delete/certificates/'+modalAction.id).then(res => {
+                        this.datas.awardedCertificates.splice(modalAction.id, 1);
+                        notifier.success(res.message, signupOption)
+                    });
                 }
                 else{
                     this.isModal=false

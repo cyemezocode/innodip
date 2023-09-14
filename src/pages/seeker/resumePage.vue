@@ -1,174 +1,294 @@
 <template>
-    <div class="block md:flex relative">
-        <div class="hidden md:block w-full md:w-[20%] sticky top-0 h-[100vh] mobile-menu">
-            <menuNav></menuNav>
-        </div>
-        <div class="w-[100%] md-[80%]">
-        <headerNavVue @userData="getUser"></headerNavVue>
-        <div class="p-4 justify-center content">
-        <div class="flex flex-col md:flex-row flex-wrap items-center justify-between gap-4">
-            <div class="flex items-center w-full md:w-auto px-2 md:px-0">
-                <svg class="w-16 h-16 text-secondary" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-                <h1 class="text-4xl text-gray-500">My Resume</h1>
-            </div>
-            <div class="w-full md:w-auto px-2 md:px-0">
-            </div>
-        </div>
-        </div>
-        <div class="grid p-4">
-            <div class="rela-block page" id="resumePage" v-if="isLoaded">
-<div class="rela-block top-bar bg-primary">
-    <div class="caps name"><div class="abs-center">{{ profile.fname }} {{ profile.lname }}</div></div>
-</div>
-<div class="side-bar bg-secondary">
-    <div class="mugshot">
-        <div class="logo">
-          <img :src="selectedFilePreview" alt="image">
-        </div>
+  <div class="block md:flex relative">
+    <div
+      class="hidden md:block w-full md:w-[20%] sticky top-0 h-[100vh] mobile-menu"
+    >
+      <menuNav></menuNav>
     </div>
-    <p>Phone: {{ profile.phone }}</p>
-    <p>Email Address: {{ profile.email }}</p>
-    <p>Birth Date: {{ profile.dob }}</p>
-    <p>National ID: {{ profile.nid }}</p>
-    <p>Address: <span v-for="add in profile.address" :key="add">{{ add }} - </span></p><br>
-</div>
-<div class="rela-block content-container">
-    <h2 class="rela-block caps title">Resume</h2>
-    <div class="rela-block separator"></div>
-    <!-- <div class="rela-block caps greyed">Profile</div> -->
-    <p class="long-margin">{{ profile.headline }}</p>
-    <div class="rela-block caps greyed">Experience</div>
-                      <ol class="border-l border-neutral-300 dark:border-neutral-500">
-                        <!--First item-->
-                        <li v-for="(acad, key) in profile.workExperience" :key="key">
-                          <div class="flex-start flex items-center pt-3">
-                            <div
-                              class="-ml-[5px] mr-3 h-[9px] w-[9px] rounded-full bg-neutral-300 dark:bg-neutral-500"></div>
-                            <p class="text-sm text-neutral-900">
-                              {{ acad.from }} - {{ acad.to }}
-                            </p>
-                          </div>
-                          <div class="mb-6 ml-4 mt-2">
-                            <h4 class="mb-1.5 text-xl font-semibold">{{ acad.position }}</h4>
-                            <p class="mb-3">
-                              {{ acad.employer }}
-                            </p>
-                            <p class="mb-3">
-                             Skills: <span class="text-sm">{{ acad.employer }}</span>
-                            </p>
-                          </div>
-                        </li>
-                      </ol>                
-      <div class="rela-block caps greyed">Education</div>
-      <div
-                        v-for="(acad, key) in profile.academicProfile"
-                        :key="key"
-                      >
-                        <div class="m-b30">
-                          <div class="job-post-info">
-                                <i class="fa fa-map-marker"></i> Institution:
-                                {{ acad.school }}
-                              <br />
-                                <i class="fa fa-bookmark"></i> Qualification:
-                                : {{ acad.specialization }}
-                              <br />
-                                <i class="fa fa-clock-o"></i> Graduation Year: 
-                                {{ acad.graduated }}
-                              <br />
-                                <i class="fa fa-book"></i> Degree:
-                                {{ acad.degreeObtained }}
-                          </div>
-                        </div>
-                      </div>
-    <div class="rela-block caps greyed">Reference</div>
+    <div class="w-[100%] md-[80%]">
+      <headerNavVue @userData="getUser"></headerNavVue>
+      <div class="p-4 justify-center content">
+        <div
+          class="flex flex-col md:flex-row flex-wrap items-center justify-between gap-4"
+        >
+          <div class="flex items-center w-full md:w-auto px-2 md:px-0">
+            <svg
+              class="w-16 h-16 text-secondary"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+            <h1 class="text-4xl text-gray-500">My Resume</h1>
+          </div>
+          <div class="w-full md:w-auto px-2 md:px-0"></div>
+        </div>
+      </div>
+      <div class="grid p-4">
+        <div class="rela-block page" id="resumePage" v-if="isLoaded">
+          <div class="rela-block top-bar bg-primary">
+            <div class="caps name">
+              <div class="abs-center">
+                {{ profile.fname }} {{ profile.lname }}
+              </div>
+            </div>
+          </div>
+          <div class="side-bar bg-secondary relative">
+            <router-link to="/seeker/profile" title="Edit Resume">
+              <svg
+                class="absolute top-3 right-3 z-1 w-8 h-8"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </router-link>
+            <div class="mugshot">
+              <div class="logo">
+                <img :src="selectedFilePreview" alt="image" />
+              </div>
+            </div>
+            <p>Phone: {{ profile.phone }}</p>
+            <p>Email Address: {{ profile.email }}</p>
+            <p>Birth Date: {{ profile.dob }}</p>
+            <p>National ID: {{ profile.nid }}</p>
+            <p>
+              Address:
+              <span v-for="add in profile.address" :key="add"
+                >{{ add }} -
+              </span>
+            </p>
+            <br />
+          </div>
+          <div class="rela-block content-container relative">
+            <router-link to="/seeker/profile" title="Edit Resume">
+              <svg
+                class="absolute z-10 top-3 right-3 z-1 w-8 h-8"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </router-link>
+            <h2 class="rela-block caps title">Resume</h2>
+            <div class="rela-block separator"></div>
+            <!-- <div class="rela-block caps greyed">Profile</div> -->
+            <p class="long-margin" v-html="profile.headline"></p>
+            <div class="relative">
+              <router-link to="/seeker/profile/experience" title="Edit Experience">
+                <svg
+                  class="absolute z-10 top-0 right-3 z-1 w-8 h-8"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+              </router-link>
+              <div class="rela-block caps greyed">Experience</div>
 
-                    <div v-for="(acad, key) in profile.workExperience"
-                        :key="key">
-                        <div class="m-b30">
-                          <div class="job-post-info">
-                                <i class="fa fa-map-marker"></i> Institution:
-                                {{ acad.employer }}
-                              <br />
-                                <i class="fa fa-bookmark"></i> Position: 
-                                {{ acad.refereePosition }}
-                              <br />
-                                <i class="fa fa-user"></i> Referee Name: 
-                                {{ acad.refereeName }}
-                              <br />
-                                <i class="fa fa-envelope"></i> Email Address:
-                                {{ acad.refereeEmail }}
-                              <br />
-                                <i class="fa fa-phone"></i> Phone Number: 
-                                {{ acad.refereePhone }}
-                              <br />
-                          </div>
-                        </div>
-                      </div>
-                      </div>
-    
-</div>
+              <ol class="border-l border-neutral-300 dark:border-neutral-500">
+                <!--First item-->
+                <li v-for="(acad, key) in profile.workExperience" :key="key">
+                  <div class="flex-start flex items-center pt-3">
+                    <div
+                      class="-ml-[5px] mr-3 h-[9px] w-[9px] rounded-full bg-neutral-300 dark:bg-neutral-500"
+                    ></div>
+                    <p class="text-sm text-neutral-900">
+                      {{ acad.from }} - {{ acad.to }}
+                    </p>
+                  </div>
+                  <div class="mb-6 ml-4 mt-2">
+                    <h4 class="mb-1.5 text-xl font-semibold">
+                      {{ acad.position }}
+                    </h4>
+                    <p class="mb-3">
+                      {{ acad.employer }}
+                    </p>
+                    <p class="mb-3">
+                      Skills: <span class="text-sm">{{ acad.employer }}</span>
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+            <div class="relative">
+              <router-link to="/seeker/profile/education" title="Edit Education">
+                <svg
+                  class="absolute z-10 top-0 right-3 z-1 w-8 h-8"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+              </router-link>
+              <div class="rela-block caps greyed">Education</div>
+              <div
+                class="flex flex-col gap-4 mb-4 w-full"
+                v-for="(acad, key) in profile.academicProfile"
+                :key="key"
+              >
+                <div class="mb-30 w-full">
+                  <div class="job-post-info">
+                    <i class="fa fa-map-marker"></i> Institution:
+                    {{ acad.school }}
+                    <br />
+                    <i class="fa fa-bookmark"></i> Qualification: :
+                    {{ acad.specialization }}
+                    <br />
+                    <i class="fa fa-clock-o"></i> Graduation Year:
+                    {{ acad.graduated }}
+                    <br />
+                    <i class="fa fa-book"></i> Degree:
+                    {{ acad.degreeObtained }}
+                  </div>
+                </div>
+                <hr />
+              </div>
+            </div>
+
+            <div class="relative">
+              <router-link to="/seeker/profile/experience" title="Edit Reference">
+                <svg
+                  class="absolute z-10 top-0 right-3 z-1 w-8 h-8"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+              </router-link>
+              <div class="rela-block caps greyed">Reference</div>
+
+              <div
+                class="flex flex-col gap-4 mb-4 w-full"
+                v-for="(acad, key) in profile.workExperience"
+                :key="key"
+              >
+                <div class="m-b30">
+                  <div class="job-post-info">
+                    <i class="fa fa-map-marker"></i> Institution:
+                    {{ acad.employer }}
+                    <br />
+                    <i class="fa fa-bookmark"></i> Position:
+                    {{ acad.refereePosition }}
+                    <br />
+                    <i class="fa fa-user"></i> Referee Name:
+                    {{ acad.refereeName }}
+                    <br />
+                    <i class="fa fa-envelope"></i> Email Address:
+                    {{ acad.refereeEmail }}
+                    <br />
+                    <i class="fa fa-phone"></i> Phone Number:
+                    {{ acad.refereePhone }}
+                    <br />
+                  </div>
+                </div>
+                <hr>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <pageFooterVue></pageFooterVue>
-
-        </div>
     </div>
+  </div>
 </template>
 
 <script>
-import headerNavVue from '../seeker/utils/headerNav.vue'
-import menuNav from '../seeker/utils/menuNav.vue'
-import pageFooterVue from '../seeker/utils/pageFooter.vue'
+import headerNavVue from "../seeker/utils/headerNav.vue";
+import menuNav from "../seeker/utils/menuNav.vue";
+import pageFooterVue from "../seeker/utils/pageFooter.vue";
 // import FormButton from '../utils/FormButton.vue';
-import apiService from '../../assets/api/apiService.js'
-    export default {
-        name: 'profilePage',
-        data(){
-            return{
-                username: 'cyemezo',
-                profile:[],
-                activeCat:'',
-                isLoaded:false,
-                baseUrl : 'http://innodip.rw:8004/',
-                selectedFilePreview:''
-            }
-        },
-        components:{
-            headerNavVue,
-            menuNav,
-            pageFooterVue,
-            // FormInput,
-            // FormButton, 
-        },
-        mounted(){
-            
-            const btn = document.querySelector(".toggleMobile");
-            const menu = document.querySelector(".mobile-menu");
-            const content = document.querySelector(".content");
+import apiService from "../../assets/api/apiService.js";
+export default {
+  name: "profilePage",
+  data() {
+    return {
+      username: "cyemezo",
+      profile: [],
+      activeCat: "",
+      isLoaded: false,
+      baseUrl: "http://innodip.rw:8004/",
+      selectedFilePreview: "",
+    };
+  },
+  components: {
+    headerNavVue,
+    menuNav,
+    pageFooterVue,
+    // FormInput,
+    // FormButton,
+  },
+  mounted() {
+    const btn = document.querySelector(".toggleMobile");
+    const menu = document.querySelector(".mobile-menu");
+    const content = document.querySelector(".content");
 
-            btn.addEventListener("click", () => {
-                menu.classList.toggle("hidden");
-                content.classList.toggle("content");
-            });
-        },
-        methods:{
-            getUser(data){
-              this.profile = JSON.parse(data);
-              this.selectedFilePreview = this.baseUrl+this.profile.picture
-              this.isLoaded = true;
-              document.title=this.profile.fname+" Personal Information";
-              this.profile.dob = apiService.calendarDate(this.profile.dod)
-            },
-            
-            
-          
-        }
-    }
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+      content.classList.toggle("content");
+    });
+  },
+  methods: {
+    getUser(data) {
+      this.profile = JSON.parse(data);
+      this.selectedFilePreview = this.baseUrl + this.profile.picture;
+      this.isLoaded = true;
+      document.title = this.profile.fname + " Personal Information";
+      this.profile.dob = apiService.calendarDate(this.profile.dod);
+    },
+  },
+};
 </script>
 
 <style scoped>
-
 .job-time span {
   cursor: pointer;
 }
@@ -179,7 +299,6 @@ import apiService from '../../assets/api/apiService.js'
 ul {
   width: 100% !important;
 }
-
 
 * {
   box-sizing: border-box;
@@ -214,12 +333,13 @@ ul {
   width: 88%;
 }
 body {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 18px;
   letter-spacing: 0px;
   font-weight: 400;
   line-height: 28px;
-  background: url("http://kingofwallpapers.com/leaves/leaves-016.jpg") right no-repeat;
+  background: url("http://kingofwallpapers.com/leaves/leaves-016.jpg") right
+    no-repeat;
   background-size: cover;
 }
 body:before {
@@ -231,7 +351,7 @@ body:before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255,255,255,0.92);
+  background-color: rgba(255, 255, 255, 0.92);
 }
 .caps {
   text-transform: uppercase;
@@ -243,7 +363,7 @@ p.light {
   color: #777;
 }
 h2 {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 30px;
   letter-spacing: 5px;
   font-weight: 600;
@@ -251,7 +371,7 @@ h2 {
   color: #000;
 }
 h3 {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 21px;
   letter-spacing: 1px;
   font-weight: 600;
@@ -263,7 +383,7 @@ h3 {
   max-width: 1200px;
   /* margin: 80px auto; */
   background-color: #fff;
-  box-shadow: 6px 10px 28px 0px rgba(0,0,0,0.4);
+  box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
 }
 .top-bar {
   height: 220px;
@@ -280,7 +400,7 @@ h3 {
   bottom: 0;
   height: 120px;
   text-align: center;
-  font-family: 'Raleway';
+  font-family: "Raleway";
   font-size: 58px;
   letter-spacing: 8px;
   font-weight: 100;
@@ -319,7 +439,7 @@ h3 {
   width: 100%;
   aspect-ratio: 1/1;
 }
-.mugshot .logo img{
+.mugshot .logo img {
   object-fit: cover;
   width: 100%;
   height: 100%;
@@ -372,16 +492,19 @@ h3 {
   background-size: cover !important;
 }
 .social.twitter:before {
-  background: url("https://cdn3.iconfinder.com/data/icons/social-media-2026/60/Socialmedia_icons_Twitter-07-128.png") center no-repeat;
+  background: url("https://cdn3.iconfinder.com/data/icons/social-media-2026/60/Socialmedia_icons_Twitter-07-128.png")
+    center no-repeat;
 }
 .social.pinterest:before {
-  background: url("https://cdn3.iconfinder.com/data/icons/social-media-2026/60/Socialmedia_icons_Pinterest-23-128.png") center no-repeat;
+  background: url("https://cdn3.iconfinder.com/data/icons/social-media-2026/60/Socialmedia_icons_Pinterest-23-128.png")
+    center no-repeat;
 }
 .social.linked-in:before {
-  background: url("https://cdn3.iconfinder.com/data/icons/social-media-2026/60/Socialmedia_icons_LinkedIn-128.png") center no-repeat;
+  background: url("https://cdn3.iconfinder.com/data/icons/social-media-2026/60/Socialmedia_icons_LinkedIn-128.png")
+    center no-repeat;
 }
 .side-header {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 18px;
   letter-spacing: 4px;
   font-weight: 600;
@@ -422,7 +545,7 @@ h3 {
   width: 100%;
   max-width: 580px;
   text-align: center;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 18px;
   letter-spacing: 6px;
   font-weight: 600;
@@ -431,7 +554,7 @@ h3 {
 @media screen and (max-width: 1150px) {
   .name {
     color: #fff;
-    font-family: 'Raleway';
+    font-family: "Raleway";
     font-size: 38px;
     letter-spacing: 6px;
     font-weight: 100;

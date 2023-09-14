@@ -7,8 +7,8 @@
                     <input type="text" id="search-navbar" class="bg-white pl-10 p-2 rounded-lg  border-2 border-gray-400  outline-none focus:border-primary" placeholder="Search..."></div>
             </div>
             <div class="flex gap-1 md:gap-4 items-center">
-                <router-link to="/seeker/profile" class="w-14 h-14 image border border-gray-400 rounded-full overflow-hidden flex object-fit relative">
-                    <img :src="picture" alt="" class="object-cover w-full h-full">
+                <router-link to="/seeker/resume" class="w-14 h-14 image border border-gray-400 rounded-full overflow-hidden flex object-fit relative">
+                    <img :src="picture" alt="" class="object-cover w-full h-full bg-white">
                 </router-link>
                 <div class="md:hidden flex items-center">
 						<button class="outline-none mobile-menu-button bg-primary rounded-lg p-2 hover:bg-secondary toggleMobile">

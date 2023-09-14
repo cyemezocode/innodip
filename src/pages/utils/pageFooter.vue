@@ -23,7 +23,7 @@
             </ul>
         </div>
         <div class="mt-4 md:mt-0 flex items-center justify-center">
-            <router-link to="#" class="rounded-lg mt-12 bg-white p-4 text-black hover:text-white hover:bg-green-400">Register Now</router-link>
+            <router-link to="/signup" class="rounded-lg mt-12 bg-white p-4 text-black hover:text-white hover:bg-green-400">Register Now</router-link>
         </div>
         </div>
         <div class="bg-gray-400 h5 border-t border-slate-300">

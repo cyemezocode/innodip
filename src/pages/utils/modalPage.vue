@@ -6,11 +6,11 @@
                 <span class="absolute top-5 right-5 text-3xl cursor-pointer hover:text-danger" @click="closeModal()">&times;</span>
             </h1>
             <div class="holder p-6">
-                <p>{{ data.message }}</p>
+                <p v-html="data.message"></p>
             </div>
             <div class="px-3 py-5 text-2xl border-b border flex justify-end gap-2">
-                <button class="btn-secondary-sm" @click="closeModal()">Cancel</button>
-                <button class="btn-primary-sm-danger" @click="acceptModal()">Delete</button>
+                <button class="btn-secondary-sm" @click="closeModal(data.id)">Cancel</button>
+                <button class="btn-primary-sm-danger" @click="acceptModal(data.id)">Delete</button>
             </div>
 
         </div>
@@ -24,11 +24,11 @@
             data: []
         },
         methods:{
-            closeModal(){
-                this.$emit('modalAction',false)
+            closeModal(id){
+                this.$emit('modalAction',{'status':false,id:id})
             },
-            acceptModal(){
-                this.$emit('modalAction',true)
+            acceptModal(id){
+                this.$emit('modalAction',{'status':true,id:id})
             }
         }
         

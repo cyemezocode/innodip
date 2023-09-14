@@ -46,3 +46,6 @@
 .link.danger{
     @apply text-danger hover:text-primary transition ease-in-out duration-500
 }
+.alert-info{
+    @apply bg-blue-100 rounded-lg border-blue-500 text-blue-700 px-4 py-3 border my-3
+}

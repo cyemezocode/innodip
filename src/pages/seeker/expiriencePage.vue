@@ -25,7 +25,7 @@
                             <FormInput placeholder="Institution" label="Institution" inputType="text"  required=true small=false name="institution" :value="curExperience.employer "></FormInput>
                             <FormInput placeholder="Position" label="Position" inputType="text"  required=true small=false name="position" :value="curExperience.position"></FormInput>
                             <FormInput placeholder="From" label="From" inputType="date"  required=true small=false name="from" :value="curExperience.from"></FormInput>
-                            <FormInput placeholder="To" label="To" inputType="date"  required=true small=false name="till" :value="curExperience.to"></FormInput>
+                            <FormInput placeholder="To" label="To" inputType="date"  required=true small=false name="to" :value="curExperience.to"></FormInput>
                             <div class="flex items-center col-span-2">
                                 <input id="default-checkbox" type="checkbox" @click="youStillWorkHere=!youStillWorkHere" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Current Work here</label>
@@ -36,9 +36,8 @@
                             <FormInput placeholder="Email Of Referee" label="Email Of Referee" inputType="email"  required=true small=false name="EmailOfReferee" :value="curExperience.refereeEmail"></FormInput>
                             <FormInput placeholder="Phone Of Referee" label="Phone Of Referee" inputType="text"  required=true small=false name="PhoneOfReferee" :value="curExperience.refereePhone"></FormInput>
                             <FormInput placeholder="Skills Gained" label="Skills Gained" inputType="text"  required=true small=false name="SkillsGained" :value="curExperience.gainedSkills"></FormInput>
-
                             <div class="flex gap-4 col-span-2">
-                                <FormButton type="submit" label="Add Expirience" bstyle="primary"></FormButton>
+                                <FormButton type="submit" :label="!isEdit?'Add Expirience':'Update Expirience'" bstyle="primary"></FormButton>
                                 <!-- <FormButton type="button" label="Reset" bstyle="secondary" @click="curExperience=[]"></FormButton> -->
                             </div>
                         </div>
@@ -114,7 +113,9 @@ let notifier = new AWN(globalOptions)
                 activeCat:'',
                 isLoaded:false,
                 isModal: false,
-                youStillWorkHere:false
+                youStillWorkHere:false,
+                isEdit:false,
+                dataId:null
             }
         },
         components:{
@@ -138,14 +139,23 @@ let notifier = new AWN(globalOptions)
         methods:{
             setExperience(id){
                 this.curExperience = this.datas.workExperience[id]
+                this.isEdit = true
+                this.dataId=id
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             },
             sendData() {
             const form = document.getElementById("formData");
             const serializedData = apiService.serializeFormData(form);
-            apiService.handleForm('applicants/'+this.datas._id+'/insert/workExperiance',serializedData).then(
+            let path = '';
+            if(this.isEdit){
+                path = 'applicants/'+this.datas._id+'/update/workExperience/'+this.dataId;
+            }else{
+                path = 'applicants/'+this.datas._id+'/insert/workExperiance';
+
+            }
+            apiService.handleForm(path,serializedData).then(
                 response => {
                     $('form').trigger('reset')
-                    console.log("Upload successful:", response.data);
                     notifier.success(response.message, signupOption)
                     this.$router.reload()
                 })
@@ -156,9 +166,10 @@ let notifier = new AWN(globalOptions)
             },
             deleteExpirience(id){
                 let data = {
-                    "title":'Delete Expirience',
-                    "message": "Do you realy want to delete "+this.datas.workExperience[id].employer+" experience?",
-                    "data":this.datas.workExperience[id]
+                    "title":'Delete Experience',
+                    "message": "Do you realy want to delete <b>"+this.datas.workExperience[id].employer+"</b> experience?",
+                    "data":this.datas.workExperience[id],
+                    "id":id
                 };
                 this.modalData = data
                 this.isModal=true
@@ -171,9 +182,13 @@ let notifier = new AWN(globalOptions)
             this.datas.dob = apiService.calendarDate(this.datas.dob)
             },
             modalDecision(modalAction){
-                if(modalAction){
-                this.isModal=false
-
+                if(modalAction.status){
+                    this.isModal=false
+                    const id = this.datas._id;
+                    apiService.deleteData('applicants/'+id+'/delete/workExperience/'+modalAction.id).then(res => {
+                        this.datas.workExperience.splice(modalAction.id, 1);
+                        notifier.success(res.message, signupOption)
+                    });
                 }
                 else{
                     this.isModal=false

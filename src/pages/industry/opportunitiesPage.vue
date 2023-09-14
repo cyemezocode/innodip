@@ -54,7 +54,7 @@
             <menuNav></menuNav>
         </div>
         <div class="col-span-12 md:col-span-8">
-        <headerNavVue></headerNavVue>
+        <headerNavVue @userData="getUser"></headerNavVue>
         <div class="p-4 justify-center">
         <div class="flex flex-col md:flex-row flex-wrap items-center justify-between gap-4">
             <div class="flex items-center w-full md:w-auto px-2 md:px-0">
@@ -97,12 +97,16 @@
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Category
+                                </th>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="category in datas" :key="category">
+                            <tr v-for="category in categories.opportunities" :key="category">
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 w-10 h-10">
@@ -112,19 +116,16 @@
                                         </div>
                                         <div class="ml-3">
                                             <p class="text-gray-900 whitespace-no-wrap">
-                                               {{category.category_name}}
+                                               {{category.name}}
                                             </p>
                                         </div>
                                     </div>
                                 </td>
+                                <td>
+                                    {{category.category.industryCategoryName}}
+                                </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-end">
                                     
-                                    <router-link :to="`/admin/category/sub-category/`+category._id"
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span aria-hidden
-                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                        <span class="relative">Sub Categories</span>
-                                    </router-link>
                                     <span
                                         class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                         <span aria-hidden
@@ -180,6 +181,7 @@ import modalPane from '../admin/utils/modalPane.vue'
         data(){
             return{
                 datas:[],
+                categories:[],
                 isLoaded:false,
                 showModal: false
             }
@@ -191,18 +193,22 @@ import modalPane from '../admin/utils/modalPane.vue'
             modalPane
         },
         mounted(){
-            apiService.getCategories().then(jobsList => {
-                this.datas = jobsList;
-                this.isLoaded = true
-                document.title = 'Main Categories'
-            });
-
         },
         methods: {
             toggleModal: function(){
             this.showModal = !this.showModal;
-            }
+            },
+            getUser(data){
+            this.datas = JSON.parse(data);
+            this.isLoaded = true;
+            document.title=this.datas.name+" Opportunities";
+            
+            apiService.getData('industry/my/opportunities/'+this.datas._id).then(res => {
+                this.categories = res,
+                this.isLoaded = true
+            });
         }
+    }
     }
 </script>
 

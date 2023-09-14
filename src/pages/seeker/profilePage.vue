@@ -55,7 +55,7 @@
                     <img
                       s v-if="selectedFile || selectedFilePreview" :src="selectedFilePreview"
                       alt=""
-                      class="object-cover w-full h-full absolute z-1"
+                      class="object-cover w-full h-full absolute z-1  bg-white"
                     />
                     <label
                       for="photo"
@@ -66,7 +66,7 @@
                   </div>
                 </div>
 
-                <div class="col-span-8 md:col-span-4 w-full">
+                <div class="col-span-8 md:col-span-6 w-full">
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                     <input type="hidden" name="" v-model="datas.isLocalSignUp">
                     <FormInput
@@ -148,12 +148,12 @@
                     
     <div class="w-full flex flex-col">
         <label class="text-sm mb-2">Biography<strong class="text-red-400">*</strong></label>
-        <textarea rows="5" class="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary" placeholder="Biography" name="biograph" required v-model="datas.headline"></textarea>
+        <textarea rows="5" class="hidden w-full appearance-none bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary" placeholder="Biography" name="biograph" required v-model="datas.headline"></textarea>
     </div>
+    <ckeditor :editor="editor" v-model="datas.headline" @ready="onReady" @input="onChange"></ckeditor>
                   </div>
                 </div>
               </div>
-
               <div class="flex items-center justify-between" v-if="isLoaded">
                 <FormButton
                   type="submit"
@@ -188,7 +188,9 @@ import FormSelect from '../utils/FormSelect.vue';
 import apiService from "../../assets/api/apiService.js";
 import axios from 'axios';
 import AWN from "awesome-notifications"
-
+import $ from 'jquery'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  import CKEditor from "@ckeditor/ckeditor5-vue"
 let globalOptions =  {
   alert: "Oops! Something got wrong",
 
@@ -218,7 +220,9 @@ export default {
       baseUrl : 'http://innodip.rw:8004/',
       selectedFilePreview:null,
       countries:[],
-      address:''
+      address:'',
+      editor: ClassicEditor,
+      editorData: ""
 
     };
   },
@@ -228,12 +232,12 @@ export default {
     pageFooterVue,
     FormInput,
     FormButton,
-    FormSelect
+    FormSelect,
+    ckeditor: CKEditor.component
   },
   mounted() {
       apiService.getData('all_countries').then((response) => {
             this.countries = response;
-            
       });
 
     const btn = document.querySelector(".toggleMobile");
@@ -244,8 +248,16 @@ export default {
       menu.classList.toggle("hidden");
       content.classList.toggle("content");
     });
+    
   },
   methods: {
+    
+    onReady( editor ) {
+        console.log( "CKEditor5 Vue Component is ready to use!", editor );
+      },
+      onChange( data ) {
+        console.log( data );
+      },
     async handleFileChange(event) {
       this.selectedFile = event.target.files[0];
       // this.selectedFilePreview = URL.createObjectURL(this.selectedFile); // Create data URL for preview
@@ -289,6 +301,7 @@ export default {
     }
   },
 };
+
 </script>
 
 <style scoped>

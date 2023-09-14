@@ -10,7 +10,7 @@
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
         Category Name
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Category Name">
+      <input name="category_name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Category Name">
     </div>
   </div>
 
@@ -27,7 +27,7 @@
                   <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span></p>
                   <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
               </div>
-              <input id="dropzone-file" type="file" name="banner" class="hidden" />
+              <input id="dropzone-file" type="file" name="category_banner" class="hidden" />
           </label>
       </div> 
     <div class="flex items-start flex-col justify-center w-full">
@@ -43,7 +43,7 @@
                 <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span></p>
                 <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
             </div>
-            <input id="dropzone-file" type="file" name="icon" class="hidden" />
+            <input id="dropzone-file" type="file" name="category_icon" class="hidden" />
         </label>
     </div> 
 
@@ -102,7 +102,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="category in datas" :key="category">
+                            <tr v-for="category in datas.categories" :key="category">
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 w-10 h-10">
@@ -119,12 +119,6 @@
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-end">
                                     
-                                    <router-link :to="`/admin/category/sub-category/`+category._id"
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span aria-hidden
-                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                        <span class="relative">Sub Categories</span>
-                                    </router-link>
                                     <span
                                         class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                         <span aria-hidden
@@ -191,10 +185,9 @@ import modalPane from './utils/modalPane.vue'
             modalPane
         },
         mounted(){
-            apiService.getCategories().then(jobsList => {
-                this.datas = jobsList;
+            apiService.getData('categories').then(res => {
+                this.datas = res,
                 this.isLoaded = true
-                document.title = 'Main Categories'
             });
 
         },

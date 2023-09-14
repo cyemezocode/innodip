@@ -7,7 +7,7 @@
                     <ul class="flex gap-8">
                         <li class="hover:text-primary"><router-link to="/">Home</router-link></li>
                         <li class="hover:text-primary"><router-link to="/opportunities/">Opportunities</router-link></li>
-                        <li class="hover:text-primary"><a href="/universities/">Academias</a></li>
+                        <li class="hover:text-primary"><a href="/universities/">Academia</a></li>
                         <li class="link"><a href="/industries/">Institutions</a></li>
                     </ul>
                 </div>
@@ -46,7 +46,7 @@
                     <ul class="flex flex-col gap-2 justify-start items-start w-full">
                         <li class="hover:text-primary w-full"><router-link to="/">Home</router-link></li>
                         <li class="hover:text-primary w-full"><router-link to="/opportunities/">Opportunities</router-link></li>
-                        <li class="hover:text-primary w-full"><router-link to="/universities/">Academias</router-link></li>
+                        <li class="hover:text-primary w-full"><router-link to="/universities/">Academia</router-link></li>
                         <li class="hover:text-primary w-full"><router-link to="/industries/">Institutions</router-link></li>
                     </ul>
                 </div>

@@ -39,8 +39,11 @@
 </template>
 
 <script>
-import apiService from '../../../assets/api/apiService.js'
-import AWN from "awesome-notifications"
+// import apiService from '../../../assets/api/apiService.js'
+// import AWN from "awesome-notifications"
+import axios from 'axios';
+
+import $ from 'jquery'
 
 let globalOptions =  {
   alert: "Oops! Something got wrong",
@@ -59,7 +62,7 @@ signupOption.labels = {
 }
 
 
-let notifier = new AWN(globalOptions)
+// let notifier = new AWN(globalOptions)
     export default {
         props:['showModal','endpoint','alertTitle'],
         
@@ -67,26 +70,30 @@ let notifier = new AWN(globalOptions)
             triggerToggleModal() {
             this.$emit("triggerModal");
             },
-            sendData(){
-            const form = document.getElementById("formData");
-            const serializedData = apiService.serializeFormData(form);
-            apiService.modalRequest(serializedData,this.endpoint).then(data=>{
-
-                if(data.message=='success'){
-                    notifier.success('Your account is successful created.', signupOption)
-                    this.$router.push('/login');
-                }
-                if(data.errors){
-                    notifier.alert(data.errors[0], globalOptions)
-                }
-
-            }
-                ).catch(error=>{
-                    console.log(error.response.data)
-                    var info = error.response.data;
-                    notifier.alert(info.message, globalOptions)
+            sendData() {
+                
+                const uploadForm = document.getElementById("formData");
+                this.handleFormSubmission(uploadForm,'http://innodip.rw:8004/main-categories');
+                
+            },
+            handleFormSubmission(form,base) {
+            form.addEventListener("submit", function (e) {
+                e.preventDefault(); // Prevent the default form submission
+                
+                const formData = new FormData(form); // Use the submitted form
+                const endpoint = base;
+                axios.post(endpoint, formData)
+                .then(response => {
+                    $('form').trigger('reset')
+                    console.log("Upload successful:", response.data);
+                    // notifier.success(response.data.message, signupOption)
+                })
+                .catch(error => {
+                    console.error("Error uploading:", error);
+                    // notifier.alert(error.response.data.errors.attachmentOfCertificate[1], signupOption)
                 });
-            }
+            });
+            },
         },
     }
 </script>

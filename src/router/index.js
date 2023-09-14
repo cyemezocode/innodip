@@ -54,6 +54,7 @@ import profilePageIndustry from '../pages/industry/profilePage';
 import homePageAdmin from '../pages/admin/homePage';
 import categoriesPage from '../pages/admin/categoriesPage';
 
+import NotFound from '../pages/NotFound';
 
 const routes = [
     {
@@ -329,7 +330,12 @@ const routes = [
         name: 'ProfilePageInst',
         path:'/institution/profile',
         component: profilePageInstitution
-    },
+    }, 
+    {
+        path: '/:catchAll(.*)',
+        name: 'NotFound',
+        component: NotFound
+    }
 ];
 
 const router = Router();

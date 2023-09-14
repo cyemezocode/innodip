@@ -134,10 +134,10 @@
             
         <div v-if="isLoaded" class="flex gap-2 flex-wrap  overflow-hidden mb-4">
             
-            <div class="mb-2 rounded-3xl py-2 px-4 text-white hover:bg-green-700 whitespace-nowrap cursor-pointer" :class="'all'==activeCat?'bg-green-500':'bg-stone-700'" @click="activeCat='all'">
+            <div class="mb-2 rounded-3xl py-2 px-4 text-white hover:bg-green-700 whitespace-nowrap cursor-pointer" :class="'all'==activeCat?'bg-green-500':'bg-stone-700'" @click="filterJobs('all')">
             All
             </div>
-            <div v-for="(job, index) in datas.categories" :key="index" :datas="JSON.stringify(job)" class="mb-2 rounded-3xl py-2 px-4 text-white hover:bg-green-700 whitespace-nowrap cursor-pointer" :class="job.name==activeCat?'bg-green-500':'bg-stone-700'" @click="activeCat=job.name">
+            <div v-for="(job, index) in categories" :key="index" :datas="JSON.stringify(job)" class="mb-2 rounded-3xl py-2 px-4 text-white hover:bg-green-700 whitespace-nowrap cursor-pointer" :class="job.name==activeCat?'bg-green-500':'bg-stone-700'" @click="filterJobs(index)">
             {{ job.name }}
             </div>
         </div>
@@ -145,7 +145,9 @@
                 <div v-for="job in 10" :key="job" class="mb-2 rounded-3xl text-gray-300 h-10 py-2 px-4 hover:bg-gray-300 bg-gray-300">
                     sampletext</div>
         </div>
+        <div class="mb-4">Filtered by <b>{{ activeCat }}</b></div>
             <div v-if="isLoaded">
+                <div class="alert-info" v-if="datas == ''"><b>Sorry! </b>No opportunity found in this category</div>
                 <jobCardVue v-for="job in datas" :key="job" :datas="JSON.stringify(job)" router="/opportunity" :hasDesc=true></jobCardVue>
             </div>
             <div v-if="!isLoaded">
@@ -174,7 +176,7 @@ import 'swiper/css';
     export default {
         data(){
             return{
-                username: 'cyemezo',
+                categories:[],
                 datas:[],
                 dummies:[],
                 industries: [],
@@ -218,9 +220,14 @@ import 'swiper/css';
             });
             apiService.getOpportunities().then(jobsList => {
                 this.datas = jobsList,
-                console.log(jobsList)
+                // console.log(jobsList)
                 // this.activeCat = jobsList.categories[0].name;
                 this.isLoaded = true
+                
+                apiService.getData('all_opportunity_categories').then(res => {
+                    this.categories = res,
+                    this.isLoaded = true
+                });
             });
             apiService.getIndustries().then(industryList => {
                 this.industries = industryList;
@@ -256,6 +263,25 @@ import 'swiper/css';
             }
             return {}; // Empty object for other items (no additional styles)
             },
+            async filterJobs(id){
+                
+                 apiService.getData('opportunities').then(res => {
+                    this.datas = res
+                    if(id!='all'){
+                        this.activeCat=this.categories[id].name
+                        const filteredJobsArray = Object.values(this.datas).filter((value) => {
+                        if (value.category && value.category.industryCategoryName === this.activeCat) {
+                            return true;
+                        }
+                        return false;
+                        });
+                        this.datas = filteredJobsArray;
+                    }else{
+                        this.activeCat=id
+                    }
+                })
+
+            }
 
         },
         breakpoints: {

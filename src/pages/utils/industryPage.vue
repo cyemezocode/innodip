@@ -31,25 +31,73 @@
         <div class="flex justify-end">
             <router-link :to="router+'/'+data._id"><FormButton type="button" label="Visit &rarr;" bstyle="normal"></FormButton></router-link>
         </div>
-        <p class="w-full">{{ data.description }}</p>
-
+        <p class="w-full" v-html="data.description"></p>
+        <div class="flex w-full items-center gap-4 mb-4 mt-4">
+                <svg
+                  class="w-10 h-10 text-secondary"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+                <h1 class="text-2xl text-gray-500">Recent Opportunities</h1>
+              </div>
+              <div v-if="isLoaded">
+                        <jobCardVue v-for="job in datas" :key="job" :datas="JSON.stringify(job)" router="/opportunity" :hasDesc=true></jobCardVue>
+                    </div>
+                    <div v-if="!isLoaded">
+                        <jobCardVueSkeleton v-for="job in 5" :key="job" :hasDesc=true></jobCardVueSkeleton>
+                    </div>
+                    <div class="flex items-center justify-center" v-if="isLoaded">
+                        <FormButton type="button" label="Load More" bstyle="normal"></FormButton>
+                    </div>
     </div> 
 </div>
 </template>
 
 <script>
+    import apiService from '@/assets/api/apiService';
+    import jobCardVue from './jobCard.vue';
+    import jobCardVueSkeleton from './skeletons/jobCard.vue';
 
     export default {
         data(){
             return{
                 baseUrl:'http://innodip.rw:8004/',
+                isLoaded:false,
+                datas:[]
             }
         },
         props:{
             data:Object
         },
+        components:{
+            jobCardVue,
+            jobCardVueSkeleton
+        },
         mounted(){
-            document.title=this.data.name
+        },
+        watch:{
+            data(val){
+                if (val) {
+                    this.isLoaded = true;
+                    document.title=this.data.name,
+                    apiService.getData('industry/my/opportunities/'+this.data._id).then(res => {
+                        this.datas = res.opportunities,
+                        this.isLoaded = true
+                    });
+                } else {
+                    this.isLoaded = false;
+                }
+            }
         }
     }
 </script>

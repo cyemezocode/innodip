@@ -20,6 +20,11 @@ class apiService{
         let resp = res.data;
         return resp;
     }
+    static async deleteData(ep) {
+        let res = await axios.delete(url+ep)
+        let resp = res.data;
+        return resp;
+    }
     static async getJob(id) {
         let res = await axios.get(url2+'data.json/',id)
         let resp = res.data;

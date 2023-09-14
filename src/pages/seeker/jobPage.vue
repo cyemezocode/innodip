@@ -107,7 +107,7 @@
 </svg>
                     <h1 class="text-3xl text-gray-500">Description</h1>
                     </div>
-                    <p>{{ jobData.description }}</p>
+                    <p v-html="jobData.description"></p>
                 </div>
                  <!-- requirement -->
                 <div class="mb-4">
@@ -117,7 +117,7 @@
 </svg>
                     <h1 class="text-3xl text-gray-500">Requirements</h1>
                     </div>
-                    <p v-for="ql in jobData.requirement" :key="ql">{{ ql }}</p>
+                    <p v-html="jobData.requirement"></p>
                 </div>
                 <div class="mb-4">
                     <div class="flex w-full items-center gap-4 mb-4">
@@ -211,7 +211,6 @@
               </a>
                 </div>
                 <FormButton type="submit" label="Apply Now" bstyle="primary" class="mt-auto"></FormButton>
-
             </div>
             </div>
         </div>

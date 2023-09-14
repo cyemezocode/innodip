@@ -10,7 +10,7 @@
         <headerNavVue @userData="getUser"></headerNavVue>
         <div class="w-full bg-gray-700 relative h-36 md:h-48 flex border-b border-gray-300">
         <!-- <span class="absolute top-3 right-3 border border-1 px-2 py-1 rounded-lg bg-gray-400 text-white">+</span> -->
-        <h1 class="hidden col-span-2 md:flex absolute left-1/2 top-12 md:top-20 text-3xl translate-x-[-50%] p-1 opacity-[.8] rounded-lg bg-gray-600 text-white z-10 text-center">{{ datas.name }}</h1>
+        <!-- <h1 class="hidden col-span-2 md:flex absolute left-1/2 top-12 md:top-20 text-3xl translate-x-[-50%] p-1 opacity-[.8] rounded-lg bg-gray-600 text-white z-10 text-center">{{ datas.name }}</h1> -->
         
         <label
                       for="banner"
@@ -126,7 +126,7 @@
                       inputType="url"
                       required="true"
                       small="false"
-                      name="url"
+                      name="text"
                       :value="datas.url"
                     ></FormInput>
                     </div>
@@ -135,7 +135,8 @@
                     
     <div class="w-full flex flex-col">
         <label class="text-sm mb-2">Description<strong class="text-red-400">*</strong></label>
-        <textarea rows="5" class="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary" placeholder="Description" name="description" required v-model="datas.description"></textarea>
+        <textarea rows="5" class="w-full appearance-none hidden bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary" placeholder="Description" name="description" required v-model="datas.description"></textarea>
+        <ckeditor :editor="editor" v-model="datas.description" @ready="onReady" @input="onChange"></ckeditor>
     </div>
                   </div>
                 </div>
@@ -176,6 +177,8 @@ import FormSelect from '../utils/FormSelect.vue';
 import apiService from "../../assets/api/apiService.js";
 import axios from 'axios';
 import AWN from "awesome-notifications"
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import CKEditor from "@ckeditor/ckeditor5-vue"
 
 let globalOptions =  {
   alert: "Oops! Something got wrong",
@@ -207,7 +210,9 @@ export default {
       selectedFilePreview:null,
       selectedBannerPreview:null,
       countries:[],
-      address:''
+      address:'',
+      editor: ClassicEditor,
+      reqCont: "",
 
     };
   },
@@ -217,7 +222,9 @@ export default {
     pageFooterVue,
     FormInput,
     FormButton,
-    FormSelect
+    FormSelect,
+    ckeditor: CKEditor.component
+
   },
   mounted() {
 
@@ -283,7 +290,7 @@ export default {
     sendData() {
       const form = document.getElementById("formData");
       const serializedData = apiService.serializeFormData(form);
-      console.log(serializedData);
+      // console.log(serializedData);
       apiService.handleForm('institution/update/profile/'+this.datas._id,serializedData).then(
         notifier.success('Profile Updated.', signupOption),
         );

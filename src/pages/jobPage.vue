@@ -207,7 +207,7 @@
                 </svg>
                 <h1 class="text-3xl text-gray-500">Description</h1>
               </div>
-              <p>{{ jobData.description }}</p>
+              <p v-html="jobData.description"></p>
             </div>
             <!-- requirement -->
             <div class="mb-4">
@@ -229,9 +229,30 @@
                 </svg>
                 <h1 class="text-3xl text-gray-500">Requirements</h1>
               </div>
-              <p v-for="ql in jobData.requirement" :key="ql">{{ ql }}</p>
+              <p v-html="jobData.requirement"></p>
             </div>
             <!-- facilities -->
+            <div class="mb-4">
+              <div class="flex w-full items-center gap-4 mb-4">
+                <svg
+                  class="w-10 h-10 text-secondary"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+                <h1 class="text-3xl text-gray-500">Qualifications</h1>
+              </div>
+              <p v-html="jobData.qualification"></p>
+            </div>
             <div class="mb-4">
               <div class="flex w-full items-center gap-4 mb-4">
                 <svg
