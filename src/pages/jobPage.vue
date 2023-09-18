@@ -360,7 +360,7 @@
                 </svg>
               </a>
             </div>
-            <FormButton
+            <FormButton v-if="!isLoaded"
               type="submit"
               label="Apply Now"
               bstyle="primary"

@@ -27,7 +27,7 @@
                 <jobCardVueSkeleton v-for="job in 5" :key="job" :hasDesc=true></jobCardVueSkeleton>
             </div>
             <div class="flex items-center justify-center" v-if="isLoaded">
-                <FormButton type="button" label="Load More" bstyle="normal"></FormButton>
+                <FormButton v-if="!isLoaded" type="button" label="Load More" bstyle="normal"></FormButton>
             </div>
         </div>
         <pageFooterVue></pageFooterVue>

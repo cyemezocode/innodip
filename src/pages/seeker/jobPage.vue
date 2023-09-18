@@ -210,7 +210,7 @@
                 </svg>
               </a>
                 </div>
-                <FormButton type="submit" label="Apply Now" bstyle="primary" class="mt-auto"></FormButton>
+                <FormButton v-if="!isLoaded" type="submit" label="Apply Now" bstyle="primary" class="mt-auto"></FormButton>
             </div>
             </div>
         </div>
